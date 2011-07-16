@@ -28,6 +28,9 @@ ul {
 		margin-left: 2em;
 		margin-bottom: 1em;
 }
+ul li {
+		margin-bottom: 0.2em;
+}
 h2 {
   font-family: "myriad-pro-1","myriad-pro-2",sans-serif;
   font-size: 1.3em
@@ -84,4 +87,17 @@ article pre {
 		line-height: 1.3em;
 		-webkit-border-radius: 6px;
 		-moz-border-radius: 6px;
+		overflow: auto;
+}
+
+article dt code {
+		font-size: 1.1em;
+}
+article dt {
+		margin-bottom: 0.2em;
+}
+article dd {
+		padding-left: 4em;
+		margin-bottom: 1em;
+		color: #444;
 }

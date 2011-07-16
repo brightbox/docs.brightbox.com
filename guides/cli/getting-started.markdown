@@ -8,15 +8,15 @@ command line interface (which uses our API). So you'll need some API
 client credentials and the cli software.
 
 Your API client credentials should be composed of a client identifier
-and a secret. To get these you'll need to [request a beta account](http://beta.brightbox.com/).
+and a secret. To get these you'll need to
+[request a beta account](http://beta.brightbox.com/).
 
 ## Initial setup
 
 ### Installation
 
-Firstly, you'll need to [install the cli
-software[(/cli/installation.html). Go do that and come back here.
-
+Firstly, you'll need to
+[install the cli software[(/cli/installation.html). Go do that and come back here.
 
 ### Configuration
 
@@ -27,7 +27,6 @@ these credentials, run the following command:
     $ brightbox-config client_add cli-xxxxx thesecretstring
     Using config file /home/john/.brightbox/config
     Creating new api client config cli-xxxxx
-
 
 ### Initial test
 
@@ -60,7 +59,7 @@ First, let's choose an image to use:
     $ brightbox-images list 
     
      id         owner      type      created_on  status   size   name                                       
-    ---------------------------------------------------------------------------------------------------------
+    -----------------------------------------------------------------------------------------------------
      img-3rb1e  brightbox  official  2011-04-19  public   0      Blank disk image (i686)                    
      img-715uq  brightbox  official  2011-04-19  public   0      Blank disk image (x86_64)                  
      img-99q79  brightbox  official  2010-10-02  public   10244  CentOS 5.5 server (i686)                   
@@ -77,7 +76,7 @@ First, let's choose an image to use:
      img-cq4kz  brightbox  official  2011-05-09  public   1409   Ubuntu Maverick 10.10 server (x86_64)      
      img-ieh3b  brightbox  official  2011-05-09  public   1409   Ubuntu Natty 11.04 server (i686)           
      img-7p3wu  brightbox  official  2011-05-09  public   1409   Ubuntu Natty 11.04 server (x86_64)         
-    ---------------------------------------------------------------------------------------------------------
+    -----------------------------------------------------------------------------------------------------
 
 Let's go with i686 Ubuntu Lucid 10.04 server, which is has an id of img-4gqhs. We'll get the description of it, which should have some notes about how to access it once it's booted. This image says it has an ubuntu user by default:
 
@@ -172,6 +171,6 @@ Now you can log in via ssh using your ssh key. Remember, this image uses the ubu
 
 Here you installed and configured the Command Line Interface tool, created an Ubuntu server, mapped a Cloud IP to it and sshed in.
 
-You might want to learn more about Cloud IPs, discover zones or learn how to Create a snapshot.
+You might want to learn more about [Cloud IPs](/guides/cli/cloud-ips.html), [discover zones](/references/definitions.html#zone) or learn how to [Create a snapshot](/guides/cli/create-a-snapshot.html).
 
-Join the Mobile Infantry and save the Galaxy. Service guarantees citizenship.
+<small>Join the Mobile Infantry and save the Galaxy. Service guarantees citizenship.</small>
