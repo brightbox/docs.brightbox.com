@@ -16,7 +16,7 @@ and a secret. To get these you'll need to
 ### Installation
 
 Firstly, you'll need to
-[install the cli software[(/cli/installation.html). Go do that and come back here.
+[install the cli software](/guides/cli/installation.html). Go do that and come back here.
 
 ### Configuration
 
@@ -134,8 +134,6 @@ If you wait a few moments and show the details of the new server, it should have
            hostname: srv-zx1hd.gb1.brightbox.com
     public_hostname: 
           snapshots: 
-
-			
 			
 ### Mapping a cloud IP
 
@@ -171,6 +169,9 @@ Now you can log in via ssh using your ssh key. Remember, this image uses the ubu
 
 Here you installed and configured the Command Line Interface tool, created an Ubuntu server, mapped a Cloud IP to it and sshed in.
 
-You might want to learn more about [Cloud IPs](/guides/cli/cloud-ips.html), [discover zones](/references/definitions.html#zone) or learn how to [Create a snapshot](/guides/cli/create-a-snapshot.html).
+You might want to learn more about [Cloud IPs](/guides/cli/cloud-ips.html),
+[discover zones](/references/definitions.html#zone) or learn how to
+[Create a snapshot](/guides/cli/create-a-snapshot.html).
 
-<small>Join the Mobile Infantry and save the Galaxy. Service guarantees citizenship.</small>
+<small>Join the Mobile Infantry and save the Galaxy. Service
+guarantees citizenship.</small>
