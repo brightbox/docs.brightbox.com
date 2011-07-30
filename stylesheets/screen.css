@@ -53,9 +53,9 @@ h2 {
 }
 
 body > header {
-  height: 165px;
+  height: 155px;
   width: 902px;
-  background: url("/images/header_bg.png") 0 110px no-repeat;
+  background: url("/images/header_bg.png") 0 100px no-repeat;
   margin: 0 auto;
 }
 
@@ -100,4 +100,20 @@ article dd {
 		padding-left: 4em;
 		margin-bottom: 1em;
 		color: #444;
+}
+
+input#search {
+		display: none;
+		font-size: 0.9em;
+		padding: 0.2em;
+		position: relative;
+		left: 305px;
+		top: -30px;
+		width: 200px;
+}
+ul.ui-autocomplete {
+		font-size: 0.8em;
+}
+ul.ui-autocomplete li {
+		text-align: left;
 }
