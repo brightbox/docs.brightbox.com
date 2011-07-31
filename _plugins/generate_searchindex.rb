@@ -20,13 +20,13 @@ module Jekyll
 
   class Page
     def to_searchindex
-      { :label => data['title'], :value => File.join(@dir, url) }
+      { :label => data['title'], :value => File.join(@dir, url) } if @dir
     end
   end
 
   class Post
     def to_searchindex
-      { :label => data['title'], :value => File.join(@dir, url) }
+      { :label => data['title'], :value => File.join(@dir, url) } if @dir
     end
   end
 
@@ -43,7 +43,7 @@ module Jekyll
     def to_json
       entries = @site.pages.collect { |p| p.to_searchindex }
       entries += @site.posts.collect { |p| p.to_searchindex }
-      entries.to_json
+      entries.compact.to_json
     end
 
   end
