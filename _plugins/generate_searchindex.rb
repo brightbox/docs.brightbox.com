@@ -20,7 +20,13 @@ module Jekyll
 
   class Page
     def to_searchindex
-      { :label => data['title'], :value => "#{@dir}#{url}" }
+      { :label => data['title'], :value => File.join(@dir, url) }
+    end
+  end
+
+  class Post
+    def to_searchindex
+      { :label => data['title'], :value => File.join(@dir, url) }
     end
   end
 
