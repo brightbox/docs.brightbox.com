@@ -14,7 +14,7 @@
 # your Jekyll site.
 
 require 'pathname'
-require 'json'
+require 'json/pure'
 
 module Jekyll
 

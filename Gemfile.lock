@@ -15,6 +15,7 @@ GEM
       kramdown (>= 0.13.2)
       liquid (>= 1.9.0)
       maruku (>= 0.5.9)
+    json_pure (1.4.6)
     kramdown (0.13.3)
     liquid (2.2.2)
     maruku (0.6.0)
@@ -28,3 +29,4 @@ PLATFORMS
 DEPENDENCIES
   RedCloth
   jekyll
+  json_pure
