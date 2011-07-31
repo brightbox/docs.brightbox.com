@@ -42,7 +42,7 @@ module Jekyll
 
     def to_json
       entries = @site.pages.collect { |p| p.to_searchindex }
-      entries += @site.site_payload['site']['posts'].collect { |p| p.to_searchindex }
+      entries += @site.posts.collect { |p| p.to_searchindex }
       entries.to_json
     end
 
