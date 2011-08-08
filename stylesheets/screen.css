@@ -110,7 +110,7 @@ article pre {
     -moz-border-radius: 6px;
     overflow: auto;
 }
-article pre code {
+article pre code, article code {
   font-family: 'Inconsolata', 'Lucida Console', monospace, sans-serif;
 }
 
