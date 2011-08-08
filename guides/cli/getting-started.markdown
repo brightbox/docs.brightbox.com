@@ -78,7 +78,10 @@ First, let's choose an image to use:
      img-7p3wu  brightbox  official  2011-05-09  public   1409   Ubuntu Natty 11.04 server (x86_64)         
     -----------------------------------------------------------------------------------------------------
 
-Let's go with i686 Ubuntu Lucid 10.04 server, which is has an id of img-4gqhs. We'll get the description of it, which should have some notes about how to access it once it's booted. This image says it has an ubuntu user by default:
+Let's go with i686 Ubuntu Lucid 10.04 server, which is has an id of
+`img-4gqhs`. We'll get the description of it, which should have some
+notes about how to access it once it's booted. This image says it has
+an ubuntu user by default:
 
     $ brightbox-images show img-4gqhs
     
@@ -95,10 +98,12 @@ Let's go with i686 Ubuntu Lucid 10.04 server, which is has an id of img-4gqhs. W
     compatibility_mode: false
               official: true
            ancestor_id: 
+					 
 
 ### Create the server
 
-Now you can create a server using that image. Give it a name of "my first server" so you can identify it easily later.
+Now you can create a server using that image. Give it a name of "my
+first server" so you can identify it easily later.
 
     $ brightbox-servers create -n "my first server" img-hm6oj
     Creating 1 'nano' (typ-4nssg) server with image Ubuntu Lucid 10.04 server (img-hm6oj)
@@ -108,9 +113,15 @@ Now you can create a server using that image. Give it a name of "my first server
      srv-zx1hd  creating  nano  gb1-b  2011-03-15  img-4gqhs             my first server
     -------------------------------------------------------------------------------------
 
-Note that the new server has been given the identifier srv-zx1hd.
+Note that the new server has been given the identifier `srv-zx1hd`.
+It's also used the default type `nano`, which is a certain spec of
+server. When you want to build bigger server you'll need to know more
+about [server types](/references/server-types.html), but don't worry
+about them for now.
 
-If you wait a few moments and show the details of the new server, it should have changed from status creating to status active, which means it's booted:
+If you wait a few moments and show the details of the new server, it
+should have changed from status creating to status active, which means
+it's booted:
 
     $ brightbox-servers show srv-zx1hd
                  id: srv-zx1hd

@@ -18,7 +18,8 @@ networking equipment.
 ### Server Type
 
 A Server Type represents a particular server specification: ram size,
-disk size and number of cpu cores.
+disk size and number of cpu cores.  You can learn more about them in
+the [Server Type reference](/references/server-types.html).
 
 ### Image
 
