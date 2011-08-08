@@ -114,14 +114,14 @@ first server" so you can identify it easily later.
     -------------------------------------------------------------------------------------
 
 Note that the new server has been given the identifier `srv-zx1hd`.
-It's also used the default type `nano`, which is a certain spec of
-server. When you want to build bigger server you'll need to know more
-about [server types](/references/server-types.html), but don't worry
-about them for now.
+It has also been given the default server type `nano`. When you want
+to build a bigger server you'll need to know more about
+[server types](/references/server-types.html), but don't worry about
+them for now.
 
 If you wait a few moments and show the details of the new server, it
-should have changed from status creating to status active, which means
-it's booted:
+should have changed from status `creating` to status `active`, which
+means it's booted:
 
     $ brightbox-servers show srv-zx1hd
                  id: srv-zx1hd
@@ -148,7 +148,10 @@ it's booted:
 			
 ### Mapping a cloud IP
 
-So now you have a server but it only has a private IP address. To access it over the internet you need to map a Cloud IP to it. Firstly, create a cloud IP on your account:
+So now you have a server but it only has a private IP address. To
+access it over the internet you need to map a
+[Cloud IP](/references/cloud-ips.html) to it. Firstly, create a cloud
+IP on your account:
 
     $ brightbox-cloudips create
     
@@ -167,7 +170,7 @@ Then map it to your server using the cloud ip's id and your server's id:
      cip-3b0ha  mapped  109.107.35.239  srv-zx1hd  int-x4kve     cip-109-107-35-239.gb1.brightbox.com
     -----------------------------------------------------------------------------------------------------
 
-Now you can log in via ssh using your ssh key. Remember, this image uses the ubuntu account by default:
+Now you can log in via ssh using your ssh key. Remember, this image uses the `ubuntu` account by default:
 
     $ ssh ubuntu@109.107.35.239
     Linux srv-zx1hd 2.6.32-24-generic-pae #42-Ubuntu SMP Fri Aug 20 15:37:22 UTC 2010 i686 GNU/Linux
@@ -178,7 +181,8 @@ Now you can log in via ssh using your ssh key. Remember, this image uses the ubu
 
 ## Would you like to know more?
 
-Here you installed and configured the Command Line Interface tool, created an Ubuntu server, mapped a Cloud IP to it and sshed in.
+Here you installed and configured the Command Line Interface tool,
+created an Ubuntu server, mapped a Cloud IP to it and sshed in.
 
 You might want to learn more about [Cloud IPs](/guides/cli/cloud-ips.html),
 [discover zones](/references/definitions.html#zone) or learn how to
