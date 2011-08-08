@@ -1,7 +1,28 @@
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
 body {
   margin: 0;
   padding: 12px 0 0 0;
-  text-align: center;
   font: 0.9em "Lucida Grande",Verdana,Arial,sans-serif; 
   background-color: #112739;
 }
@@ -11,6 +32,9 @@ body * {
   padding: 0;
 }
 
+img {
+	border: 0;
+}
 a {
   color: #0065ca;
 }
@@ -31,12 +55,13 @@ ul {
 ul li {
 		margin-bottom: 0.2em;
 }
+
 h2 {
   font-family: "myriad-pro-1","myriad-pro-2",sans-serif;
-  font-size: 1.3em
-  font-weight: 600;
+  font-size: 1.4em;
   color: #333;
   margin-bottom: 0.3em;
+  border-bottom: 1px solid #bbb;
 }
 
 h3 {
@@ -47,16 +72,12 @@ h3 {
   margin-bottom: 0.2em;
 }
 
-
-h2 {
-  border-bottom: 1px solid #bbb;
-}
-
 body > header {
   height: 155px;
   width: 902px;
   background: url("/images/header_bg.png") 0 100px no-repeat;
   margin: 0 auto;
+  text-align: center;
 }
 
 body > article {
@@ -65,29 +86,32 @@ body > article {
   padding: 0 56px 3em 56px;
   margin: 0 auto 0 auto;
   text-align: left;
-	min-height: 700px;
+  min-height: 700px;
 }
 
 body > footer {
-	text-align: center;
-	color: #aaa;
-	font-size: 0.6em;
+  text-align: center;
+  color: #aaa;
+  font-size: 0.6em;
   margin: 0 auto 0 auto;
   width: 902px;
-	padding: 1em;
-	background: url("/images/body_bg.png") center top repeat-y;
+  padding: 1em;
+  background: url("/images/body_bg.png") center top repeat-y;
 }
 
 article pre {
-		background-color: #010101;
-		color: #8F8;
-		padding: 12px;
-		font-size: 1.0em;
-		margin-bottom: 1em;
-		line-height: 1.3em;
-		-webkit-border-radius: 6px;
-		-moz-border-radius: 6px;
-		overflow: auto;
+    background-color: #010101;
+    color: #8F8;
+    padding: 12px;
+    font-size: 0.8em;
+    margin-bottom: 1em;
+    line-height: 1.3em;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    overflow: auto;
+}
+article pre code {
+  font-family: 'Inconsolata', 'Lucida Console', monospace, sans-serif;
 }
 
 article dt code {
