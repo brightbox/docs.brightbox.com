@@ -143,7 +143,7 @@ So now you have a server but it only has a private IP address. To access it over
     
      id         status    public_ip       server_id  interface_id  reverse_dns                            
     -------------------------------------------------------------------------------------------------------
-     cip-3b0ha  unmapped  109.107.35.239                           cip-109-107-35-239.gb1.eu.brightbox.com
+     cip-3b0ha  unmapped  109.107.35.239                           cip-109-107-35-239.gb1.brightbox.com
     -------------------------------------------------------------------------------------------------------
 
 Then map it to your server using the cloud ip's id and your server's id:
@@ -153,7 +153,7 @@ Then map it to your server using the cloud ip's id and your server's id:
     
      id         status  public_ip       server_id  interface_id  reverse_dns                            
     -----------------------------------------------------------------------------------------------------
-     cip-3b0ha  mapped  109.107.35.239  srv-zx1hd  int-x4kve     cip-109-107-35-239.gb1.eu.brightbox.com
+     cip-3b0ha  mapped  109.107.35.239  srv-zx1hd  int-x4kve     cip-109-107-35-239.gb1.brightbox.com
     -----------------------------------------------------------------------------------------------------
 
 Now you can log in via ssh using your ssh key. Remember, this image uses the ubuntu account by default:
