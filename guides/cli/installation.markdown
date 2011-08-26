@@ -23,7 +23,7 @@ You'll need some libraries and headers installed to build the required native ge
 
     $ sudo apt-get install ruby rubygems ruby-dev libxml2-dev libxslt-dev libopenssl-ruby libjson0-dev
 
-Debian should be the same as Ubuntu, though you'll need to install a newer version of rubygems. We recommend the Tryphon repositories.
+Debian should be the same as Ubuntu, though you'll need to install a newer version of rubygems. We recommend the [Tryphon repositories](http://debian.tryphon.eu/).
 
 On Fedora you should be able to install them like this:
 
