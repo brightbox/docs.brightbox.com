@@ -3,8 +3,8 @@ layout: default
 title: User Data
 ---
 
-Every server has access to it's own metadata via the EC2 compatible
-metadata_server. Data such as hostname, instance-id and ssh keys are
+Every server has access to its own metadata via the EC2 compatible
+metadata server. Data such as hostname, instance-id and ssh keys are
 available and can be used by scripts to configure the server on boot
 (this is how our default images install your ssh key on boot).
 
@@ -53,15 +53,18 @@ for registering your new node.
 
 ## Ubuntu cloud-init support
 
-Our official Ubuntu images are pre-installed with the cloud-init
+Our official Ubuntu images are pre-installed with the `cloud-init`
 package, which runs on boot and can be controlled in different ways
 via the user data. Full documentation on what cloud-init can do is
-available on the Ubuntu wiki, but here's a neat example of it's shell
-script support.
+available on the
+[Ubuntu wiki](https://help.ubuntu.com/community/CloudInit), but here's
+a neat example of its shell script support.
 
 
 ### Basic Ubuntu cloud-init example
-Firstly, create a shell script we want to run on boot. In this case we want to install a web server and generate a page to serve:
+
+Firstly, write a shell script that we want to run on boot. In this
+case we want to install a web server and generate a page to serve:
 
     $ cat > ud-test-script.sh <<EOF
     #!/bin/sh
