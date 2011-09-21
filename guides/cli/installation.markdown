@@ -11,7 +11,7 @@ The simplest way for an Ubuntu user to install the cli is via our package reposi
 
     $ add-apt-repository ppa:brightbox/ppa
     $ apt-get update
-    $ apt-get install bbcloud
+    $ apt-get install brightbox-cli
 
 #### Ruby gem installation
 
@@ -33,7 +33,7 @@ On OSX, you just need xtools installed, which provides everything you need.
 
 #### Install the gem
 
-    $ gem install bbcloud
+    $ gem install brightbox-cli
     Fetching: json-1.4.6.gem (100%)
     Building native extensions.  This could take a while...
     Fetching: json_pure-1.4.6.gem (100%)
@@ -42,7 +42,7 @@ On OSX, you just need xtools installed, which provides everything you need.
     Fetching: formatador-0.0.16.gem (100%)
     Fetching: excon-0.5.6.gem (100%)
     Fetching: ini-0.1.1.gem (100%)
-    Fetching: bbcloud-0.11.2.gem (100%)
+    Fetching: brightbox-cli-0.13.gem (100%)
     Successfully installed json-1.4.6
     Successfully installed json_pure-1.4.6
     Successfully installed gli-1.2.5
@@ -50,7 +50,7 @@ On OSX, you just need xtools installed, which provides everything you need.
     Successfully installed formatador-0.0.16
     Successfully installed excon-0.5.6
     Successfully installed ini-0.1.1
-    Successfully installed bbcloud-0.11.2
+    Successfully installed brightbox-cli-0.13
     8 gems installed
 
 #### Binaries path
