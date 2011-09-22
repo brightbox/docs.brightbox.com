@@ -1,0 +1,18 @@
+<div id="main">
+  <div class="container_24">
+    
+    <div id="sidebar" class="grid_5">
+      <a href="/">Documentation index</a>
+      <% if @item[:content_for_sidebar] %>
+        <%= @item[:content_for_sidebar] %>
+      <% end %>    </div><!-- /sidebar -->
+    
+    <div class="content grid_18 prefix_1">
+      <h2><%= @item[:title] %></h2>
+    
+      <%= yield %>
+      
+    </div><!-- /content -->
+    
+  </div><!-- /container_24 -->
+</div><!-- /banner -->

@@ -1,0 +1,71 @@
+#!/usr/bin/env ruby
+
+# A few helpful tips about the Rules file:
+#
+# * The string given to #compile and #route are matching patterns for
+#   identifiers--not for paths. Therefore, you can’t match on extension.
+#
+# * The order of rules is important: for each item, only the first matching
+#   rule is applied.
+#
+# * Item identifiers start and end with a slash (e.g. “/about/” for the file
+#   “content/about.html”). To select all children, grandchildren, … of an
+#   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
+#   because “*” matches zero or more characters.
+
+# =====================
+# = Compilation rules =
+# =====================
+
+compile "/sitemap" do
+  filter :erb
+end
+
+compile '/static/*' do
+end
+
+compile '*' do
+  break if item.binary?
+
+  filter :erb
+  filter :maruku
+
+  layout item[:layout] if item[:layout]
+  layout "base"
+end
+
+# ==========
+# = Routes =
+# ==========
+
+route "/sitemap" do
+  "/sitemap.xml"
+end
+
+route "/posts/*" do
+  # "/posts/2011-01-01-some-title-here" => "/2011/01/01/some-title-here/index.html"
+  "/blog/#{item.identifier.split("/", 3).last.gsub(/^(\d+)-(\d+)-(\d+)-(.*)$/, '\1/\2/\3/\4')}index.html"
+end
+
+route '/static/*' do
+  # /static/foo.html/ => /foo.html
+  item.identifier[7..-2]
+end
+
+route '*' do
+  if item.binary?
+    # Write item with identifier /foo/ to /foo.ext
+    item.identifier.chop + '.' + item[:extension]
+  elsif item.identifier == "/"
+    "/index.html"
+  else
+    # Write item with identifier /foo/ to /foo.html
+    "#{item.identifier.chop}.html"
+  end
+end
+
+# ================
+# = Layout rules =
+# ================
+
+layout "*", :erb

@@ -1,0 +1,115 @@
+a.button,a.button:visited, button { 
+    position: relative; 
+    overflow: visible; 
+    display: inline-block; 
+    padding: 0.5em 1.1em; 
+    border: 1px solid #aaa; 
+    margin: 0;
+    text-decoration: none; 
+    text-shadow: 1px 1px 0 #f8f8f8; 
+    font:12px/normal sans-serif; 
+    font-weight: bold;
+    color: #2b2b2b; 
+    white-space: nowrap; 
+    cursor: pointer; 
+    outline: none; 
+    background-color: #ececec;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f8f8f8), to(#c5c5c5));
+    background-image: -moz-linear-gradient(#f8f8f8, #c5c5c5);
+    background-image: -o-linear-gradient(#f8f8f8, #c5c5c5);
+    background-image: linear-gradient(#f8f8f8, #c5c5c5);
+    -webkit-background-clip: padding;
+    -moz-background-clip: padding;
+    -o-background-clip: padding-box; 
+    /*background-clip: padding-box;*/ /* commented out due to Opera 11.10 bug */
+    -webkit-border-radius: 0.2em; 
+    -moz-border-radius: 0.2em; 
+    border-radius: 0.2em; 
+    /* IE hacks */
+    zoom: 1; 
+    *display: inline; 
+}
+
+a.button:hover, button:hover,
+a.button:focus, button:focus,
+a.button:active, button:active,
+a.button.active, button.active {
+    border-color: #777;
+    border-bottom-color: #666;
+    /* border-color: #3072b3;
+    border-bottom-color: #2a65a0;  */
+    text-decoration: none; 
+   /* text-shadow: -1px -1px 0 rgba(0,0,0,0.3); 
+    color: #fff; 
+    background-color: #3C8DDE;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#599bdc), to(#3072b3));
+    background-image: -moz-linear-gradient(#599bdc, #3072b3);
+    background-image: -o-linear-gradient(#599bdc, #3072b3);
+    background-image: linear-gradient(#599bdc, #3072b3); */
+}
+
+a.button:active, button:active,
+a.button.active, button.active {
+    border-color: #666;
+    border-bottom-color: #999;
+    background-color: #bababa;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#bababa), to(#f4f4f4));
+    background-image: -moz-linear-gradient(#bababa, #f4f4f4);
+    background-image: -o-linear-gradient(#bababa, #f4f4f4);
+    background-image: linear-gradient(#bababa, #f4f4f4);
+}
+
+/* overrides extra padding on button elements in Firefox */
+a.button::-moz-focus-inner, button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+a.button.secondary, button.secondary {
+    font-weight: normal;
+    font-size: 11px;
+}
+
+a.button.danger, button.danger {
+    color: #900;
+}
+
+a.button.danger:hover, button.danger:hover,
+a.button.danger:focus, button.danger:focus,
+.button.danger:active, button.danger:active {     
+    border-color: #b53f3a;
+    border-bottom-color: #a0302a;
+    color: #fff; 
+    background-color: #dc5f59;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#dc5f59), to(#b33630));
+    background-image: -moz-linear-gradient(#dc5f59, #b33630);
+    background-image: -o-linear-gradient(#dc5f59, #b33630);
+    background-image: linear-gradient(#dc5f59, #b33630);
+}
+
+a.button.danger:active, button.danger:active, 
+a.button.danger.active, button.danger.active {   
+    border-color: #a0302a;
+    border-bottom-color: #bf4843;
+    background-color: #b33630;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#b33630), to(#dc5f59));
+    background-image: -moz-linear-gradient(#b33630, #dc5f59);
+    background-image: -o-linear-gradient(#b33630, #dc5f59);
+    background-image: linear-gradient(#b33630, #dc5f59);
+}
+
+a.button.pill, button.pill {
+    -webkit-border-radius: 50em; 
+    -moz-border-radius: 50em; 
+    border-radius: 50em; 
+}
+
+a.button.disable, button.disable {
+    opacity: 0.5;
+}
+
+a.button.big, button.big {
+    font-size: 14px; 
+}
+
+a.button.big.icon:before, button.big.icon:before { top: 0; }

@@ -1,0 +1,11 @@
+/* first for IE 4–8 */
+@font-face {
+  font-family: InfoTextWebPro-Semibold;
+  src: url("/fonts/InfoTextWebPro-Semibold.eot");
+}
+
+/* then for WOFF-capable browsers */
+@font-face {
+  font-family: InfoTextWebPro-Semibold;
+  src: url("/fonts/InfoTextWebPro-Semibold.woff") format("woff");
+}

@@ -1,0 +1,16 @@
+<!-- Pagination links -->
+<div id="pagination">
+  <% if @item[:page_number] == 1 %>
+      <span class="newer">Newer posts &rsaquo;</span>
+  <% else %>
+    <span class="newer">
+      <a href="<%= previous_page_url(@item[:page_number], @item[:pagination_path]) %>">Newer posts &rsaquo;</a></span>
+  <% end %>
+  
+  <% if @item[:next_page] %>
+    <span class="older">
+      <a href="<%= next_page_url(@item[:page_number], @item[:pagination_path]) %>">&lsaquo; Older posts</a></span>
+  <% else %>
+      <span class="older">&lsaquo; Older posts</span>
+  <% end %>
+</div>

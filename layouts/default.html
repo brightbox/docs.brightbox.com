@@ -1,0 +1,18 @@
+<div id="main">
+  <div class="content container_24">
+    
+      <% unless @item.reps[0].path == "/" %>
+      <div id="breadcrumbs">
+        <% breadcrumbs_trail.each do |b| %>
+        	<%= link_to(  b[:title] , b.reps[0].path ) if b %> 
+        	<%= b != @item ? '<b>&rsaquo;</b>' : '' %> 
+        <% end %>
+      </div>
+      <% end %>
+
+
+    <h2><%= @item[:title] %></h2>
+    
+    <%= yield %>
+  </div><!-- /content -->
+</div><!-- /main -->
