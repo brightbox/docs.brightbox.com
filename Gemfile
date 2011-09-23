@@ -5,6 +5,7 @@ gem "nanoc"
 gem "maruku"
 gem "kramdown"
 gem "builder"
+gem "nokogiri"
 # Serving dev instance
 gem "rack"
 gem "mime-types"
