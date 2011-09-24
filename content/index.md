@@ -13,10 +13,6 @@ A step-by-step guide to getting up and running quickly.
 
 Step-by-step guides on how to use the various products and features.
 
-#### [Glossary](/reference/glossary/)
-
-A quick lookup list of all Brightbox Cloud terminology.
-
 #### [Command Line Interface](/reference/cli/)
 
 The CLI Reference documentation.
@@ -25,17 +21,21 @@ The CLI Reference documentation.
 
 Documentation on the RESTful API.
 
+#### [Glossary](/reference/glossary/)
+
+A quick lookup list of all Brightbox Cloud terminology.
+
 </div>
 
 <div class="grid_11 prefix_2" markdown="1">
 
-#### [Reference Documentation](/reference/)
-
-Detailed information about various elements of Brightbox Cloud.
-
 #### [FAQ](/faq/)
 
 Frequently Asked Questions.
+
+#### [Reference Documentation](/reference/)
+
+Detailed information about various elements of Brightbox Cloud.
 
 #### [Contact](/contact/)
 

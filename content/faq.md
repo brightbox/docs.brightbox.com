@@ -6,16 +6,38 @@ layout: default
 
 ### General
 
-#### Why is my filesystem so small?
+#### Why is the filesystem on my Cloud Servers so small?
 
-Most images have a small partition on them by default, even though
-your server will have a much bigger disk. You just need to grow the
-partition and filesystem. See the
-[Filesystems and disks](/guides/filesystems-and-disks/) guide
+Most images have a small partition on them by default, even though your
+Cloud Server may have a much larger disk. To make use of the full disk space
+you need to grow the partition and filesystem.
 
-#### How do I resize my server?
+Some of the Brightbox official images (notably the Ubuntu images) automatically
+grow the partition and filesystem on first boot.
 
-We don't support resizing in-place. You need to
-[snapshot your server](/guides/cli/create-a-snapshot/) and create
-a new one using the snapshot.  You'll need to shrink the filesystem
-and partition if you want to resize to a smaller disk.
+See the [Filesystems and disks](/guides/filesystems-and-disks/) guide for more
+details.
+
+#### How do I resize my Cloud Server?
+
+In-place resizing of Cloud Servers is not supported, but you can
+[snapshot your server](/guides/cli/create-a-snapshot/) and use the resulting
+snapshot image to create a new Cloud Server.
+
+If you want to resize down to a Cloud Server Type with a smaller disk, you'll
+need to shrink the filesystem and partition before taking the snapshot.
+
+#### I updated the SSH public key for my user, why hasn't it updated on my Cloud Servers?
+
+SSH keys are only installed on first boot, using a script that gets your key
+from the [metadata service](/reference/metadata-service).
+
+Updating your SSH key will not distribute the updated key to your existing
+Cloud Servers.
+
+#### How can I use my own disk images in Brightbox Cloud?
+
+You can upload them to the Image Library, register them, and then use them like
+any other Cloud Server image. See the
+[Image Library Guide](/guides/cli/image-library/) for more details.
+
