@@ -1,27 +1,30 @@
 # Brightbox Cloud Documentation
 
-This is the [Brightbox Cloud](http://brightbox.com)
-documentation. It uses the [Nanoc](http://nanoc.stoneship.org/) static site
-generator to produce html, which is then deployed to [docs.brightbox.com](http://docs.brightbox.com).
+## Introduction
 
-## Contributing
+This is the documentation for [Brightbox Cloud](http://brightbox.com). It uses
+the [Nanoc](http://nanoc.stoneship.org/) static site generator to compile html, 
+which is then deployed to [docs.brightbox.com](http://docs.brightbox.com).
 
-Get the source from [Github](https://github.com/brightbox/brightbox-docs)
+## How to contribute
 
-Use [bundler](http://gembundler.com/) to install the dependencies:
+### Contributing to the documentation
 
-    $ bundle install
+Please fork the [repository](https://github.com/brightbox/brightbox-docs), 
+push your changes and then send us a pull request.
 
-And then run a local jekyll server to preview the final output:
+GitHub has a useful [walkthrough guide to forking](http://help.github.com/fork-a-repo/) 
+repositories if you need it.
 
-    $ jekyll --auto --server
+### Providing feedback and suggestions
 
-The `--auto` option monitors the files for changes and regenerates the
-html on the fly.
+If you have any suggestions or have spotted an error in the documentation,
+please [submit an issue](https://github.com/brightbox/brightbox-docs/issues/new)
+within the GitHub project.
 
-## License
+## Licence
 
 Copyright 2011 Brightbox Systems Ltd.
 
 Released under the Creative Commons Attribution + ShareAlike (by-sa)
-license.
+licence.
