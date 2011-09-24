@@ -3,19 +3,38 @@ layout: default
 title: API
 ---
 
-The Brightbox Cloud platform can be controlled completely via the RESTful HTTP API.
+Brightbox Cloud resources can be managed completely via the RESTful HTTP API.
 
 Full reference documentation for the API is [available here.](https://api.gb1.brightbox.com/1.0/)
 
-## Clients
+### Client software
 
-The following software is compatible with the Brightbox API.
+The following software is compatible with, or features support for, the 
+Brightbox API.
 
-### Brightbox command line interface
-The most mature tool to interact with the API is currently the Brightbox CLI, written in Ruby. See the documentation for more details.
+#### Brightbox CLI
 
-### Fog: the Ruby cloud computing library
-We've added support for the Brightbox cloud API to [Fog](http://fog.io) "The Ruby cloud services library". The Brightbox CLI is written using Fog.
+The most mature tool for interacting with the API is the Brightbox CLI, 
+written in Ruby. See the [CLI documentation](/guides/cli/) for more information.
 
-### Apache Libcloud
-[Libcloud](http://libcloud.apache.org/) is a standard Python library that abstracts away differences among multiple cloud provider APIs. We added support for our API to libcloud, which is now included upstream.
+#### Fog: the Ruby cloud computing library
+
+We've added support for the Brightbox Cloud API to [Fog](http://fog.io) "The 
+Ruby cloud services library". The Brightbox CLI uses Fog.
+
+#### Apache Libcloud
+
+[Libcloud](http://libcloud.apache.org/) is a standard Python library that
+abstracts away differences among multiple cloud provider APIs.
+
+#### Chef Knife
+
+A [Knife](http://wiki.opscode.com/display/chef/Knife) plugin for the Brightbox 
+API is [available on GitHub](https://github.com/rubiojr/knife-brightbox).
+
+Knife is the command-line tool which is part of the configuration management
+framework [Chef](http://wiki.opscode.com/display/chef/Home).
+
+
+
+
