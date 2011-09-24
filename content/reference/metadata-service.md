@@ -24,5 +24,5 @@ accessible from each server at http://169.254.169.254.
     $ curl http://169.254.169.254/latest/meta-data/instance-id
     srv-sz59
 
-See the [user data guide](/guides/cli/user-data.html) for more
+See the [user data guide](/guides/cli/user-data/) for more
 examples of using the meta data service.

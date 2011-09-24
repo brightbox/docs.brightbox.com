@@ -7,7 +7,6 @@ The Brightbox Cloud platform can be controlled completely via the RESTful HTTP A
 
 Full reference documentation for the API is [available here.](https://api.gb1.brightbox.com/1.0/)
 
-
 ## Clients
 
 The following software is compatible with the Brightbox API.

@@ -13,7 +13,7 @@ which can be used in any way you like. The only limitation is that it
 can't be larger than 16k in size.
 
 
-## Hello World example
+### Hello World example
 
 Firstly, create a new server with "hello world" as the user data. You
 can use any image, but I'm going to use Ubuntu Lucid:
@@ -43,7 +43,7 @@ Then ssh in and grab the user data using curl:
     Hello World
 
 
-## Usage patterns
+### Usage patterns
 
 The usual usage pattern for user data is to rig up an image to grab
 the data on boot and do something with it. You could set a bash script
@@ -51,7 +51,7 @@ as the user data and execute it on boot, or you could put your puppet
 or chef server IP address in the user data field and use it on boot
 for registering your new node.
 
-## Ubuntu cloud-init support
+### Ubuntu cloud-init support
 
 Our official Ubuntu images are pre-installed with the cloud-init
 package, which runs on boot and can be controlled in different ways

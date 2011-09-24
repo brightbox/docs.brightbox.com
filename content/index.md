@@ -1,47 +1,49 @@
 ---
-layout: default
 title: Overview
+layout: default
 ---
 
-Here you can find the documentation for the new
-[Brightbox Cloud platform](http://beta.brightbox.com). The Brightbox
-Cloud is currently in beta and this documentation is still being
-written, but it's a good starting point.
+<div class="grid_11 alpha" markdown="1">
 
-#### [Getting Started](/guides/cli/getting-started.html)
+#### [Getting Started](/guides/cli/getting-started/)
 
-A step-by-step guide to getting up and running quickly
+A step-by-step guide to getting up and running quickly.
 
-#### [Guides and Howtos](/guides)
+#### [Guides and Howtos](/guides/)
 
-All step by step guides on how to use various features.
+Step-by-step guides on how to use the various products and features.
 
-#### [Definitions](/references/definitions.html)
+#### [Glossary](/reference/glossary/)
 
-A quick lookup list of all the Brightbox Cloud terminology
+A quick lookup list of all Brightbox Cloud terminology.
 
-#### [Command Line Interface](/references/cli.html)
+#### [Command Line Interface](/reference/cli/)
 
-The CLI Reference
+The CLI Reference documentation.
 
-#### [API](/references/api.html)
+#### [API](/reference/api/)
 
-Docs on our RESTful HTTP API
+Documentation on the RESTful API.
 
-#### [Reference docs](/references)
+</div>
 
-Detailed information about the different elements of the Brightbox
-Cloud
+<div class="grid_11 prefix_2" markdown="1">
 
-#### [FAQ](/references/faq.html)
+#### [Reference Documentation](/reference/)
 
-Frequently Asked Questions
+Detailed information about various elements of Brightbox Cloud.
 
-#### [Contact](/contact.html)
+#### [FAQ](/faq/)
 
-How to get in touch with us
+Frequently Asked Questions.
 
-#### And more
+#### [Contact](/contact/)
 
-We welcome any feedback or suggestions, see our
-[feedback forum](http://brightbox.uservoice.com/).
+How to get in touch.
+
+#### [Contribute](/guides/contributing/)
+
+This documentation is available on [GitHub](https://github.com/brightbox/brightbox-docs)
+under a Creative Commons licence. All contributions are welcomed.
+
+</div>

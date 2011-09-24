@@ -1,6 +1,6 @@
 ---
-layout: with_sidebar
 title: CLI Installation
+layout: default
 ---
 
 The Command Line Interface is available for installation in two forms, a Ruby gem or an Ubuntu package.

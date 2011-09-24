@@ -1,20 +1,13 @@
 <div id="main">
-  <div class="container_24">
+  <div class="content container_24">
     
-    <div id="sidebar" class="grid_5">
+    <%= render "breadcrumbs" %>
 
-      <%= render "sidebar" %>
-
-    </div><!-- /sidebar -->
+    <h2><%= @item[:title] %></h2>
     
-    <div class="content grid_18 prefix_1">
-      <%= render "breadcrumbs" %>
-
-      <h2><%= @item[:title] %></h2>
+    <%= yield %>
     
-      <%= yield %>
-            
-      <div id="share">
+     <div id="share">
       <p class="last_updated">Page last updated <%= @item.mtime.strftime("%d %b %Y at %H:%M %Z") %></p>
       <p><a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="brightbox">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
       
@@ -32,7 +25,5 @@
       
       </div>
       
-    </div><!-- /content -->
-    
-  </div><!-- /container_24 -->
-</div><!-- /banner -->
+  </div><!-- /content -->
+</div><!-- /main -->

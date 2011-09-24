@@ -42,11 +42,6 @@ route "/sitemap" do
   "/sitemap.xml"
 end
 
-route "/posts/*" do
-  # "/posts/2011-01-01-some-title-here" => "/2011/01/01/some-title-here/index.html"
-  "/blog/#{item.identifier.split("/", 3).last.gsub(/^(\d+)-(\d+)-(\d+)-(.*)$/, '\1/\2/\3/\4')}index.html"
-end
-
 route '/static/*' do
   # /static/foo.html/ => /foo.html
   item.identifier[7..-2]
@@ -56,11 +51,9 @@ route '*' do
   if item.binary?
     # Write item with identifier /foo/ to /foo.ext
     item.identifier.chop + '.' + item[:extension]
-  elsif item.identifier == "/"
-    "/index.html"
   else
-    # Write item with identifier /foo/ to /foo.html
-    "#{item.identifier.chop}.html"
+    # Write item with identifier /foo/ to /foo/index.html
+    item.identifier + 'index.html'
   end
 end
 

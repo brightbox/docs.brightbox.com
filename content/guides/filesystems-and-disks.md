@@ -1,6 +1,7 @@
 ---
-layout: default
 title: Filesystems and Disks
+layout: default
+tags: [filesystem, disk, partition, growpart, sfdisk, lvm, resize2fs]
 ---
 
 Most images are smaller in size than the server disks are so that the
@@ -36,7 +37,7 @@ partition automatically using the sfdisk tool and a bit of scripting:
 
     $ START=`sfdisk -uS /dev/vda -d | grep vda1 | awk '{print $4}'` && printf "$START\n;0\n;0\n;0\n" | sfdisk --force -uS -x /dev/vda
 
-WARNING: The above script blindly grows the first partition to the
+**WARNING:** The above script blindly grows the first partition to the
 entire size of your disk, overwriting any other partitions. It has
 only been tested with our official Ubuntu images.
 

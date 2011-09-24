@@ -110,4 +110,4 @@ Here you created a snapshot, then created a new server using the
 snapshot image and finally downloaded the image via ftp.
 
 You might want to learn more about how to [upload your own image to the
-image library](/guides/cli/image-library.html).
+image library](/guides/cli/image-library/).

@@ -4,19 +4,18 @@ title: Getting Started
 ---
 
 All interaction with the Brightbox Cloud is currently through our
-command line interface (which uses our API). So you'll need some API
-client credentials and the cli software.
+command line interface (which uses our API). You'll need to create an API
+client to use the CLI.
 
 Your API client credentials should be composed of a client identifier
-and a secret. To get these you'll need to
-[request a beta account](http://beta.brightbox.com/).
+and a secret.
 
 ### Initial setup
 
 #### Installation
 
 Firstly, you'll need to
-[install the cli software](/guides/cli/installation.html). Go do that and come back here.
+[install the cli software](/guides/cli/installation/). Go do that and come back here.
 
 #### Configuration
 
@@ -169,9 +168,9 @@ Now you can log in via ssh using your ssh key. Remember, this image uses the ubu
 
 Here you installed and configured the Command Line Interface tool, created an Ubuntu server, mapped a Cloud IP to it and sshed in.
 
-You might want to learn more about [Cloud IPs](/guides/cli/cloud-ips.html),
-[discover zones](/references/definitions.html#zone) or learn how to
-[Create a snapshot](/guides/cli/create-a-snapshot.html).
+You might want to learn more about [Cloud IPs](/guides/cli/cloud-ips/),
+[discover zones](/reference/glossary/#zone) or learn how to
+[Create a snapshot](/guides/cli/create-a-snapshot/).
 
 <small>Join the Mobile Infantry and save the Galaxy. Service
 guarantees citizenship.</small>

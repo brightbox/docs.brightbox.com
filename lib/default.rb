@@ -25,6 +25,10 @@ def main_nav_link_class_for params={}
   %{ class="current"} if params[:path][1..-1].split("/").first == params[:link][%r{^/?(.*)$}, 1]
 end
 
+def label_for item
+  item[:label] || item[:title]
+end
+
 def current_section
   "community"
 end

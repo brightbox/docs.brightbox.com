@@ -1,0 +1,7 @@
+<% if @item.children %>
+<ul>
+  <% @item.children.each do |child| %>
+  <li><a href="<%= child.identifier %>"><%= child[:title] %></a></li>
+  <% end %>
+</ul>
+<% end %>

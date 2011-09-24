@@ -1,12 +1,10 @@
 ---
 layout: default
-title: Definitions
+title: Glossary
 ---
 
 ### Server
-A Server is a single cloud virtual machine running a particular
-image.
-
+A Server is a single cloud virtual machine running a particular image.
 
 ### Zone
 
@@ -25,7 +23,7 @@ disk size and number of cpu cores.
 An Image is virtual disk image used as the basis of a
 server. Brightbox provide several "official" images for common OSes,
 but users can create their own by
-[snapshotting existing servers](/guides/cli/create-a-snapshot.html) or
+[snapshotting existing servers](/guides/cli/create-a-snapshot/) or
 uploading new images.
 
 
@@ -38,7 +36,7 @@ any server belonging to the same account, even across zones within the
 same region.
 
 You can learn more about them in the
-[Cloud IP guide](/guides/cli/cloud-ips.html)
+[Cloud IP guide](/guides/cli/cloud-ips/)
 
 ### Account
 
@@ -70,7 +68,7 @@ whether as the Owner or with limited permissions.
 
 User data is arbitrary metadata that can be specified when creating a
 new server. The user data is available to the server from the [Metadata
-server](/guides/cli/user-data.html).
+server](/guides/cli/user-data/).
 
 
 ### Image Library
@@ -78,6 +76,6 @@ server](/guides/cli/user-data.html).
 The image library holds all the server images. It can be used to
 download snapshots, or upload new images for registration. You can
 learn more about it in the
-[image library guide](/guides/cli/image-library.html).
+[image library guide](/guides/cli/image-library/).
 
 
