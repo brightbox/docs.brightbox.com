@@ -3,21 +3,8 @@ layout: default
 title: Contact Brightbox
 ---
 
-### Email
+There are a few different ways to contact us. See the [contact page](http://brightbox.com/about/contact/) on our main site for more details.
 
-Please contact us with bugs or suggestions via email at
-<beta@brightbox.com>.
+### Technical Support
 
-### IRC
-
-You can also chat to us on IRC on our channel `#brightbox` on
-`irc.freenode.net`.
-
-### Uservoice feedback forum
-
-You can also submit and vote for suggestions using our Uservoice
-forum: <http://brightbox.uservoice.com/>
-
-### Twitter
-
-We're on Twitter too: <http://twitter.com/brightbox>
+There are several ways to get technical support for Brightbox Cloud, so see our [support page](http://brightbox.com/support/) for details.
