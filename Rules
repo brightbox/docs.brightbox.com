@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# -*- coding: utf-8 -*-
 
 # A few helpful tips about the Rules file:
 #
@@ -16,6 +17,10 @@
 # =====================
 # = Compilation rules =
 # =====================
+
+compile '/search-data/' do
+  filter :erb
+end
 
 compile "/sitemap" do
   filter :erb
@@ -40,6 +45,10 @@ end
 
 route "/sitemap" do
   "/sitemap.xml"
+end
+
+route '/search-data/' do
+  "/javascripts"+item.identifier[0..-2]+".js"
 end
 
 route '/static/*' do
