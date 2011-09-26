@@ -4,11 +4,9 @@ layout: default
 tags: [filesystem, disk, partition, growpart, sfdisk, lvm, resize2fs]
 ---
 
-Most images are smaller in size than the server disks are so that the
-same image can be used on every server type without you worrying if it
-will it.
+Most images are smaller in size than the server disks are so that the same image can be used on every server type without you worrying if it will it.
 
-So when you first boot a server the filesystem might look like this:
+Some images (in particular the Ubuntu images) automatically grow the partition and filesystem during the first boot.  Most images don't do this, so when you first boot a server the filesystem might look like this:
 
     $ df -h
     Filesystem            Size  Used Avail Use% Mounted on
@@ -27,8 +25,7 @@ And the partition table might look like this:
 To make use of your whole disk, you'll want to grow the partition and
 then grow the filesystem.
 
-If the image is Ubuntu Natty, you can use the growpart tool to grow
-the partition:
+If the image is Ubuntu Natty or newer, you can use the growpart tool to grow the partition:
 
     $ growpart /dev/vda 1
 
