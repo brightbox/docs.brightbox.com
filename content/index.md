@@ -43,7 +43,7 @@ How to get in touch.
 
 #### [Contribute](/guides/contributing/)
 
-This documentation is available on [GitHub](https://github.com/brightbox/brightbox-docs)
+This documentation is available on [GitHub](https://github.com/brightbox/docs.brightbox.com)
 under a Creative Commons licence. All contributions are welcomed.
 
 </div>
