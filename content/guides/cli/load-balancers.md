@@ -12,8 +12,7 @@ unresponsive servers from the pool until they recover.
 Load Balancers are of course completely configurable via our API, and
 therefore also via our CLI tool.
 
-This guide will show you how to create a new Load Balancer, add some
-servers and test it out.
+This guide will show you how to create a new Load Balancer, add some servers and test it out.  For more in-depth documentation, see the [Load Balancer Reference](/reference/load-balancers).
 
 
 ### Creating a new balancer
