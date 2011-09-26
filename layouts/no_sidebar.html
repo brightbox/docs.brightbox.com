@@ -1,0 +1,29 @@
+<div id="main">
+  <div class="content container_24">
+    
+    <%= render "breadcrumbs" %>
+
+    <h2><%= @item[:title] %></h2>
+    
+    <%= yield %>
+    
+     <div id="share">
+      <p class="last_updated">Page last updated <%= @item.mtime.strftime("%d %b %Y at %H:%M %Z") %></p>
+      <p><a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="brightbox">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+      
+    <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+      
+
+      <div class="fb-like" data-href="<%= url_for(@item) %>" data-send="true" data-width="500" data-show-faces="false" data-action="recommend" data-font="lucida grande"></div>
+      
+      </div>
+      
+  </div><!-- /content -->
+</div><!-- /main -->
