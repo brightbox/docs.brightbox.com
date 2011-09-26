@@ -1,11 +1,15 @@
 head.js("/javascripts/search-data.js", function() {
 	$("input#search").show().autocomplete({
-		autoFocus: true,
+		autoFocus: false,
 		source: function(req, res) { window.search_index(req.term, res); },
 		minLength: 2,
 		select: function( event, ui ) {
 			$(this).attr("disabled", true);
 			document.location = ui.item.url;
+			return false;
+		},
+		focus: function( event, ui ) {
+			$(this).val( ui.item.title );
 			return false;
 		}
 	}).data("autocomplete")._renderItem = function( ul, item ) {
@@ -33,4 +37,4 @@ function disqus_config() {
          }];
 };
 
-head.js("/javascripts/http://brightbox.disqus.com/embed.js");
+head.js("http://brightbox.disqus.com/embed.js");
