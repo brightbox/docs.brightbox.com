@@ -6,6 +6,7 @@ gem "maruku"
 gem "kramdown"
 gem "builder"
 gem "nokogiri"
+gem "json"
 # Serving dev instance
 gem "rack"
 gem "mime-types"

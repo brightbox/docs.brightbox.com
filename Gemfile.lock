@@ -4,6 +4,7 @@ GEM
     builder (3.0.0)
     cri (2.0.2)
     fssm (0.2.7)
+    json (1.5.3)
     kramdown (0.13.3)
     maruku (0.6.0)
       syntax (>= 1.0.0)
@@ -22,6 +23,7 @@ PLATFORMS
 DEPENDENCIES
   builder
   fssm
+  json
   kramdown
   maruku
   mime-types
