@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'json'
 require 'nokogiri'
 
@@ -65,9 +66,11 @@ def search_index
         end
       end
     end
+    title = item[:title]
+    title = "#{item[:section]} › #{title}" if item[:section]
     idx["items"][id] = {
       "url" => "#{item.path}",
-      "title" => item[:title],
+      "title" => title,
     }
     id += 1
   end

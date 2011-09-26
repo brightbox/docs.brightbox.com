@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Load Balancers
+section: Guides
 ---
 
 Load Balancers distribute traffic between a pool of your servers,

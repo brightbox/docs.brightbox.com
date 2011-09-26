@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Cloud IPs
+section: Reference
 ---
 
 Cloud IP addresses are publicly routed IPv4 addresses that can be
