@@ -1,6 +1,7 @@
 ---
 layout: default
 title: CLI Development
+section: Reference
 ---
 
 The CLI source code is available on [Github](https://github.com/brightbox/brightbox-cli)

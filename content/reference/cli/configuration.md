@@ -1,6 +1,7 @@
 ---
 layout: default
 title: CLI Configuration
+section: Reference
 ---
 
 Once you've been given an API client id and secret, you can configure the cli with it like this:

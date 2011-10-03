@@ -1,6 +1,7 @@
 ---
 layout: default
-title: Command Line Interface Reference
+title: Command Line Interface
+section: Reference
 ---
 
 The Brightbox CLI is a command line interface to create and manage
