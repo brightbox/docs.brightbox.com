@@ -4,6 +4,7 @@ title: Guides
 ---
 
 * [Getting Started](/guides/cli/getting-started)
+* [Brightbox Manager Guides](/guides/manager/)
 * [Cloud IPs](/guides/cli/cloud-ips)
 * [Filesystems and disks](/guides/filesystems-and-disks)
 * [User Data](/guides/cli/user-data)

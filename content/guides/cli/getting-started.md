@@ -3,12 +3,11 @@ layout: default
 title: Getting Started
 ---
 
-All interaction with the Brightbox Cloud is currently through our
-command line interface (which uses our API). You'll need to create an API
-client to use the CLI.
+All interaction with Brightbox Cloud is currently through our command line interface (which uses our API). You'll need to create an API client to use the CLI.
 
-Your API client credentials should be composed of a client identifier
-and a secret.
+An API Client is just a set of credentials for accessing the API. It's composed of a client identifier (like `cli-xxxxx`) and a secret.
+
+You can sign up for a Brightbox Cloud Account using the [Brightbox Manager](https://manage.brightbox.com/user/new).  You can then [create a new API Client](/guides/manager/api-clients/).
 
 ### Initial setup
 
