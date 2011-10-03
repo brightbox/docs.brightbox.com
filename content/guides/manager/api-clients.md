@@ -1,6 +1,7 @@
 ---
 layout: default
-title: "Brightbox Manager: API Clients"
+title: API Clients
+section: Brightbox Manager
 ---
 
 An API Client is required whenever you authenticate with the API, such as when you use the [command line interface](/guides/cli/).

@@ -1,6 +1,7 @@
 ---
 layout: default
 title: API Clients
+section: Reference
 ---
 
 An API Client is a set of credentials for accessing the API. It's composed of a client identifier (like `cli-xxxxx`) and a randomly generated secret.
