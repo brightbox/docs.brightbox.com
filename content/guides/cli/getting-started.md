@@ -3,24 +3,27 @@ layout: default
 title: Getting Started
 ---
 
-All interaction with Brightbox Cloud is currently through our command line interface (which uses our API). You'll need to create an API client to use the CLI.
+All interaction with Brightbox Cloud resources is currently through our command line interface (which uses our API). This guide will take you from creating a Brightbox Account to logging into your
+first Cloud Server via SSH.
 
-An API Client is just a set of credentials for accessing the API. It's composed of a client identifier (like `cli-xxxxx`) and a secret.
+### Create an Account and API Client
 
-You can sign up for a Brightbox Cloud Account using the [Brightbox Manager](https://manage.brightbox.com/user/new).  You can then [create a new API Client](/guides/manager/api-clients/).
+Firstly, sign up for a Brightbox Cloud Account using [Brightbox Manager](https://manage.brightbox.com/user/new).
+
+Once you've signed up, you can then [create an API Client](/guides/manager/api-clients/) which you'll use to configure the CLI below. An API Client is simply a pair of access credentials for accessing the API, consisting of a client identifier (like `cli-xxxxx`) and a secret.
 
 ### Initial setup
 
 #### Installation
 
-Firstly, you'll need to
+You'll need to
 [install the cli software](/guides/cli/installation/). Go do that and come back here.
 
 #### Configuration
 
-You should have received some API client credentials from us, which
-should consist of a client id and a secret. To configure the cli with
-these credentials, run the following command:
+You can now configure the CLI with the credentials for the API client you created earlier.
+
+To configure the cli with these credentials, run the following command:
 
     $ brightbox-config client_add cli-xxxxx thesecretstring
     Using config file /home/john/.brightbox/config
