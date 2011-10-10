@@ -13,12 +13,12 @@ Brightbox Cloud provides a number of dynamic DNS records for convenience.
 <th>Description</th>
 </tr>
 <tr>
-<td><code>srv-xxxxx.gb1.brightbox.com</code></td>
+<td style="white-space:nowrap"><code>srv-xxxxx.gb1.brightbox.com</code></td>
 <td><code>10.240.119.222</code></td>
 <td>Private IP address of the Cloud Server</td>
 </tr>
 <tr>
-<td><code>public.srv-xxxxx.gb1.brightbox.com</code></td>
+<td style="white-space:nowrap"><code>public.srv-xxxxx.gb1.brightbox.com</code></td>
 <td><code>109.107.36.218</code></td>
 <td>First Cloud IP mapped to the Cloud Server. Returns NXDOMAIN if no Cloud IPs are mapped</td>
 </tr>
