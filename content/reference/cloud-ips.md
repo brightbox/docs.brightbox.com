@@ -64,3 +64,4 @@ If no Cloud IP is mapped, the record fails to resolve (returning a
 The default reverse dns of a Cloud IP is currently of the form
 `cip-109-107-36-145.gb1.brightbox.com.`.
 
+Custom reverse dns for Cloud IPs is covered in the [DNS reference](/reference/dns/) and in the [CLI Reverse DNS Guide](/guides/cli/reverse-dns/).

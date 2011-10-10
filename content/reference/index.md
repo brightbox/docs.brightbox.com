@@ -28,3 +28,7 @@ The Metadata service available to Cloud Servers.
 #### [API](/reference/api/)
 
 Our RESTful HTTP API.
+
+#### [DNS](/reference/dns/)
+
+Our convenience DNS records and Cloud IP reverse dns support.

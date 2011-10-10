@@ -3,14 +3,15 @@ layout: default
 title: Guides
 ---
 
-* [Getting Started](/guides/cli/getting-started)
+* [Getting Started](/guides/cli/getting-started/)
 * [Brightbox Manager Guides](/guides/manager/)
-* [Cloud IPs](/guides/cli/cloud-ips)
-* [Filesystems and disks](/guides/filesystems-and-disks)
-* [User Data](/guides/cli/user-data)
-* [Create a snapshot](/guides/cli/create-a-snapshot)
-* [Image Library](/guides/cli/image-library)
-* [Load Balancers](/guides/cli/load-balancers)
+* [Cloud IPs](/guides/cli/cloud-ips/)
+* [Filesystems and disks](/guides/filesystems-and-disks/)
+* [User Data](/guides/cli/user-data/)
+* [Create a snapshot](/guides/cli/create-a-snapshot/)
+* [Image Library](/guides/cli/image-library/)
+* [Load Balancers](/guides/cli/load-balancers/)
+* [Reverse DNS](/guides/cli/reverse-dns/)
 
 ### Screencasts
 
