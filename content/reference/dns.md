@@ -4,7 +4,7 @@ title: DNS
 section: Reference
 ---
 
-Brightbox Cloud provides a number of dynamic dns records for convenience.
+Brightbox Cloud provides a number of dynamic DNS records for convenience.
 
 <table>
 <tr>
@@ -15,30 +15,30 @@ Brightbox Cloud provides a number of dynamic dns records for convenience.
 <tr>
 <td><code>srv-xxxxx.gb1.brightbox.com</code></td>
 <td><code>10.240.119.222</code></td>
-<td>Private IP address of each server</td>
+<td>Private IP address of the Cloud Server</td>
 </tr>
 <tr>
 <td><code>public.srv-xxxxx.gb1.brightbox.com</code></td>
 <td><code>109.107.36.218</code></td>
-<td>First Cloud IP mapped to the server. Returns NXDOMAIN is no Cloud IPs are mapped</td>
+<td>First Cloud IP mapped to the Cloud Server. Returns NXDOMAIN if no Cloud IPs are mapped</td>
 </tr>
 </table>
 
-## Reverse DNS
+### Reverse DNS
 
-### Private Reverse DNS
+#### Private Reverse DNS
 
-Reverse dns for private addresses works from within Brightbox Cloud:
+Reverse DNS for private addresses works from within the Brightbox Cloud network:
 
     $ host 10.240.119.222
     222.119.240.10.in-addr.arpa domain name pointer srv-su22m.gb1.brightbox.com.
 
-### Cloud IP Reverse DNS
+#### Cloud IP Reverse DNS
 
-Reverse dns for Cloud IPs defaults to the form `cip-109-107-38-125.gb1.brightbox.com.`.
+Reverse DNS for Cloud IPs defaults to the form `cip-109-107-38-125.gb1.brightbox.com.`
 
-You can customize Cloud IP reverse dns using the api.  The forward dns mapping must be in place first otherwise the reverse dns update will be rejected.
+You can customise Cloud IP reverse DNS using the API.  The forward DNS mapping must be in place first otherwise the reverse DNS update will be rejected.
 
-Forward mappings for custom reverse dns are checked once a day and the account owner is sent an email notification if the forward mapping is found to be invalid.  If the forward mapping is left invalid for 3 consecutive days, the custom reverse dns mapping is removed and switches back to the default form.
+Forward mappings for custom reverse DNS are checked once a day and the account owner is sent an email notification if the forward mapping is found to be invalid.  If the forward mapping is left invalid for 3 consecutive days, the custom reverse DNS mapping is reset to the default form.
 
-The [CLI Reverse DNS guide](/guides/cli/reverse-dns/) will take you through setting up reverse dns step by step.
+The [CLI Reverse DNS guide](/guides/cli/reverse-dns/) will take you through setting up reverse DNS step by step.
