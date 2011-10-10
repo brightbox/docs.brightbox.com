@@ -13,3 +13,4 @@ gem "mime-types"
 # Regenerating automagically
 gem "fssm"
 gem "rb-fsevent" if PLATFORM["darwin"] # Mac
+gem "adsf"
