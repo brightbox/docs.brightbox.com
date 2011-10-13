@@ -22,7 +22,7 @@ an increase to each of the 3 limits at any time via
 
 ### API Client
 
-An API Client is a set of credentials (client_id and secret), belonging
+An [API Client](/reference/api-clients/) is a set of credentials (client_id and secret), belonging
 to an Account, used to authenticate with the [API](/reference/api) via OAuth2.0
 
 Each Account can have multiple API Clients.
@@ -61,7 +61,7 @@ to an [Account](#account).
 
 ### Console
 
-FIXME.
+The [Graphical Console](/guides/cli/graphical-console/) provides direct access to a Cloud Server, as if sat at a physical keyboard.
 
 ### Image
 
