@@ -101,7 +101,7 @@ Let's go with i686 Ubuntu Lucid 10.04 server, which is has an id of img-4gqhs. W
 
 Now you can create a server using that image. Give it a name of "my first server" so you can identify it easily later.
 
-    $ brightbox-servers create -n "my first server" img-hm6oj
+    $ brightbox-servers create -n "my first server" img-4gqhs
     Creating 1 'nano' (typ-4nssg) server with image Ubuntu Lucid 10.04 server (img-hm6oj)
     
      id         status    type  zone   created_on  image_id   cloud_ips  name           
