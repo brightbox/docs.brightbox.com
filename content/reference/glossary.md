@@ -29,8 +29,9 @@ Each Account can have multiple API Clients.
 
 ### Brightbox Manager
 
-Brightbox Manager is a web-based GUI which can be used to create and manage
-Brightbox Accounts and update billing details etc.
+Brightbox Manager is a web-based GUI which can be used to create and
+manage Brightbox Accounts and update billing details etc.  It's
+accessible at https://manage.brightbox.com
 
 ### CLI
 
@@ -99,6 +100,10 @@ available across a Region - designed to tolerate the loss of an entire
 Zone without disruption.
 
 For more information, see the [Load Balancer guide](/guides/cli/load-balancers)
+
+### Server Group
+
+A Server Group is a logical grouping of [Cloud Servers](#cloud_server). They’re the foundation of other Brightbox Cloud features, such as the [Cloud Firewall](#cloud_firewall). For more information see the [Server Group guide](/guides/cli/server-groups/).
 
 ### Server Type
 
