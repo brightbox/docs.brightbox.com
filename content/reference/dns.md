@@ -35,10 +35,18 @@ Reverse DNS for private addresses works from within the Brightbox Cloud network:
 
 #### Cloud IP Reverse DNS
 
-Reverse DNS for Cloud IPs defaults to the form `cip-109-107-38-125.gb1.brightbox.com.`
+Reverse DNS for Cloud IPs defaults to the form
+`cip-109-107-38-125.gb1.brightbox.com.`
 
-You can customise Cloud IP reverse DNS using the API.  The forward DNS mapping must be in place first otherwise the reverse DNS update will be rejected.
+You can customise Cloud IP reverse DNS using the API.  The forward DNS
+mapping must be in place first otherwise the reverse DNS update will
+be rejected.
 
-Forward mappings for custom reverse DNS are checked once a day and the account owner is sent an email notification if the forward mapping is found to be invalid.  If the forward mapping is left invalid for 3 consecutive days, the custom reverse DNS mapping is reset to the default form.
+Forward mappings for custom reverse DNS are checked once a day and the
+account owner is sent an email notification if the forward mapping is
+found to be invalid.  If the forward mapping is left invalid for 3
+consecutive days, the custom reverse DNS mapping is reset to the
+default form.
 
-The [CLI Reverse DNS guide](/guides/cli/reverse-dns/) will take you through setting up reverse DNS step by step.
+The [CLI Reverse DNS guide](/guides/cli/reverse-dns/) will take you
+through setting up reverse DNS step by step.

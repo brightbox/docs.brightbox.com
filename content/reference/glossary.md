@@ -22,8 +22,9 @@ an increase to each of the 3 limits at any time via
 
 ### API Client
 
-An [API Client](/reference/api-clients/) is a set of credentials (client_id and secret), belonging
-to an Account, used to authenticate with the [API](/reference/api) via OAuth2.0
+An [API Client](/reference/api-clients/) is a set of credentials
+(client_id and secret), belonging to an Account, used to authenticate
+with the [API](/reference/api) via OAuth2.0
 
 Each Account can have multiple API Clients.
 
@@ -62,19 +63,26 @@ to an [Account](#account).
 
 ### Console
 
-The [Graphical Console](/guides/cli/graphical-console/) provides direct access to a Cloud Server, as if sat at a physical keyboard.
+The [Graphical Console](/guides/cli/graphical-console/) provides
+direct access to a Cloud Server, as if sat at a physical keyboard.
 
 ### Firewall
 
-The Cloud Firewall is a distributed stateful firewall for controlling access to, from and between Cloud Servers.  See the [Cloud Firewall Reference](/reference/firewall/) for more information.
+The Cloud Firewall is a distributed stateful firewall for controlling
+access to, from and between Cloud Servers.  See the
+[Cloud Firewall Reference](/reference/firewall/) for more information.
 
 ### Firewall Policy
 
-A Firewall Policy represents a list of [Firewall Rules](#firewall_rule) and is usually associated with a [Server Group](#server_group).
+A Firewall Policy represents a list of
+[Firewall Rules](#firewall_rule) and is usually associated with a
+[Server Group](#server_group).
 
 ### Firewall Rule
 
-A Firewall Rule defines some kind of network traffic to be accepted by the [Cloud Firewall](#firewall). It is always associated with a [Firewall Policy](#firewall_policy).
+A Firewall Rule defines some kind of network traffic to be accepted by
+the [Cloud Firewall](#firewall). It is always associated with a
+[Firewall Policy](#firewall_policy).
 
 ### Image
 
@@ -115,7 +123,11 @@ For more information, see the [Load Balancer guide](/guides/cli/load-balancers)
 
 ### Server Group
 
-A Server Group is a logical grouping of [Cloud Servers](#cloud_server). They’re the foundation of other Brightbox Cloud features, such as the [Cloud Firewall](#cloud_firewall). For more information see the [Server Group guide](/guides/cli/server-groups/).
+A Server Group is a logical grouping of
+[Cloud Servers](#cloud_server). They’re the foundation of other
+Brightbox Cloud features, such as the
+[Cloud Firewall](#cloud_firewall). For more information see the
+[Server Group guide](/guides/cli/server-groups/).
 
 ### Server Type
 

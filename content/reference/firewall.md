@@ -4,35 +4,60 @@ title: Cloud Firewall
 section: Reference
 ---
 
-The Cloud Firewall is a distributed firewall for managing network access to, from and between Cloud Servers.
+The Cloud Firewall is a distributed firewall for managing network
+access to, from and between Cloud Servers.
 
-It's controlled using the [API](/reference/api/), commonly using the [CLI](/reference/cli/).
+It's controlled using the [API](/reference/api/), commonly using the
+[CLI](/reference/cli/).
 
-It is stateful, so you only need to write a rule in one direction - you do not need to worry about the reply packets coming back the other way.
+It is stateful, so you only need to write a rule in one direction -
+you do not need to worry about the reply packets coming back the other
+way.
 
-See the [Cloud Firewall guide](/guides/cli/firewall/) for a step by step walkthrough of setting up the Cloud Firewall.
+See the [Cloud Firewall guide](/guides/cli/firewall/) for a step by
+step walkthrough of setting up the Cloud Firewall.
 
 ### Server Group
 
-A Server Group is a logical grouping of Cloud Servers. Servers can be a member of one or more Server Groups, and can be added to or removed from them at any time.
+A Server Group is a logical grouping of Cloud Servers. Servers can be
+a member of one or more Server Groups, and can be added to or removed
+from them at any time.
 
-Server Groups are a useful system in their own right, and will be the building blocks of other Brightbox Cloud features.  See the [Server Groups guide](/guides/cli/server-groups/) for more details.
+Server Groups are a useful system in their own right, and will be the
+building blocks of other Brightbox Cloud features.  See the
+[Server Groups guide](/guides/cli/server-groups/) for more details.
 
 ### Firewall Policy
 
-A Firewall Policy represents a list of Firewall Rules and is associated with a Server Group.  Rules are reapplied whenever the policy or group membership changes.
+A Firewall Policy represents a list of Firewall Rules and is
+associated with a Server Group.  Rules are reapplied whenever the
+policy or group membership changes.
 
-When first created, a Firewall Policy has no rules and has no associated Server Group.
+When first created, a Firewall Policy has no rules and has no
+associated Server Group.
 
-A Firewall Policy can only consist of Firewall Rules that accept traffic, which means a Cloud Server can easily be controlled by multiple Firewall Policies without worrying about the ordering of the rules.  A Cloud Server can have multiple Firewall Policies by being in multiple Server Groups. Any traffic that is not matched by an accept rule in any of the applied policies is rejected.
+A Firewall Policy can only consist of Firewall Rules that accept
+traffic, which means a Cloud Server can easily be controlled by
+multiple Firewall Policies without worrying about the ordering of the
+rules.  A Cloud Server can have multiple Firewall Policies by being in
+multiple Server Groups. Any traffic that is not matched by an accept
+rule in any of the applied policies is rejected.
 
 ### Firewall Rules
 
-A Firewall Rule is a set of criteria for matching IP packets crossing the firewall.  Packets can be matched based on source or destination address, protocol and source and destination ports. For protocol icmp, the icmp type can also be matched.
+A Firewall Rule is a set of criteria for matching IP packets crossing
+the firewall.  Packets can be matched based on source or destination
+address, protocol and source and destination ports. For protocol icmp,
+the icmp type can also be matched.
 
 #### Direction
 
-There is no explicit concept of incoming or outgoing rules - the direction of the rule is implied by the address criteria.  So when matching on destination address, the source is considered to be the Server Group (so is an outgoing rule).  When matching on source address, the destination is considered to be the Server Group (so is an incoming rule).
+There is no explicit concept of incoming or outgoing rules - the
+direction of the rule is implied by the address criteria.  So when
+matching on destination address, the source is considered to be the
+Server Group (so is an outgoing rule).  When matching on source
+address, the destination is considered to be the Server Group (so is
+an incoming rule).
 
 #### Address criteria
 
@@ -54,17 +79,24 @@ Source or destination addresses can be a few different types:
 <tr><td><code>2a00:1450::/32</code></td><td>An IPv6 address with a network mask</td></tr>
 </table>
 
-Both source and destination addresses cannot be specificed in the same rule - one "side" of the rule is always the Server Group that the Firewall Policy is applied to.
+Both source and destination addresses cannot be specificed in the same
+rule - one "side" of the rule is always the Server Group that the
+Firewall Policy is applied to.
 
-Note that servers within a Server Group cannot reach each other unless there are both rules allowing traffic destinated to and originating from it.
+Note that servers within a Server Group cannot reach each other unless
+there are both rules allowing traffic destinated to and originating
+from it.
 
 ##### Protocol Criteria
 
-Protocol can be specified as an 8bit integer so you can match any IP protocol, but for convenience the strings `tcp`, `udp` or `icmp` are also accepted..  Not specifying a protocol matches all IP protocols.
+Protocol can be specified as an 8bit integer so you can match any IP
+protocol, but for convenience the strings `tcp`, `udp` or `icmp` are
+also accepted..  Not specifying a protocol matches all IP protocols.
 
 #### Port Criteria
 
-Ports can only be used with protocols `tcp` and `udp`.  Source and destination ports can be specified in a few different ways:
+Ports can only be used with protocols `tcp` and `udp`.  Source and
+destination ports can be specified in a few different ways:
 
 <table>
 <tr>
@@ -83,15 +115,22 @@ Coming Soon
 
 ### Default Firewall Policy
 
-Every account has one default Server Group that all newly created servers become a member of (unless you explicitly put them in a different group).  That group has a Firewall Policy applied with some default rules.
+Every account has one default Server Group that all newly created
+servers become a member of (unless you explicitly put them in a
+different group).  That group has a Firewall Policy applied with some
+default rules.
 
 #### Existing Customers
 
-For customers who signed up before Cloud Firewall was announced (2nd November), the default policy is to *accept all traffic in both directions* (just as it did before the Cloud Firewall was implemented).
+For customers who signed up before Cloud Firewall was announced (2nd
+November), the default policy is to *accept all traffic in both
+directions* (just as it did before the Cloud Firewall was
+implemented).
 
 #### New Customers
 
-For customers who signed up after Cloud Firewall was announced, the default policy is as follows:
+For customers who signed up after Cloud Firewall was announced, the
+default policy is as follows:
 
 <table>
 <tr>
@@ -103,6 +142,9 @@ For customers who signed up after Cloud Firewall was announced, the default poli
 <tr><td>-</td><td>grp-xxxxx (default group)</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
 </table>
 
-Which means allow all outgoing traffic, allow incoming icmp pings, allow incoming tcp ports ssh, http and https, and allow incoming connections from all other servers in the default group.
+Which means allow all outgoing traffic, allow incoming icmp pings,
+allow incoming tcp ports ssh, http and https, and allow incoming
+connections from all other servers in the default group.
 
-So incoming access is restricted to some commonly used ports, but all servers in the group can reach each other openly.
+So incoming access is restricted to some commonly used ports, but all
+servers in the group can reach each other openly.

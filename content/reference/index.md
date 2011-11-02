@@ -19,11 +19,13 @@ Dynamically movable Public IP addresses.
 
 #### [Load Balancers](/reference/load-balancers/)
 
-Geographic redundancy, fault tolerance and horizontal scalability for your server.
+Geographic redundancy, fault tolerance and horizontal scalability for
+your server.
 
 #### [Cloud Firewall](/reference/firewall/)
 
-Distributed firewall for controlling network access to, from and between Cloud Servers.
+Distributed firewall for controlling network access to, from and
+between Cloud Servers.
 
 #### [Metadata service](/reference/metadata-service/)
 
