@@ -10,10 +10,6 @@ access to, from and between Cloud Servers.
 It's controlled using the [API](/reference/api/), commonly using the
 [CLI](/reference/cli/).
 
-It is stateful, so you only need to write a rule in one direction -
-you do not need to worry about the reply packets coming back the other
-way.
-
 See the [Cloud Firewall guide](/guides/cli/firewall/) for a step by
 step walkthrough of setting up the Cloud Firewall.
 
@@ -112,6 +108,24 @@ Not specifying a port matches all ports.
 #### ICMP Criteria
 
 Coming Soon
+
+### Stateful
+
+The Cloud Firewall is stateful, so you only need to write a rule in one direction -
+you do not need to worry about the reply packets coming back the other
+way.
+
+Also, removing rules will only affect new connections. Existing
+established connections will not be disconnected mid-stream.
+
+For `tcp`, an established connection is any connection that has passed
+the three way handshake and hasn't yet sent the final FIN packets.
+
+`udp` isn't a real stateful protocol, so we consider a `udp`
+"connection" open for 30 seconds after each packet.
+
+`icmp` isn't stateful either, we consider an icmp "connection" open
+for 30 seconds after receiving an icmp echo request.
 
 ### Default Firewall Policy
 
