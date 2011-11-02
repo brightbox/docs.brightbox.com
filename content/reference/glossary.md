@@ -64,6 +64,18 @@ to an [Account](#account).
 
 The [Graphical Console](/guides/cli/graphical-console/) provides direct access to a Cloud Server, as if sat at a physical keyboard.
 
+### Firewall
+
+The Cloud Firewall is a distributed stateful firewall for controlling access to, from and between Cloud Servers.  See the [Cloud Firewall Reference](/reference/firewall/) for more information.
+
+### Firewall Policy
+
+A Firewall Policy represents a list of [Firewall Rules](#firewall_rule) and is usually associated with a [Server Group](#server_group).
+
+### Firewall Rule
+
+A Firewall Rule defines some kind of network traffic to be accepted by the [Cloud Firewall](#firewall). It is always associated with a [Firewall Policy](#firewall_policy).
+
 ### Image
 
 An Image (or Cloud Server Image) is a virtual disk image from which a

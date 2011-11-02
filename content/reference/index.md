@@ -21,6 +21,10 @@ Dynamically movable Public IP addresses.
 
 Geographic redundancy, fault tolerance and horizontal scalability for your server.
 
+#### [Cloud Firewall](/reference/firewall/)
+
+Distributed firewall for controlling network access to, from and between Cloud Servers.
+
 #### [Metadata service](/reference/metadata-service/)
 
 The Metadata service available to Cloud Servers.

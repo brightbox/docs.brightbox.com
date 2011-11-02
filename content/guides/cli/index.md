@@ -12,3 +12,4 @@ title: CLI
 * [User Data](/guides/cli/user-data/)
 * [Reverse DNS](/guides/cli/reverse-dns/)
 * [Server Groups](/guides/cli/server-groups/)
+* [Firewall](/guides/cli/firewall/)
