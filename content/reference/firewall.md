@@ -12,7 +12,7 @@ It is stateful, so you only need to write a rule in one direction - you do not n
 
 See the [Cloud Firewall guide](/guides/cli/firewall/) for a step by step walkthrough of setting up the Cloud Firewall.
 
-## Firewall Policy
+### Firewall Policy
 
 A Firewall Policy represents a list of Firewall Rules and is associated with a Server Group.  Rules are reapplied whenever the policy or group membership changes.
 
@@ -20,21 +20,21 @@ When first created, a Firewall Policy has no rules and has no associated Server 
 
 A Firewall Policy can only consist of Firewall Rules that accept traffic, which means a Cloud Server can easily be controlled by multiple Firewall Policies without worrying about the ordering of the rules.  A Cloud Server can have multiple Firewall Policies by being in multiple Server Groups.
 
-## Server Group
+### Server Group
 
 A Server Group is a logical grouping of Cloud Servers. Servers can be a member of one or more Server Groups, and can be added to or removed from them at any time.
 
 Server Groups are a useful system in their own right, and will be the building blocks of other Brightbox Cloud features.  See the [Server Groups guide](/guides/cli/server-groups/) for more details.
 
-## Firewall Rules
+### Firewall Rules
 
 A Firewall Rule is a set of criteria for matching IP packets crossing the firewall.  Packets can be matched based on source or destination address, protocol and source and destination ports. For protocol icmp, the icmp type can also be matched.
 
-### Direction
+#### Direction
 
 There is no explicit concept of incoming or outgoing rules - the direction of the rule is implied by the address criteria.  So when matching on destination address, the source is considered to be the Server Group (so is an outgoing rule).  When matching on source address, the destination is considered to be the Server Group (so is an incoming rule).
 
-### Address criteria
+#### Address criteria
 
 Source or destination addresses can be a few different types:
 
@@ -55,11 +55,11 @@ Source or destination addresses can be a few different types:
 
 Both source and destination addresses cannot be specificed in the same rule - one "side" of the rule is always the Server Group that the Firewall Policy is applied to.
 
-### Protocol criteria
+#### Protocol criteria
 
 Protocol can be specified as the strings `tcp`, `udp` or `icmp`, or it can be specified as an 8bit integer.  Not specifying a protocol matches all IP protocols.
 
-### Port criteria
+#### Port criteria
 
 Ports can only be used with protocols `tcp` and `udp`.  Source and destination ports can be specified in a few different ways:
 
@@ -74,6 +74,6 @@ Ports can only be used with protocols `tcp` and `udp`.  Source and destination p
 
 Not specifying a port matches all ports.
 
-### ICMP criteria
+#### ICMP criteria
 
 Coming Soon

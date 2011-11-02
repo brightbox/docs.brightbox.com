@@ -4,7 +4,7 @@ title: Cloud Firewall
 section: Guides
 ---
 
-The Brightbox Cloud Firewall let's you easily control access to, from and between your Cloud Servers.  Rather than laboriously writing rules for every one of your Cloud Servers, you define rules for your [Server Groups](/guides/cli/server-groups/). Then, whenever you add servers to the groups, all the rules are applied to all the relevant servers automatically.
+The Brightbox Cloud Firewall provides a highly-configurable facility to control access to, from and between your Cloud Servers.  Rather than laboriously writing rules for every one of your Cloud Servers, you define rules for your [Server Groups](/guides/cli/server-groups/). Then, whenever you add servers to the groups, all the rules are applied to all the relevant servers automatically.
 
 Let's set up firewalling for an example web cluster. We have two web servers and two database servers.
 
@@ -36,7 +36,7 @@ So now we have two new groups, in addition to the default group.  If we moved th
 
 ### Creating Firewall Policies
 
-Firewall Rules cannot be added directly onto a Server Group, they need to be added to a [Firewall Policy](/reference/glossary/#firewall_policy). The Firewall Policy is then applied to the Server Group.
+Firewall Rules are added to a [Firewall Policy](/reference/glossary/#firewall_policy), rather than directly onto a Server Group. The Firewall Policy is then applied to the Server Group.
 
 So let's create two new firewall policies and map them to the new groups:
 
@@ -82,18 +82,18 @@ So let's create two new firewall policies and map them to the new groups:
 
 So now we can define the allowed traffic. Let's add the incoming HTTP rule:
 
-    $ brightbox-firewall-rules create --source=any --protocol=tcp     --dport=80,443 fwp-emldu
+    $ brightbox-firewall-rules create --source=any --protocol=tcp --dport=80,443 fwp-emldu
     
      id         protocol  source  sport  destination  dport   icmp_type
     --------------------------------------------------------------------
      fwr-44bgd  tcp       any     -      -            80,443  -        
     --------------------------------------------------------------------
 
-Firewall rules are from the perspective of the group that the policy is applied to.
+Firewall rules are written from the perspective of the group that the policy is applied to.
 
-So firewall rules don't have an explicit direction - you don't say this rule is inbound or outbound. Instead, the direction of a rule depends on whether you set the source address or the destination address (you cannot set both).
+So, firewall rules don't have an explicit direction - you don't say this rule is inbound or outbound. Instead, the direction of a rule depends on whether you set the source address or the destination address (you cannot set both).
 
-If you set the source address for a rule, then the destination is the group that this policy is applied to.  If you set the destination address, then the *source* becomes the group.
+If you set the source address for a rule, then the **destination** is the group that this policy is applied to.  If you set the destination address, then the **source** becomes the group.
 
 So don't think in terms of inbound or outbound, think: is this rule matching traffic destined somewhere (outgoing) or is it matching traffic from somewhere (incoming).
 

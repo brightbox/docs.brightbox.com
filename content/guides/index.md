@@ -7,6 +7,7 @@ title: Guides
 * [Brightbox Manager Guides](/guides/manager/)
 * [Cloud IPs](/guides/cli/cloud-ips/)
 * [Filesystems and disks](/guides/filesystems-and-disks/)
+* [Cloud Firewall](/guides/cli/firewall)
 * [User Data](/guides/cli/user-data/)
 * [Create a snapshot](/guides/cli/create-a-snapshot/)
 * [Image Library](/guides/cli/image-library/)
