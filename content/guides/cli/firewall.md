@@ -99,7 +99,7 @@ So don't think in terms of inbound or outbound, think: is this rule matching tra
 
 So in this case, we set the source to `any`, which means any ipv4 or ipv6 address, so it's matching traffic from anywhere in to servers in the `web servers` group.
 
-For high security configurations, we would now define the outgoing access very specifically, perhaps allowing them access to external APIs and SMTP relays or whatever. But for simplicitly here, we'll just add a rule allowing all access:
+For high security configurations, we could define the outgoing access very specifically, perhaps allowing them access to external APIs and SMTP relays or whatever. But for simplicitly here, we'll just add a rule allowing all access:
 
     $ brightbox-firewall-rules create --destination=any fwp-emldu
     
