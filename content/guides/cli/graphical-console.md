@@ -4,7 +4,7 @@ title: Graphical Console
 section: Guides
 ---
 
-The Graphical Console gives you encrypted access to your Cloud Server as if you were at at its monitor with a keyboard and mouse plugged in.  This lets you investigate problems even if your OS won't boot or is inaccesible via the network.
+The Graphical Console gives you encrypted access to your Cloud Server as if you were at at its monitor with a keyboard and mouse plugged in.  This lets you investigate problems even if your OS won't boot or is inaccessible via the network.
 
 Getting access to the Graphical Console is simple. You just need our command line interface, a modern web browser with support for HTML5 canvas (e.g: Firefox 3.6+, Chrome, Safari, IE 9+) and web sockets (or instead Flash).
 
