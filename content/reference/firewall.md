@@ -75,12 +75,12 @@ Source or destination addresses can be a few different types:
 <tr><td><code>2a00:1450::/32</code></td><td>An IPv6 address with a network mask</td></tr>
 </table>
 
-Both source and destination addresses cannot be specificed in the same
+Both source and destination addresses cannot be specified in the same
 rule - one "side" of the rule is always the Server Group that the
 Firewall Policy is applied to.
 
 Note that servers within a Server Group cannot reach each other unless
-there are both rules allowing traffic destinated to and originating
+there are both rules allowing traffic destined to and originating
 from it.
 
 ##### Protocol Criteria
