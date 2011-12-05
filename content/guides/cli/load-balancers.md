@@ -31,10 +31,10 @@ any other options:
     ------------------------------------------------------------------------
 
 If we view the details of this new balancer, we can see that it is
-listening on port `80` and port `443` by default and is health
-checking port `80` with a http request. If three http requests to the
-backend servers fails in a row then the server will be taken out of
-the pool until it recovers:
+listening on port `80` and port `443` by default and each of those
+listeners is health checking on port `80` with an http request. If three
+http requests to the backend servers fails in a row then the server will
+be taken out of the pool until it recovers:
 
     $ brightbox-lbs show lba-c76a7
              id: lba-c76a7
@@ -137,3 +137,8 @@ doesn't respond in this time then the health check is considered a
 failure.
 
 All these options can be set at creation time too.
+
+Each listener in the load balancer will inherit the specified health
+check, so if you specify a 20000ms check and have listeners on port 80
+and port 443 you will get a check from each listener. This will make it
+appear that the checks are spaced by 10000ms on the back end servers. 
