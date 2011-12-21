@@ -24,7 +24,7 @@ an increase to each of the 3 limits at any time via
 
 An [API Client](/reference/api-clients/) is a set of credentials
 (client_id and secret), belonging to an Account, used to authenticate
-with the [API](/reference/api) via OAuth2.0
+with the [API](/reference/api) via OAuth 2.0
 
 Each Account can have multiple API Clients.
 
