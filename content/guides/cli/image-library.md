@@ -56,7 +56,7 @@ ftp, you register it. In this case I've uploaded a 32bit image called
     
      id         owner      type    created_on  status    size  name            
     ----------------------------------------------------------------------------
-     img-7geqi  acc-h3nbk  upload  2011-05-19  creating  0     slackware (i686)
+     img-7geqi  acc-xxxxx  upload  2011-05-19  creating  0     slackware (i686)
     ----------------------------------------------------------------------------
 
 Once it's been registered it will be deleted from `incoming/` and be
@@ -71,9 +71,68 @@ available in the `images/` directory named by the new images id
      img-687qk  brightbox  official  2011-04-18  public   2049   Ubuntu Hardy 8.04 server (x86_64)          
      img-2ab98  brightbox  official  2011-04-18  public   1409   Ubuntu Lucid 10.04 server (i686)           
      img-4gqhs  brightbox  official  2011-05-09  public   1409   Ubuntu Lucid 10.04 server (i686)           
-     img-7geqi  acc-h3nbk  upload    2011-05-19  private  3050   Slackware (i686)                           
+     img-7geqi  acc-xxxxx  upload    2011-05-19  private  3050   Slackware (i686)                           
     ---------------------------------------------------------------------------------------------------------
 
 And it can be used to build servers in the usual manner:
 
     $ brightbox-servers create -n "my slackware box" img-7geqi
+		
+### Compatibility mode
+
+Brightbox Cloud Servers are created by default with what are called
+`virtio` devices. `virtio` devices allow for higher performance but
+require that the operating system have proper support for them.
+
+If your operating system does not support `virtio` then it will not be
+able to access the network or disk devices.
+
+Most modern Linux kernels have `virtio` support built-in, but many
+other operating systems, such as FreeBSD or Microsoft Windows, do not.
+
+Compatibility mode disables `virtio`, which allows a broader range of
+operating systems to work without modification.
+
+So to use compatibility mode, you set it on a particular image:
+
+    $ brightbox-images update --mode=compatibility img-7geqi
+
+From then on, any new servers created with this image are put in
+compatibility mode and will work without `virtio` drivers.
+
+
+### Image access
+
+Uploaded images and snapshot images are private by default, which
+means only the account that owns them can list them or build servers
+from them.
+
+If you make an image public, other Brightbox Cloud users can see them
+and build servers from them:
+
+    $ brightbox-images update --public=true img-7geqi
+
+### Deprecated images
+
+If you've got an image that is public and you release a new version of
+it, you'll probably want to remove the old version. However, this may
+affect other users who might have hard-coded your image's identifier
+into their build scripts. Rather than remove the old version, you can
+mark it as deprecated.
+
+A deprecated image is still available for use to those who know the
+identifier, but it does not show up in image listings so shouldn't
+invite any new users.
+
+Deprecated images that you own still shows up in your listings, but
+are listed with the status `deprecated`:
+
+    brightbox-images update --deprecated=true img-7geqi
+    
+    Updating image img-7geqi
+    
+     id         owner      type    created_on  status      size  name            
+    ------------------------------------------------------------------------------
+     img-7geqi  acc-xxxxx  upload  2011-05-19  deprecated  3050  slackware (i686)
+    ------------------------------------------------------------------------------
+
