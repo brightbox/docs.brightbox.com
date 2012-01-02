@@ -4,9 +4,18 @@ layout: default
 tags: [filesystem, disk, partition, growpart, sfdisk, lvm, resize2fs]
 ---
 
-Most images are smaller in size than the server disks are so that the same image can be used on every server type without you worrying if it will it.
+Most [Server Images](/reference/server-images/) provide a small
+partition by default, perhaps two gigabytes. This allows the Image to
+be used on all [Server Types](/reference/glossary/#server-type)
+because there will always be enough space for it.
 
-Some images (in particular the Ubuntu images) automatically grow the partition and filesystem during the first boot.  Most images don't do this, so when you first boot a server the filesystem might look like this:
+Some Images (in particular the Ubuntu images) are rigged to
+automatically grow the partition and file system during the first boot
+(you can control this behaviour if you wish with special
+[user data](/guides/cli/user-data/)).
+
+Most other images leave the work for you to do manually, so when you
+first boot a server the file system might look very small:
 
     $ df -h
     Filesystem            Size  Used Avail Use% Mounted on
@@ -22,15 +31,19 @@ And the partition table might look like this:
        Device Boot Start   End    MiB    #blocks   Id  System
     /dev/vda1         0+  1341-  1342-   1374023   83  Linux
 
-To make use of your whole disk, you'll want to grow the partition and
-then grow the filesystem.
+The actual disk is the full size as per the Server Type, but the
+Images partition table just doesn't use it all by default.
 
-If the image is Ubuntu Natty or newer, you can use the growpart tool to grow the partition:
+To make use of your whole disk, you'll want to grow the partition and
+then grow the file system.
+
+If the image is Ubuntu Natty or newer, you can use the `growpart` tool
+to grow the partition:
 
     $ growpart /dev/vda 1
 
 If the image is an older Ubuntu, you can usually grow the main
-partition automatically using the sfdisk tool and a bit of scripting:
+partition automatically using the `sfdisk` tool and a bit of scripting:
 
     $ START=`sfdisk -uS /dev/vda -d | grep vda1 | awk '{print $4}'` && printf "$START\n;0\n;0\n;0\n" | sfdisk --force -uS -x /dev/vda
 
@@ -39,7 +52,7 @@ entire size of your disk, overwriting any other partitions. It has
 only been tested with our official Ubuntu images.
 
 After resizing the partition you need to reload the partition table,
-which usually needs a reboot. Then you can grow the filesystem.
+which usually needs a reboot. Then you can grow the file system.
 
 In the case of the Ubuntu images, you can grow the default filesystem
 like this:
