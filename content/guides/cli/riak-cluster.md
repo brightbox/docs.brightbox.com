@@ -4,12 +4,17 @@ title: Building a Riak Cluster
 section: Guides
 ---
 
-This guide takes you through building a small four node Riak cluster
-on Brightbox Cloud.
+This guide takes you through building a small four node
+[Riak](http://wiki.basho.com/Riak.html) database cluster on Brightbox
+Cloud. It assumes you have already signed up and installed and
+configured the command line interface.  If you haven't, follow the
+[Getting Started guide](/guides/cli/getting-started/).
 
 ### Firewalling
 
-Firstly, let's create a group for the cluster and a firewall policy:
+Firstly, let's create a [Server Group](/guides/cli/server-groups/) for
+the cluster and a
+[Firewall Policy](http://docs.brightbox.com/reference/firewall/):
 
     $ brightbox-groups create -n "riak"
     Creating a new server group
@@ -58,17 +63,23 @@ servers:
 
 ### Building the servers
 
-So now we want to create the servers - a little more preparation first
-though. Let's write a little shell script to upgrade any necessary
-packages, download Riak, configure and install it:
+Before we create the servers, there is a little more preparation to
+automate the configuration.  Let's write a little shell script to
+upgrade any necessary packages, download Riak, configure and install
+it:
 
     #!/bin/sh
-    
+		
+    MASTER=
     ERLANG_COOKIE=Quo1viGheWauch5un4eimohth2ohtheo
+
+    # Skip if it looks like Riak is already installed
+    test -d /etc/riak && exit
     
     # apply any upgrades
     apt-get update
     apt-get upgrade -qy
+    
     # this is handy to have
     apt-get install -qy language-pack-en
     
@@ -87,27 +98,57 @@ packages, download Riak, configure and install it:
     
     # Start riak
     /etc/init.d/riak start
+    
+    # Join this node to the cluster
+    riak-admin join riak@$MASTER
 
 Save that locally in a file called `install-riak.sh` and we can
 specify it as [user data](/guides/cli/user-data/), which Ubuntu will
-execute for us on boot (so we'll need to use an Ubuntu image).
+execute for us on boot (so we'll need to use an Ubuntu image). This
+script assumes a 64bit server.
 
-Now we actually create the servers. We'll build two in zone A and two
-in zone B so we have geographical redundancy (it's technically a bit
-more complicated that that with Riak, but that's out of the scope of
-this document!).  We'll put them in the group we created, so they get
-the firewall policy we created, we'll use the
+Choose your own secret for the `ERLANG_COOKIE` variable.  You'll also
+notice the empty `MASTER` variable in that script - we'll fill that in
+once we've built our first server.
 
-We'll create these as `nano` servers, but you should choose an
+So now we actually create the servers. We'll build two in zone A and
+two in zone B so we have geographical redundancy (it's technically a
+[bit more complicated](we want to create the servers - a little more
+preparation first ) that that with Riak, but that's out of the scope
+of this document).  We'll put the new servers in the group we created,
+so they get the firewall policy we created.
+
+We'll create them as `nano` servers, but you should choose an
 appropriate server type for your use case (see the `brightbox-types`
 command).
 
-    $ brightbox-servers create -n "riak server" -g grp-ekalx -z gb1-a -i 2 -t nano -f install-riak.sh img-3ikco
-    Creating 2 nano (typ-4nssg) servers with image Ubuntu Lucid 10.04 server (img-3ikco) in zone gb1-a in groups grp-ekalx with 0.95k of user data
+Let's create our first server which we'll use as the "master":
+
+    $ brightbox-servers create -n "riak server" -g grp-ekalx -z gb1-a -t nano -f install-riak.sh img-3ikco
+    Creating 1 nano (typ-4nssg) servers with image Ubuntu Lucid 10.04 server (img-3ikco) in zone gb1-a in groups grp-ekalx with 0.95k of user data
     
      id         status    type  zone   created_on  image_id   cloud_ip_ids  name       
     ------------------------------------------------------------------------------------
      srv-ldpon  creating  nano  gb1-a  2011-12-31  img-3ikco                riak server
+    ------------------------------------------------------------------------------------
+
+The server will boot, retrieve the contents of `install-riak.sh` and
+execute it. So give it a couple of minutes so that Riak gets installed
+and is running.
+
+Before we create the other servers, edit the `install-riak.sh` script
+and set the `MASTER` variable to the name of this new server:
+
+    MASTER=srv-ldpon.gb1.brightbox.com
+
+We can now build the remaining three servers and they'll automatically
+join the cluster:
+
+    $ brightbox-servers create -n "riak server" -g grp-ekalx -z gb1-a -t nano -f install-riak.sh img-3ikco
+    Creating 1 nano (typ-4nssg) servers with image Ubuntu Lucid 10.04 server (img-3ikco) in zone gb1-a in groups grp-ekalx with 0.95k of user data
+    
+     id         status    type  zone   created_on  image_id   cloud_ip_ids  name       
+    ------------------------------------------------------------------------------------
      srv-wn8q8  creating  nano  gb1-a  2011-12-31  img-3ikco                riak server
     ------------------------------------------------------------------------------------
     
@@ -120,16 +161,16 @@ command).
      srv-3zdoj  creating  nano  gb1-b  2011-12-31  img-3ikco                riak server
     ------------------------------------------------------------------------------------
 
-The server should become active and start booting within about 30
+The servers should become active and start booting within about thirty
 seconds and they'll execute the contents of the `install-riak.sh`
-script, which might take a couple of minutes.
+script, which again might take a couple of minutes to complete.
 
 ### Mapping a cloud IP
 
-All Brightbox Cloud servers are created with a private IPv4 address
-and a public IPv6 address by default.  If you don't have IPv6 then
-you'll need to map a Cloud IP to one of your new Riak servers to start
-accessing the cluster:
+All Brightbox Cloud servers are created by default with a private IPv4
+address and a public IPv6 address.  If you don't have IPv6 then you'll
+need to map a [Cloud IP](/reference/cloud-ips/) to one of your new
+Riak servers to start accessing the cluster:
 
     $ brightbox-cloudips create
     
@@ -147,21 +188,17 @@ accessing the cluster:
      cip-gdr5f  mapped  109.107.37.19  srv-3zdoj    cip-109-107-37-19.gb1.brightbox.com
     ------------------------------------------------------------------------------------
 
-You can now ssh into that IP address - the firewall will of course
-keep the Riak services protected.
+You can now ssh into that server using the cloud ip address.
 
-I'll be using IPv6 for the rest of this guide though.
+I'll be using IPv6 because I'm living in the future and have IPv6 at
+home.
 
-### Joining up the cluster
+### Accessing the cluster
 
-So we now just need to ssh into one of the nodes of the cluster and
-tell Riak about all the other nodes in the cluster (Our Ubuntu images
-automatically install your ssh keys on first boot, to the `ubuntu` account).
-
-If you're using IPv4 and just one Cloud IP, then you need to ssh into
-the server with the Cloud IP and then ssh from there into the
-others. With IPv6 you can obviously easily access all the nodes
-directly if you wish:
+Let's ssh into one of the nodes of the cluster to confirm all the
+nodes joined up successfully.  Our Ubuntu images automatically install
+your ssh keys to the `ubuntu` account on the first boot, so we can ssh
+straight in:
 
     $ brightbox-servers list -g grp-ekalx
     
@@ -180,28 +217,27 @@ directly if you wish:
     Warning: Permanently added 'ipv6.srv-ldpon.gb1.brightbox.com,2a02:1348:14c:18d3:24:19ff:fef0:634e' (RSA) to the list of known hosts.
     Linux srv-ldpon 2.6.32-31-server #61-Ubuntu SMP Fri Apr 8 19:44:42 UTC 2011 x86_64 GNU/Linux
     
-    ubuntu@srv-ldpon:~$ ssh -o StrictHostKeyChecking=no -l ubuntu srv-wn8q8.gb1.brightbox.com sudo riak-admin join riak@srv-ldpon.gb1.brightbox.com
-    Warning: Permanently added 'srv-wn8q8.gb1.brightbox.com,10.240.190.210' (RSA) to the list of known hosts.
-    Attempting to restart script through sudo -u riak
-    Sent join request to riak@srv-ldpon.gb1.brightbox.com
-    
-    ubuntu@srv-ldpon:~$ ssh -o StrictHostKeyChecking=no -l ubuntu srv-hl2fd.gb1.brightbox.com sudo riak-admin join riak@srv-ldpon.gb1.brightbox.com
-    Warning: Permanently added 'srv-hl2fd.gb1.brightbox.com,10.232.68.98' (RSA) to the list of known hosts.
-    Attempting to restart script through sudo -u riak
-    Sent join request to riak@srv-ldpon.gb1.brightbox.com
-    
-    ubuntu@srv-ldpon:~$ ssh -o StrictHostKeyChecking=no -l ubuntu srv-3zdoj.gb1.brightbox.com sudo riak-admin join riak@srv-ldpon.gb1.brightbox.com
-    Warning: Permanently added 'srv-3zdoj.gb1.brightbox.com,10.232.101.98' (RSA) to the list of known hosts.
-    Attempting to restart script through sudo -u riak
-    Sent join request to riak@srv-ldpon.gb1.brightbox.com
-1
-And now the cluster is complete. You can see that all the nodes know about each other:
-
     ubuntu@srv-ldpon:~$ riak-admin status | grep ring_ownership
     ring_ownership : <<"[{'riak@srv-wn8q8.gb1.brightbox.com',16},\n {'riak@srv-ldpon.gb1.brightbox.com',16},\n {'riak@srv-hl2fd.gb1.brightbox.com',16},\n {'riak@srv-3zdoj.gb1.brightbox.com',16}]">>
+		
+So we can see all the servers are part of the Riak cluster now, and we
+can read and write documents:
 
-FIXME: Show a curl command
-FIXME: Double check about quorum and 4 nodes
-FIXME: Built "master" server first and have the script do the join for the others?
-FIXME: Show how to give web server group access
-FIXME: Note that script will run on each boot - perhaps have it check for /etc/riak
+Write it to one server:
+
+    ubuntu@srv-ldpon:~$ curl -d 'Hello World' -H 'Content-Type: text/plain' http://srv-ldpon.gb1.brightbox.com:8098/riak/test/hello
+
+Read it from another:
+
+    ubuntu@srv-ldpon:~$ curl http://srv-3zdoj.gb1.brightbox.com:8098/riak/test/hello
+    Hello World
+
+### Giving access to another group of servers
+
+So now you have your Riak cluster working, you might want to grant
+access to some web servers. Assuming your web servers are in a group
+with the identifier `grp-u5qrt` you can give the whole group access to
+the Riak HTTP interface on all the riak nodes like this:
+
+    $ brightbox-firewall-rules create --source=grp-u5qrt --protocol=tcp --dport=8098 fwp-ev5q6
+
