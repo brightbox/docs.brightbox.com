@@ -4,9 +4,9 @@ layout: default
 tags: [filesystem, disk, partition, growpart, sfdisk, lvm, resize2fs]
 ---
 
-Most [Server Images](/reference/server-images/) provide a small
+Most [Server Images](/reference/glossary/#image) provide a small
 partition by default, perhaps two gigabytes. This allows the Image to
-be used on all [Server Types](/reference/glossary/#server-type)
+be used on all [Server Types](/reference/glossary/#server_type)
 because there will always be enough space for it.
 
 Some Images (in particular the Ubuntu images) are rigged to
