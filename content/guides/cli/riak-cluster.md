@@ -113,10 +113,11 @@ once we've built our first server.
 
 So now we actually create the servers. We'll build two in zone A and
 two in zone B so we have geographical redundancy (it's technically a
-[bit more complicated](we want to create the servers - a little more
-preparation first ) that that with Riak, but that's out of the scope
-of this document).  We'll put the new servers in the group we created,
-so they get the firewall policy we created.
+[bit more complicated](http://wiki.basho.com/Replication.html) we want
+to create the servers - a little more preparation first ) that that
+with Riak, but that's out of the scope of this document).  We'll put
+the new servers in the group we created, so they get the firewall
+policy we created.
 
 We'll create them as `nano` servers, but you should choose an
 appropriate server type for your use case (see the `brightbox-types`
