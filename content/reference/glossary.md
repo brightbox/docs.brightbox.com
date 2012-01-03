@@ -53,7 +53,7 @@ Cloud IPs can be mapped and re-mapped to any Cloud Server or Load Balancer
 belonging to the same [Account](#account), even across [Zones](#zone) within
 the same [Region](#region).
 
-For more information on Cloud IPs, see the [Cloud IP guide](/guides/cli/cloud-ips/)
+For more information on Cloud IPs, see the [Cloud IP guide](/guides/cli/cloud-ips/).
 
 ### Cloud Server
 
@@ -162,7 +162,7 @@ via the [Metadata service](/guides/cli/user-data/).
 
 A Zone represents an individual Brightbox datacentre location. Zones are physically
 isolated from others within the same [Region](#region), but are interconnected
-by diverse, redundant metro fibre links.
+by diverse, redundant, low latency fibre links.
 
 For geographic redundancy, simply create [Cloud Servers](#cloud_server) in multiple
 Zones and use [Load Balancing](#load_balancer) to distribute traffic across them.
