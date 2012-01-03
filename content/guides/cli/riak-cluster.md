@@ -6,8 +6,8 @@ section: Guides
 
 This guide takes you through building a small four node
 [Riak](http://wiki.basho.com/Riak.html) database cluster on Brightbox
-Cloud. It assumes you have already signed up and installed and
-configured the command line interface.  If you haven't, follow the
+Cloud. It assumes you have already signed up and configured the
+command line interface.  If you haven't, follow the
 [Getting Started guide](/guides/cli/getting-started/).
 
 ### Firewalling
@@ -70,7 +70,7 @@ it:
 
     #!/bin/sh
 		
-    MASTER=
+    SEED_HOST=
     ERLANG_COOKIE=Quo1viGheWauch5un4eimohth2ohtheo
 
     # Skip if it looks like Riak is already installed
@@ -100,7 +100,7 @@ it:
     /etc/init.d/riak start
     
     # Join this node to the cluster
-    riak-admin join riak@$MASTER
+    riak-admin join riak@$SEED_HOST
 
 Save that locally in a file called `install-riak.sh` and we can
 specify it as [user data](/guides/cli/user-data/), which Ubuntu will
@@ -108,22 +108,24 @@ execute for us on boot (so we'll need to use an Ubuntu image). This
 script assumes a 64bit server.
 
 Choose your own secret for the `ERLANG_COOKIE` variable.  You'll also
-notice the empty `MASTER` variable in that script - we'll fill that in
-once we've built our first server.
+notice the empty `SEED_HOST` variable in that script - we'll fill that
+in once we've built our first server.
 
-So now we actually create the servers. We'll build two in zone A and
-two in zone B so we have geographical redundancy (it's technically a
-[bit more complicated](http://wiki.basho.com/Replication.html) we want
-to create the servers - a little more preparation first ) that that
-with Riak, but that's out of the scope of this document).  We'll put
-the new servers in the group we created, so they get the firewall
-policy we created.
+So now we actually create the servers. We'll build two in Zone A and
+two in Zone B so we have geographical redundancy. It's technically a
+[bit more complicated](http://wiki.basho.com/Replication.html) than
+that with Riak, but that's out of the scope of this document. Though
+it is worth noting that Riak doesn't tolerate high latency in this
+type of configuration but our [Zones](/reference/glossary/#zone) are
+connected by low latency links so we're fine here.
 
-We'll create them as `nano` servers, but you should choose an
-appropriate server type for your use case (see the `brightbox-types`
-command).
 
-Let's create our first server which we'll use as the "master":
+We'll put the new servers in the group we created, so they get the
+firewall policy we created.  We'll create them as `nano` servers, but
+you should choose an appropriate server type for your use case (see
+the `brightbox-types` command).
+
+Let's create our first server which we'll use as the "seed host":
 
     $ brightbox-servers create -n "riak server" -g grp-ekalx -z gb1-a -t nano -f install-riak.sh img-3ikco
     Creating 1 nano (typ-4nssg) servers with image Ubuntu Lucid 10.04 server (img-3ikco) in zone gb1-a in groups grp-ekalx with 0.95k of user data
@@ -138,9 +140,9 @@ execute it. So give it a couple of minutes so that Riak gets installed
 and is running.
 
 Before we create the other servers, edit the `install-riak.sh` script
-and set the `MASTER` variable to the name of this new server:
+and set the `SEED_HOST` variable to the name of this new server:
 
-    MASTER=srv-ldpon.gb1.brightbox.com
+    SEED_HOST=srv-ldpon.gb1.brightbox.com
 
 We can now build the remaining three servers and they'll automatically
 join the cluster:
@@ -192,7 +194,7 @@ Riak servers to start accessing the cluster:
 You can now ssh into that server using the cloud ip address.
 
 I'll be using IPv6 because I'm living in the future and have IPv6 at
-home.
+home. Also I have a robot butler.
 
 ### Accessing the cluster
 
