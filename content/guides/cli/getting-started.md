@@ -3,27 +3,37 @@ layout: default
 title: Getting Started
 ---
 
-All interaction with Brightbox Cloud resources is currently through our command line interface (which uses our API). This guide will take you from creating a Brightbox Account to logging into your
-first Cloud Server via SSH.
+All interaction with Brightbox Cloud resources is currently through
+our command line interface (which uses our API). This guide will take
+you from creating a Brightbox Account to logging into your first Cloud
+Server via SSH.
 
 ### Create an Account and API Client
 
-Firstly, sign up for a Brightbox Cloud Account using [Brightbox Manager](https://manage.brightbox.com/user/new).
+Firstly, sign up for a Brightbox Cloud Account using
+[Brightbox Manager](https://manage.brightbox.com/user/new).
 
-Once you've signed up, you can then [create an API Client](/guides/manager/api-clients/) which you'll use to configure the CLI below. An API Client is simply a pair of access credentials for accessing the API, consisting of a client identifier (like `cli-xxxxx`) and a secret.
+Once you've signed up, you can then
+[create an API Client](/guides/manager/api-clients/) which you'll use
+to configure the CLI below. An API Client is simply a pair of access
+credentials for accessing the API, consisting of a client identifier
+(like `cli-xxxxx`) and a secret.
 
 ### Initial setup
 
 #### Installation
 
 You'll need to
-[install the cli software](/guides/cli/installation/). Go do that and come back here.
+[install the cli software](/guides/cli/installation/). Go do that and
+come back here. I'll wait for you.
 
 #### Configuration
 
-You can now configure the CLI with the credentials for the API client you created earlier.
+You can now configure the CLI with the credentials for the API client
+you created earlier.
 
-To configure the cli with these credentials, run the following command:
+To configure the cli with these credentials, run the following
+command:
 
     $ brightbox-config client_add cli-xxxxx thesecretstring
     Using config file /home/john/.brightbox/config
@@ -31,7 +41,8 @@ To configure the cli with these credentials, run the following command:
 
 #### Initial test
 
-You should be able to retrieve details of your user now. Note your id as you'll need it in a moment:
+You should be able to retrieve details of your user now. Note your id
+as you'll need it in a moment:
 
     $ brightbox-users list
     
@@ -42,7 +53,8 @@ You should be able to retrieve details of your user now. Note your id as you'll 
 
 #### Configuring your ssh key
 
-You need to upload your public ssh key so that you can log into newly created servers:
+You need to upload your public ssh key so that you can log into newly
+created servers:
 
     $ brightbox-users update -f my-ssh-key.pub usr-xxxxx
                id: usr-xxxxx
@@ -79,7 +91,10 @@ First, let's choose an image to use:
      img-7p3wu  brightbox  official  2011-05-09  public   1409   Ubuntu Natty 11.04 server (x86_64)         
     -----------------------------------------------------------------------------------------------------
 
-Let's go with i686 Ubuntu Lucid 10.04 server, which is has an id of img-4gqhs. We'll get the description of it, which should have some notes about how to access it once it's booted. This image says it has an ubuntu user by default:
+Let's go with `i686 Ubuntu Lucid 10.04 server`, which is has an id of
+`img-4gqhs`. We'll get the description of it, which should have some
+notes about how to access it once it's booted. This image says it has
+an ubuntu user by default:
 
     $ brightbox-images show img-4gqhs
     
@@ -99,7 +114,8 @@ Let's go with i686 Ubuntu Lucid 10.04 server, which is has an id of img-4gqhs. W
 
 #### Create the server
 
-Now you can create a server using that image. Give it a name of "my first server" so you can identify it easily later.
+Now you can create a server using that image. Give it a name of `my
+first server` so you can identify it easily later.
 
     $ brightbox-servers create -n "my first server" img-4gqhs
     Creating 1 'nano' (typ-4nssg) server with image Ubuntu Lucid 10.04 server (img-hm6oj)
@@ -109,9 +125,11 @@ Now you can create a server using that image. Give it a name of "my first server
      srv-zx1hd  creating  nano  gb1-b  2011-03-15  img-4gqhs             my first server
     -------------------------------------------------------------------------------------
 
-Note that the new server has been given the identifier srv-zx1hd.
+Note that the new server has been given the identifier `srv-zx1hd`.
 
-If you wait a few moments and show the details of the new server, it should have changed from status creating to status active, which means it's booted:
+If you wait a few moments and show the details of the new server, it
+should have changed status from `creating` to `active`, which means
+it's booted:
 
     $ brightbox-servers show srv-zx1hd
                  id: srv-zx1hd
@@ -138,7 +156,10 @@ If you wait a few moments and show the details of the new server, it should have
 			
 #### Mapping a cloud IP
 
-So now you have a server but it only has a private IP address. To access it over the internet you need to map a Cloud IP to it. Firstly, create a cloud IP on your account:
+So now you have a server but it only has a private IP address. To
+access it over the Internet you need to map a
+[Cloud IP](/reference/cloud-ips/) to it. Firstly, create a Cloud IP on
+your account:
 
     $ brightbox-cloudips create
     
@@ -147,7 +168,8 @@ So now you have a server but it only has a private IP address. To access it over
      cip-3b0ha  unmapped  109.107.35.239                           cip-109-107-35-239.gb1.eu.brightbox.com
     -------------------------------------------------------------------------------------------------------
 
-Then map it to your server using the cloud ip's id and your server's id:
+Then map it to your server using the cloud ip's id and your server's
+id:
 
     $ brightbox-cloudips map cip-3b0ha srv-zx1hd
     Mapping cip-3b0ha to interface int-x4kve on srv-zx1hd
@@ -157,7 +179,8 @@ Then map it to your server using the cloud ip's id and your server's id:
      cip-3b0ha  mapped  109.107.35.239  srv-zx1hd  int-x4kve     cip-109-107-35-239.gb1.eu.brightbox.com
     -----------------------------------------------------------------------------------------------------
 
-Now you can log in via ssh using your ssh key. Remember, this image uses the ubuntu account by default:
+Now you can log in via ssh using your ssh key. Remember, this image
+uses the `ubuntu` account by default:
 
     $ ssh ubuntu@109.107.35.239
     Linux srv-zx1hd 2.6.32-24-generic-pae #42-Ubuntu SMP Fri Aug 20 15:37:22 UTC 2010 i686 GNU/Linux
@@ -168,11 +191,16 @@ Now you can log in via ssh using your ssh key. Remember, this image uses the ubu
 
 ### Would you like to know more?
 
-Here you installed and configured the Command Line Interface tool, created an Ubuntu server, mapped a Cloud IP to it and sshed in.
+Here you installed and configured the Command Line Interface tool,
+created an Ubuntu server, mapped a Cloud IP to it and sshed in.
 
-You might want to learn more about [Cloud IPs](/guides/cli/cloud-ips/),
+You might want to learn more about
+[Cloud IPs](/guides/cli/cloud-ips/),
 [discover zones](/reference/glossary/#zone) or learn how to
 [Create a snapshot](/guides/cli/create-a-snapshot/).
+
+You might also want to learn a bit about the default
+[firewall policy](/guides/cli/firewall/), and how to change it.
 
 <small>Join the Mobile Infantry and save the Galaxy. Service
 guarantees citizenship.</small>
