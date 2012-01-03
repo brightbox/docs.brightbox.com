@@ -156,7 +156,7 @@ it's booted:
 			
 #### Mapping a cloud IP
 
-So now you have a server but it only has a private IP address. To
+So now you have a server but it only has a private IPv4 address. To
 access it over the Internet you need to map a
 [Cloud IP](/reference/cloud-ips/) to it. Firstly, create a Cloud IP on
 your account:
@@ -168,7 +168,7 @@ your account:
      cip-3b0ha  unmapped  109.107.35.239                           cip-109-107-35-239.gb1.eu.brightbox.com
     -------------------------------------------------------------------------------------------------------
 
-Then map it to your server using the cloud ip's id and your server's
+Then map it to your server using the Cloud IP's id and your server's
 id:
 
     $ brightbox-cloudips map cip-3b0ha srv-zx1hd

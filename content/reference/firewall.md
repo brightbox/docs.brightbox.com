@@ -134,16 +134,11 @@ servers become a member of (unless you explicitly put them in a
 different group).  That group has a Firewall Policy applied with some
 default rules.
 
-#### Existing Customers
+For customers who signed up before 2nd November 2011, the default
+policy is to *accept all traffic in both directions* (just as it did
+before the Cloud Firewall was implemented).
 
-For customers who signed up before Cloud Firewall was announced (2nd
-November), the default policy is to *accept all traffic in both
-directions* (just as it did before the Cloud Firewall was
-implemented).
-
-#### New Customers
-
-For customers who signed up after Cloud Firewall was announced, the
+For customers who signed up after 2nd November, the
 default policy is as follows:
 
 <table>

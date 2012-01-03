@@ -15,7 +15,12 @@ Brightbox Cloud provides a number of dynamic DNS records for convenience.
 <tr>
 <td style="white-space:nowrap"><code>srv-xxxxx.gb1.brightbox.com</code></td>
 <td><code>10.240.119.222</code></td>
-<td>Private IP address of the Cloud Server</td>
+<td>Private IPv4 address of the Cloud Server</td>
+</tr>
+<tr>
+<td style="white-space:nowrap"><code>ipv6.srv-xxxxx.gb1.brightbox.com</code></td>
+<td><code>2a02:1348:14c:250d:24:19ff:fef0:9436</code></td>
+<td>IPv6 address of the Cloud Server</td>
 </tr>
 <tr>
 <td style="white-space:nowrap"><code>public.srv-xxxxx.gb1.brightbox.com</code></td>
