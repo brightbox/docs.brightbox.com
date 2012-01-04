@@ -39,7 +39,7 @@ other operating systems, such as FreeBSD or Microsoft Windows, do not.
 
 `compatibility` mode replaces any `virtio` devices with emulated
 equivalents, which allows a broader range of operating systems to work
-without modification as the cost of some performance.
+without modification at the cost of some performance.
 
 More information on `virtio`, including some details about the Windows
 drivers, can be found on the
@@ -56,7 +56,7 @@ in `creating` state by watching the `disk_size` attribute.
 
 Status `creating` means the Image is currently being created, either
 from a server being snapshotted or an uploaded Image being registered.
-Images in state `creating` cannot be used to build new servers.
+Images in the state `creating` cannot be used to build new servers.
 
 #### Deleted
 
