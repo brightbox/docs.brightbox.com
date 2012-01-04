@@ -5,6 +5,8 @@ title: Reference Documentation
 
 Detailed information about various elements of Brightbox Cloud.
 
+<div class="grid_11 alpha" markdown="1">
+
 #### [CLI](/reference/cli/)
 
 The Command Line Interface.
@@ -27,6 +29,10 @@ your server.
 Distributed firewall for controlling network access to, from and
 between Cloud Servers.
 
+</div>
+
+<div class="grid_11 prefix_2" markdown="1">
+
 #### [Server Images](/reference/server-images/)
 
 A Cloud Server Image is a virtual disk image from which a Server can
@@ -43,3 +49,5 @@ Our RESTful HTTP API.
 #### [DNS](/reference/dns/)
 
 Our convenience DNS records and Cloud IP reverse dns support.
+
+</div>
