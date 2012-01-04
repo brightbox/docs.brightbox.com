@@ -90,7 +90,10 @@ An Image (or Cloud Server Image) is a virtual disk image from which a
 [Cloud Server](#cloud_server) can be created. Brightbox provides several "official"
 images for common OSes, but you can create your own - either by
 [snapshotting existing servers](/guides/cli/create-a-snapshot/) or uploading
-new images (see [Image Library Guide](/guides/cli/image-library))
+new images (see [Image Library Guide](/guides/cli/image-library)).
+
+For for more information, see the
+[Server Image reference](/reference/server-images/).
 
 ### Image Library
 

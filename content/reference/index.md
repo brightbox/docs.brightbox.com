@@ -27,6 +27,11 @@ your server.
 Distributed firewall for controlling network access to, from and
 between Cloud Servers.
 
+#### [Server Images](/reference/server-images/)
+
+A Cloud Server Image is a virtual disk image from which a Server can
+be created.
+
 #### [Metadata service](/reference/metadata-service/)
 
 The Metadata service available to Cloud Servers.

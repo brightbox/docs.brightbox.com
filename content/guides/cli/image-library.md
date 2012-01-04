@@ -3,10 +3,11 @@ layout: default
 title: Image Library
 ---
 
-The image library holds disk images and snapshots. When you create a
-new server with a particular image, the build systems retrieve the
-image from the image library. When you snapshot a server, the
-resulting image is uploaded to the image library.
+The image library holds [Server Images](/reference/server-images/) and
+snapshots. When you create a new server with a particular Image, the
+build systems retrieve the Image from the Image Library. When you
+snapshot a server, the resulting Image is uploaded to the Image
+Library.
 
 
 ### FTP access

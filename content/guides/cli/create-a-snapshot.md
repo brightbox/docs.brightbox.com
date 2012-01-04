@@ -4,7 +4,8 @@ title: Creating a snapshot
 ---
 
 Snapshotting a server takes an instant copy of the server's disk which
-can then be used as the image for new servers.
+can then be used as the [Image](/reference/server-images/) for new
+servers.
 
 The snapshots can also be downloaded from the image library.
 

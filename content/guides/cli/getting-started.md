@@ -67,7 +67,7 @@ created servers:
 
 #### Choose an image
 
-First, let's choose an image to use:
+First, let's choose an [Image](/reference/server-images/) to use:
 
     $ brightbox-images list 
     

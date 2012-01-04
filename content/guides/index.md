@@ -14,6 +14,8 @@ title: Guides
 * [Load Balancers](/guides/cli/load-balancers/)
 * [Reverse DNS](/guides/cli/reverse-dns/)
 
+* [Building a Riak Cluster on Brightbox Cloud](/guides/cli/riak-cluster/)
+
 ### Screencasts
 
 * [Introducing Brightbox Cloud](http://www.youtube.com/watch?v=XwkJx5QgclA)
