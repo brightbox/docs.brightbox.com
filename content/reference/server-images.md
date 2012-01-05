@@ -92,9 +92,6 @@ So this means an Image has two different size attributes.  The
 The `virtual_size` is how big the Image is once uncompressed and
 written to your Server (so including the zeroes).
 
-An Image with a 2 gigabyte `disk_size` expands to the full
-`virtual_size` when used to build a server.
-
 This means that the [server type](/reference/glossary/#server_type)
 you choose for your server must have a disk at least as big as the
 `virtual_size` of your Image, or it will not fit.
@@ -116,6 +113,6 @@ and build servers from them.
 
 ### Official Images
 
-An Image with the attribute `official` set to true is officially
-provided by Brightbox.  It's mainly just used by the cli to display
-theses Images slightly differently to indicate they are trustworthy.
+An Image with the attribute `official` set to true has been provided
+by Brightbox.  It's mainly just used by the cli to display theses
+Images slightly differently to indicate they are trustworthy.
