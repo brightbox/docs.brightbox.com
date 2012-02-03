@@ -117,7 +117,8 @@ enabled by default, so you should now be able to connect to your new
 server over the network.
 
 If you have [IPv6](http://brightbox.com/blog/2012/01/11/ipv6-servers/)
-setup locally you can connect directly right now, otherwise you'll
+setup locally you can connect directly right now using the dns name
+`ipv6.srv-whijs.gb1.brightbox.com`.  If you're not IPv6 enabled you'll
 need to map a [Cloud IP](/reference/cloud-ips/) to it first:
 
     $ brightbox-cloudips create
