@@ -223,12 +223,6 @@ mapped to a server:
 		
     public.srv-zx1hd.gb1.brightbox.com has address 109.107.35.239
 
-
-Also, please note that changing your ssh key after building a server
-does not update it on the server - the ssh keys are only installed on
-first boot. Make sure you set your ssh key correctly before building
-servers!
-
 ### Would you like to know more?
 
 Here you installed and configured the Command Line Interface tool,
