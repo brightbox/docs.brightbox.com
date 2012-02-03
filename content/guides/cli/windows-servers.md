@@ -20,14 +20,14 @@ First, we need to choose an [Image](/reference/server-images/) to use:
 
      id         owner      type      created_on  status  size   name                           
     --------------------------------------------------------------------------------------------
-     img-r4d5f  brightbox  official  2012-01-24  public  20480  Windows 2008 Server R2 (x86_64)
+     img-4q98z  brightbox  official  2012-01-24  public  20480  Windows 2008 Server R2 (x86_64)
     --------------------------------------------------------------------------------------------
 
 Currently only Windows 2008 Server is available:
 
-    $ brightbox-images show img-r4d5f
+    $ brightbox-images show img-4q98z
     
-                    id: img-r4d5f
+                    id: img-4q98z
                   type: official
                  owner: brightbox
             created_at: 2012-01-24T09:42
@@ -45,13 +45,13 @@ Currently only Windows 2008 Server is available:
 
 Now we just build a server like any other, using this image id:
 
-    $ brightbox-servers create -n "webserver" -t mini img-r4d5f
+    $ brightbox-servers create -n "webserver" -t mini img-4q98z
     
-    Creating a mini (typ-iqisj) server with image Windows 2008 Server R2 (img-r4d5f)
+    Creating a mini (typ-iqisj) server with image Windows 2008 Server R2 (img-4q98z)
     
      id         status    type  zone   created_on  image_id   cloud_ip_ids  name     
     ----------------------------------------------------------------------------------
-     srv-whijs  creating  mini  gb1-a  2012-02-01  img-r4d5f                webserver
+     srv-whijs  creating  mini  gb1-a  2012-02-01  img-4q98z                webserver
     ----------------------------------------------------------------------------------
 
 
