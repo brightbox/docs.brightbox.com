@@ -141,30 +141,30 @@ should have changed status from `creating` to `active`, which means
 it has been built and has started up:
 
     $ brightbox-servers show srv-zx1hd
-		
-             id: srv-zx1hd
-         status: active
-           name: my first server
-     created_at: 2011-03-15T00:24
-     deleted_at: 
-           zone: gb1-a
-           type: typ-4nssg
-      type_name: Brightbox Nano Instance
-    type_handle: nano
-            ram: 512
-          cores: 2
-           disk: 10240
-          image: img-ofzk3
-     image_name: Ubuntu Lucid 10.04 LTS server
-    private_ips: 10.146.19.166
-      cloud_ips: 
-   ipv6_address: 2a02:1348:14c:4f3:24:19ff:fef0:13ce
-   cloud_ip_ids: 
-       hostname: srv-zk1hd.api.gb1.brightbox.com
-public_hostname: 
-  ipv6_hostname: ipv6.srv-zk1hd.api.gb1.brightbox.com
-      snapshots: 
-  server_groups: grp-98v4n
+    		
+                 id: srv-zx1hd
+             status: active
+               name: my first server
+         created_at: 2011-03-15T00:24
+         deleted_at: 
+               zone: gb1-a
+               type: typ-4nssg
+          type_name: Brightbox Nano Instance
+        type_handle: nano
+                ram: 512
+              cores: 2
+               disk: 10240
+              image: img-ofzk3
+         image_name: Ubuntu Lucid 10.04 LTS server
+        private_ips: 10.146.19.166
+          cloud_ips: 
+       ipv6_address: 2a02:1348:14c:4f3:24:19ff:fef0:13ce
+       cloud_ip_ids: 
+           hostname: srv-zk1hd.gb1.brightbox.com
+    public_hostname: 
+      ipv6_hostname: ipv6.srv-zk1hd.gb1.brightbox.com
+          snapshots: 
+      server_groups: grp-98v4n
 
 			
 #### Mapping a cloud IP
