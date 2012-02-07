@@ -4,8 +4,8 @@ title: Building a Windows Server
 section: Guide
 ---
 
-Brightbox Cloud supports Microsoft Windows as an operating system,
-with integrated licensing billed by the hour.
+Brightbox Cloud supports Microsoft Windows&reg; as an operating system,
+with integrated hourly licencing.
 
 This guide assumes you're already set up and have the command line
 interface working. If not, follow the
@@ -20,10 +20,10 @@ First, we need to choose an [Image](/reference/server-images/) to use:
 
      id         owner      type      created_on  status  size   name                           
     --------------------------------------------------------------------------------------------
-     img-4q98z  brightbox  official  2012-01-24  public  20480  Windows 2008 Server R2 (x86_64)
+     img-4q98z  brightbox  official  2012-01-24  public  20480  Windows Server 2008 R2 (x86_64)
     --------------------------------------------------------------------------------------------
 
-Currently only Windows 2008 Server is available:
+We can see there is an "official" Brightbox image for "Windows Server 2008 R2":
 
     $ brightbox-images show img-4q98z
     
@@ -33,7 +33,7 @@ Currently only Windows 2008 Server is available:
             created_at: 2012-01-24T09:42
                 status: public
                   arch: x86_64
-                  name: Windows 2008 Server R2 (x86_64)
+                  name: Windows Server 2008 R2 (x86_64)
            description: RDP enabled. Set administrator password via console first.
               username: administrator
           virtual_size: 20480
@@ -47,7 +47,7 @@ Now we just build a server like any other, using this image id:
 
     $ brightbox-servers create -n "webserver" -t mini img-4q98z
     
-    Creating a mini (typ-iqisj) server with image Windows 2008 Server R2 (img-4q98z)
+    Creating a mini (typ-iqisj) server with image Windows Server 2008 R2 (img-4q98z)
     
      id         status    type  zone   created_on  image_id   cloud_ip_ids  name     
     ----------------------------------------------------------------------------------
@@ -57,9 +57,9 @@ Now we just build a server like any other, using this image id:
 
 ### Opening up the firewall
 
-While the new server is building, let's make sure the default
-[firewall policy](/reference/firewall/) will let us connect to this
-server using remote desktop.
+While the new server is building, which should take around 2 minutes, let's
+modify our default [firewall policy](/reference/firewall/) to allow us to connect
+to this server via remote desktop (RDP).
 
     $ brightbox-firewall-policies list
     
@@ -145,17 +145,17 @@ And now you can access your server using the password you set:
 
 ### Billing
 
-Our Windows images have a license associated with them so the servers
-you build with incur an additional charge. So you are charged normally
-for the [server type](/reference/glossary/#server_type) you chose (in
-this case a `mini`) and charged for the Windows license separately
-(and they will be displayed on your invoices separately).
+Using Windows-based cloud servers incurs an hourly Windows licence fee, in
+addition to the regular hourly rate for the 
+[server type](/reference/glossary/#server_type) you choose (in this case a "mini"). 
+The billing system will automatically add the hourly Windows licence usage
+to your bill separately, so you don't need to do anything.
 
-The Windows license cost goes up with the size of server type. See
-[our pricing](http://brightbox.com/pricing/#windows) for details of
-the costs.
+See
+[our pricing](http://brightbox.com/pricing/#cloud_servers) for full pricing
+information.
 
-#### Snapshots
+### Snapshots
 
 Snapshots of servers using the Windows images inherit the license, so
 a Windows server built from
