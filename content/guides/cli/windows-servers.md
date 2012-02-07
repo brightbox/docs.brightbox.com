@@ -4,7 +4,7 @@ title: Building a Windows Server
 section: Guide
 ---
 
-Brightbox Cloud supports Microsoft Windows&reg; as an operating system,
+Brightbox Cloud supports Microsoft Windows® as an operating system,
 with integrated hourly licencing.
 
 This guide assumes you're already set up and have the command line
@@ -57,9 +57,9 @@ Now we just build a server like any other, using this image id:
 
 ### Opening up the firewall
 
-While the new server is building, which should take around 2 minutes, let's
-modify our default [firewall policy](/reference/firewall/) to allow us to connect
-to this server via remote desktop (RDP).
+While the new server is building, which should take around 2 minutes,
+let's make sure our default [firewall policy](/reference/firewall/)
+allow us to connect to this server via remote desktop (RDP).
 
     $ brightbox-firewall-policies list
     
@@ -118,7 +118,7 @@ server over the network.
 
 If you have [IPv6](http://brightbox.com/blog/2012/01/11/ipv6-servers/)
 setup locally you can connect directly right now using the dns name
-`ipv6.srv-whijs.gb1.brightbox.com`.  If you're not IPv6 enabled you'll
+`ipv6.srv-whijs.gb1.brightbox.com`. If you're not IPv6 enabled you'll
 need to map a [Cloud IP](/reference/cloud-ips/) to it first:
 
     $ brightbox-cloudips create
@@ -145,11 +145,11 @@ And now you can access your server using the password you set:
 
 ### Billing
 
-Using Windows-based cloud servers incurs an hourly Windows licence fee, in
-addition to the regular hourly rate for the 
-[server type](/reference/glossary/#server_type) you choose (in this case a "mini"). 
-The billing system will automatically add the hourly Windows licence usage
-to your bill separately, so you don't need to do anything.
+Using Windows-based cloud servers incurs an hourly Windows licence
+fee, in addition to the regular hourly rate for the
+[server type](/reference/glossary/#server_type) you choose (in this
+case a "mini"). The hourly Windows licence usage is shown separately
+on your bill.
 
 See
 [our pricing](http://brightbox.com/pricing/#cloud_servers) for full pricing
