@@ -19,7 +19,7 @@ package repository on Launchpad:
 
 If you're not on Ubuntu, you can install our Ruby gem package instead.
 
-#### Dependencies
+#### Ubuntu and Debian Dependencies
 
 You'll need some libraries and headers installed to build the required
 native gems. On Debian and Ubuntu, you can install these like this:
@@ -30,12 +30,27 @@ Debian should be the same as Ubuntu, though you'll need to install a
 newer version of rubygems. We recommend the
 [Tryphon repositories](http://debian.tryphon.eu/).
 
+#### Fedora Dependencies
+
 On Fedora you should be able to install them like this:
 
     $ sudo yum install ruby rubygems ruby-devel make gcc libxslt-devel libxml2-devel
 
+#### OSX Dependencies
+
 On OSX, you just need XCode installed, which provides everything you
 need.
+
+#### Windows Dependencies
+
+We recommend using the Ruby installer available at
+[rubyinstaller.org](http://rubyinstaller.org/). This will give you
+everything you need to install the our gem package in one shot.
+
+Any of the versions of Ruby available on there will work fine with the
+cli, but we recommend Ruby 1.9.3 if you don't have a preference. In
+the installer, tick the box labelled `Add Ruby executables to your
+PATH`.
 
 #### Install the gem
 
