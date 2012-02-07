@@ -13,9 +13,9 @@ A step-by-step guide to getting up and running quickly.
 
 Step-by-step guides on how to use the various products and features.
 
-#### [Command Line Interface](/reference/cli/)
+#### [Command Line Interface](/guides/cli/)
 
-The CLI Reference documentation.
+The CLI documentation.
 
 #### [API](/reference/api/)
 

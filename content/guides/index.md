@@ -25,6 +25,11 @@ title: Guides
 
 [Reverse DNS](/guides/cli/reverse-dns/)
 
+[Using the Graphical Console](/guides/cli/graphical-console/)
+
+[Building a Windows Server](/guides/cli/windows-servers/)
+
+
 </div>
 
 <div class="grid_11 prefix_2" markdown="1">

@@ -12,3 +12,4 @@ an API client id and secret.
 * [CLI Configuration](/reference/cli/configuration/)
 * [Managing Servers](/reference/cli/servers/)
 * [CLI development](/reference/cli/development/)
+* [Other CLI Guides](/guides/cli/)
