@@ -3,34 +3,54 @@ layout: default
 title: CLI Installation
 ---
 
-The Command Line Interface is available for installation in two forms, a Ruby gem or an Ubuntu package.
+The Command Line Interface is available for installation in two forms,
+a Ruby gem or an Ubuntu package.
 
 ### Ubuntu package installation
 
-The simplest way for an Ubuntu user to install the cli is via our package repository on Launchpad:
+The simplest way for an Ubuntu user to install the cli is via our
+package repository on Launchpad:
 
     $ add-apt-repository ppa:brightbox/ppa
     $ apt-get update
     $ apt-get install brightbox-cli
 
-#### Ruby gem installation
+### Ruby gem installation
 
 If you're not on Ubuntu, you can install our Ruby gem package instead.
 
+#### Ubuntu and Debian Dependencies
 
-#### Dependencies
-
-You'll need some libraries and headers installed to build the required native gems. On Debian and Ubuntu, you can install these like this:
+You'll need some libraries and headers installed to build the required
+native gems. On Debian and Ubuntu, you can install these like this:
 
     $ sudo apt-get install ruby rubygems ruby-dev libxml2-dev libxslt-dev libopenssl-ruby libjson0-dev
 
-Debian should be the same as Ubuntu, though you'll need to install a newer version of rubygems. We recommend the [Tryphon repositories](http://debian.tryphon.eu/).
+Debian should be the same as Ubuntu, though you'll need to install a
+newer version of rubygems. We recommend the
+[Tryphon repositories](http://debian.tryphon.eu/).
+
+#### Fedora Dependencies
 
 On Fedora you should be able to install them like this:
 
     $ sudo yum install ruby rubygems ruby-devel make gcc libxslt-devel libxml2-devel
 
-On OSX, you just need XCode installed, which provides everything you need.
+#### OSX Dependencies
+
+On OSX, you just need XCode installed, which provides everything you
+need.
+
+#### Windows Dependencies
+
+We recommend using the Ruby installer available at
+[rubyinstaller.org](http://rubyinstaller.org/). This will give you
+everything you need to install the our gem package in one shot.
+
+Any of the versions of Ruby available on there will work fine with the
+cli, but we recommend Ruby 1.9.3 if you don't have a preference. In
+the installer, tick the box labelled `Add Ruby executables to your
+PATH`.
 
 #### Install the gem
 
@@ -56,10 +76,14 @@ On OSX, you just need XCode installed, which provides everything you need.
 
 #### Binaries path
 
-Debian and Ubuntu rubygems packages don't have the rubygems binary path installed by default, so you need to add it:
+Debian and Ubuntu rubygems packages don't have the rubygems binary
+path installed by default, so you need to add it:
 
     export PATH=$PATH:/var/lib/gems/1.8/bin
 
-Under OSX, if you installed the gem system-wide using sudo, then the binaries should already be in your path. If you installed the gem without sudo on OSX, then you need to update your path:
+Under OSX, if you installed the gem system-wide using sudo, then the
+binaries should already be in your path. If you installed the gem
+without sudo on OSX, then you need to update your path:
 
     export PATH=$PATH:~/.gem/ruby/1.8/bin
+
