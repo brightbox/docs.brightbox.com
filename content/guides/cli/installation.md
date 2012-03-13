@@ -30,7 +30,7 @@ On Fedora you should be able to install them like this:
 
     $ sudo yum install ruby rubygems ruby-devel make gcc libxslt-devel libxml2-devel
 
-On OSX, you just need XCode installed, which provides everything you need.
+On OSX, you just need Xcode installed, which provides everything you need.
 
 #### Install the gem
 
