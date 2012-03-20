@@ -1,4 +1,5 @@
 head.js("/javascripts/search-data.js", function() {
+  
 	$("input#search").show().autocomplete({
 		autoFocus: false,
 		source: function(req, res) { window.search_index(req.term, res); },
@@ -20,7 +21,6 @@ head.js("/javascripts/search-data.js", function() {
 		};
 });
 
-var disqus_developer = 1;
 function disqus_config() {
      this.callbacks.onReady = [function() {
          var bb_comment_count = $('#dsq-num-posts').text();
