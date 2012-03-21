@@ -25,12 +25,14 @@ and protocols it responds to.
 
 Listeners have four attributes:
 
-* `in-port` is the port that the Load Balancer listens on
+* `in-port` is the port that the Load Balancer listens on for incoming
+  connections
 * `out-port` is the port the load balancer will connect to on your back end
-servers - usually this will be the same as `in-port`
+  servers - this will usually be the same as `in-port`
 * `type` is the mode, currently `http`, `http+ws` or `tcp`
-* `timeout` is the time (in milliseconds) after which inactive connections
-will be closed
+* `timeout` is the time (in milliseconds) after which inactive
+  connections will be closed. It defaults to 50 seconds if not
+  specified.
 
 So, if your back-end servers have a web service running on port `3000` but
 you want the load balancer to serve requests on port `80`, you would use a
@@ -57,17 +59,17 @@ specified) is be applied to standard HTTP traffic, whilst WebSockets
 connections are given a fixed timeout of 1 day.
 
 **Note:** When using the `http` or `http+ws` types, there is a `2048`
-bytes limit on HTTP headers, 40 bytes of which are used by the
+byte limit on HTTP headers, 40 bytes of which are used by the
 `X-Forwarded-For` header. If you require more than `2008` bytes of headers
 (very large cookies might need this), then you should use the `tcp` protocol,
 which has no such limitation.
 
 #### Timeout
 
-The timeout setting determines how long inactive connections remain open, 
-before they are closed. The timeout is specified in milliseconds and must
-be between 5,000 and 86,400,000 (one day). By default the timeout is
-50,000 milliseconds.
+The timeout setting determines how long inactive connections remain
+open before they are closed. The timeout is specified in milliseconds
+and must be between 5,000 and 86,400,000 (one day). By default the
+timeout is 50,000 milliseconds (50 seconds).
 
 ### Health Checks
 
@@ -83,6 +85,11 @@ Load Balancer will attempt to connect to on each back-end server.
 `timeout` is how long in milliseconds the Load Balancer will wait for the
 connection to complete before deciding the health check failed. `interval`
 is how long in milliseconds between each health check.
+
+**Note:** The health checks are run for each listener, so if you specify a
+20 second interval and have 2 listeners you will actually see checks
+every 10 seconds on the back end servers.
+
 
 #### Types
 

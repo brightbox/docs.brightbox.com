@@ -20,8 +20,8 @@ servers and test it out. For more in-depth documentation, see the
 
 You manage Load Balancers using the `brightbox-lbs` command. We're
 going to create a new balancer called `test` that will balance between
-two servers. It balances ports `80` and `443` by default, so we don't need
-any other options:
+two web servers. It balances ports `80` and `443` by default, so we
+don't need any other options:
 
     $ brightbox-lbs create -n "test" srv-hrmmb srv-h4lxv
     Creating a new load balancer
@@ -31,11 +31,13 @@ any other options:
      lba-c76a7  creating  2011-01-25             srv-hrmmb, srv-h4lxv  test
     ------------------------------------------------------------------------
 
-If we view the details of this new balancer, we can see that it is listening
-on port `80` in `http` mode and port `443` using `tcp` mode by default and
-each of those listeners is health checking on port `80` with an http request.
-If three http requests to the backend servers fails in a row then the server
-will be taken out of the pool until it recovers:
+If we view the details of this new balancer, we can see that it is
+listening on port `80` in `http` mode and port `443` using `tcp` mode
+by default and each of those listeners is health checking on port `80`
+with an http request.  If three http requests to the backend servers
+fails in a row then the server will be taken out of the pool until it
+recovers. Both listeners have a inactive connection timeout of 50000ms
+(50 seconds):
 
     $ brightbox-lbs show lba-c76a7
              id: lba-c76a7
@@ -52,7 +54,7 @@ will be taken out of the pool until it recovers:
 ### Mapping a Cloud IP to a Load Balancer
 
 Once the balancer is created, we now map a Cloud IP to make it
-available on the internet:
+available via the Internet:
 
     $ brightbox-cloudips map cip-tqg43 lba-c76a7
     Mapping cip-tqg43 to load balancer lba-c76a7
@@ -86,12 +88,14 @@ port `80` in `http` mode and another listening on port `443` in `tcp` mode.
 You can specify your own listeners in the format
 `in-port:out-port:type:timeout` (you can comma separate multiple listeners).
 
-* `in-port` is the port that the Load Balancer listens on
+* `in-port` is the port that the Load Balancer listens on for incoming
+  connections
 * `out-port` is the port the load balancer will connect to on your back end
-servers - usually this will be the same as `in-port`
+  servers - this will usually be the same as `in-port`
 * `type` is the mode, currently `http`, `http+ws` or `tcp`
-* `timeout` is the time (in milliseconds) after which inactive connections
-will be closed
+* `timeout` is the time (in milliseconds) after which inactive
+  connections will be closed. It defaults to 50 seconds if not
+  specified.
 
 In `http` and `http+ws` mode, HTTP requests get a `X-Forwarded-For` header
 added as they pass through the balancer, so your back-end servers can see the
@@ -153,8 +157,3 @@ doesn't respond in this time then the health check is considered a
 failure.
 
 All these options can be set at creation time too.
-
-Each listener in the load balancer will inherit the specified health
-check, so if you specify a 20000ms check and have listeners on port 80
-and port 443 you will get a check from each listener. This will make it
-appear that the checks are spaced by 10000ms on the back end servers. 
