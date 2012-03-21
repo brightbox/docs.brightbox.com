@@ -45,7 +45,7 @@ limitation.
 
 #### Timeout
 
-The timeout setting determines when inactive connections will be closed.
+The timeout setting determines how long a connection may remain open, without any activity, before it is closed.  The timeout is specified in milliseconds and must be between 5,000 and 86,400,000 (one day). By default the timeout is 50,000 milliseconds.
 
 ### Health Checks
 

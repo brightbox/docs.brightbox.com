@@ -20,7 +20,7 @@ servers and test it out. For more in-depth documentation, see the
 
 You manage Load Balancers using the `brightbox-lbs` command. We're
 going to create a new balancer called `test` that will balance between
-two servers. It balances tcp port `80` by default, so we don't need
+two servers. It balances ports `80` and `443` by default, so we don't need
 any other options:
 
     $ brightbox-lbs create -n "test" srv-hrmmb srv-h4lxv
@@ -31,11 +31,11 @@ any other options:
      lba-c76a7  creating  2011-01-25             srv-hrmmb, srv-h4lxv  test
     ------------------------------------------------------------------------
 
-If we view the details of this new balancer, we can see that it is
-listening on port `80` and port `443` by default and each of those
-listeners is health checking on port `80` with an http request. If three
-http requests to the backend servers fails in a row then the server will
-be taken out of the pool until it recovers:
+If we view the details of this new balancer, we can see that it is listening
+on port `80` in `http` mode and port `443` using `tcp` mode by default and
+each of those listeners is health checking on port `80` with an http request.
+If three http requests to the backend servers fails in a row then the server
+will be taken out of the pool until it recovers:
 
     $ brightbox-lbs show lba-c76a7
              id: lba-c76a7
@@ -46,7 +46,7 @@ be taken out of the pool until it recovers:
          policy: least-connections
       cloud_ips: 
           nodes: srv-hrmmb, srv-h4lxv
-      listeners: 80:80:http,443:443:tcp
+      listeners: 80:80:http:50000, 443:443:tcp:50000
     healthcheck: {"threshold_down"=>3, "port"=>80, "timeout"=>5000, "type"=>"http", "request"=>"/", "interval"=>5000, "threshold_up"=>3}
 
 ### Mapping a Cloud IP to a Load Balancer
@@ -80,19 +80,20 @@ Now that our balancer has an IP, we can use curl to see it in action:
 
 ### Listeners
 
-By default, Load Balancers listen on port `80` in `http` and `http+ws`
-mode and port `443` in `tcp` mode. HTTP requests get a `X-Forwarded-For`
-header added as they pass through the balancer, so your web servers can
-find the user's IP address. TCP mode doesn't modify the request at all, so it
-can be used for SSL and other types of connections (like MySQL or
-SMTP).
+By default, Load Balancers listen on port `80` in `http` mode and port `443`
+in `tcp` mode. HTTP requests get a `X-Forwarded-For` header added as they pass
+through the balancer, so your web servers can find the user's IP address. TCP
+mode doesn't modify the request at all, so it can be used for SSL and other
+types of connections (like MySQL or SMTP).
 
 You can specify your own listeners in the format
 `in-port:out-port:type:timeout`. `in-port` is the port that the load balancer
-listens on and `type` is the mode, currently `http`, `http+ws` or
-`tcp`. `out-port` is the port the load balancer will connect to on
-your back end servers - usually this will be the same as
-`in-port`. You can comma separate multiple listeners.
+listens on and `type` is the mode, currently `http`, `http+ws` or `tcp`.
+`out-port` is the port the load balancer will connect to on your back end
+servers - usually this will be the same as `in-port`. `timeout` is the
+inactivity timeout, in milliseconds, for your listener, setting a timeout in
+`http+ws` will only affect the http timeout. You can comma separate multiple
+listeners.
 
 For example, if you want to change your balancer to handle your mail
 servers you could change the listeners for IMAP and SSL IMAP:
@@ -103,6 +104,11 @@ If you want your site available on multiple ports `80`, `90` and `100`,
 you'd use:
 
     $ brightbox-lbs update -l 80:80:http,90:80:http,100:80:http lba-c76a7
+
+If you wanted to run websockets and standard http traffic (with an inactivity
+timeout of 30 seconds for the standard traffic) on port `80` you could use:
+
+    $ brightbox-lba update -l 80:80:http+ws:30000
 
 All these options can be set at creation time too.
 
