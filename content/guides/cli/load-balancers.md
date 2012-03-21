@@ -36,7 +36,7 @@ listening on port `80` in `http` mode and port `443` using `tcp` mode
 by default and each of those listeners is health checking on port `80`
 with an http request.  If three http requests to the backend servers
 fails in a row then the server will be taken out of the pool until it
-recovers. Both listeners have a inactive connection timeout of 50000ms
+recovers. Both listeners have an inactive connection timeout of 50000ms
 (50 seconds):
 
     $ brightbox-lbs show lba-c76a7
