@@ -80,23 +80,33 @@ Now that our balancer has an IP, we can use curl to see it in action:
 
 ### Listeners
 
-By default, Load Balancers listen on port `80` in `http` mode and port `443`
-in `tcp` mode. HTTP requests get a `X-Forwarded-For` header added as they pass
-through the balancer, so your web servers can find the user's IP address. TCP
-mode doesn't modify the request at all, so it can be used for SSL and other
-types of connections (like MySQL or SMTP).
+By default, each Load Balancer is created with two listeners: one listening on
+port `80` in `http` mode and another listening on port `443` in `tcp` mode.
 
 You can specify your own listeners in the format
-`in-port:out-port:type:timeout`. `in-port` is the port that the load balancer
-listens on and `type` is the mode, currently `http`, `http+ws` or `tcp`.
-`out-port` is the port the load balancer will connect to on your back end
-servers - usually this will be the same as `in-port`. `timeout` is the
-inactivity timeout, in milliseconds, for your listener, setting a timeout in
-`http+ws` will only affect the http timeout. You can comma separate multiple
-listeners.
+`in-port:out-port:type:timeout` (you can comma separate multiple listeners).
 
-For example, if you want to change your balancer to handle your mail
-servers you could change the listeners for IMAP and SSL IMAP:
+* `in-port` is the port that the Load Balancer listens on
+* `out-port` is the port the load balancer will connect to on your back end
+servers - usually this will be the same as `in-port`
+* `type` is the mode, currently `http`, `http+ws` or `tcp`
+* `timeout` is the time (in milliseconds) after which inactive connections
+will be closed
+
+In `http` and `http+ws` mode, HTTP requests get a `X-Forwarded-For` header
+added as they pass through the balancer, so your back-end servers can see the
+user's IP address. TCP mode doesn't modify the request at all, so it can
+be used for SSL and other types of connections (like MySQL or SMTP).
+
+In `http+ws` mode, Load Balancers can handle standard HTTP traffic and
+WebSockets traffic over the same port, the `timeout` will be applied to
+standard HTTP traffic, whilst WebSockets connections will be given a fixed
+timeout of 1 day.
+
+#### Examples
+
+If you want to change your balancer to handle your mail servers you could
+change the listeners for IMAP and SSL IMAP:
 
     $ brightbox-lbs update -l 143:143:tcp,993:993:tcp lba-c76a7
 
@@ -105,12 +115,12 @@ you'd use:
 
     $ brightbox-lbs update -l 80:80:http,90:80:http,100:80:http lba-c76a7
 
-If you wanted to run websockets and standard http traffic (with an inactivity
-timeout of 30 seconds for the standard traffic) on port `80` you could use:
+If you want to run both WebSockets and standard HTTP traffic on port `80` you
+would use:
 
     $ brightbox-lba update -l 80:80:http+ws:30000
 
-All these options can be set at creation time too.
+All of these options can be set at creation time too.
 
 ### Health Checks
 
