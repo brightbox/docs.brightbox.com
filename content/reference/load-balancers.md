@@ -12,17 +12,40 @@ Load Balancers are [configurable via our API](https://api.gb1.brightbox.com/1.0/
 
 ### Listeners
 
-Each Load Balancer has one or more listeners which control which ports and protocols it serves requests with.  Each listener has an `in` port, which is the port it listens on and an `out` port which is the port it uses to connect to the back end servers.
+Each Load Balancer consists of one or more listeners which control the ports
+and protocols it responds to. Each listener has an `in` port, which is
+the port it listens on and an `out` port which is the port it uses to connect
+to the back end servers.
 
-So if your back-end servers have a web service running on port `3000` but you want the load balancer to serve requests on port `80`, you would use a listener with an `in` port of `80` and an `out` port of `3000`.
+So, if your back-end servers have a web service running on port `3000` but
+you want the load balancer to serve requests on port `80`, you would use a
+listener with an `in` port of `80` and an `out` port of `3000`.
 
 #### Protocol
 
-Each listener also has a protocol.  If the protocol is set to `tcp`, then the load balancer just makes a straight unmodified tcp connection to the back-end servers.
+Each listener also has a protocol. There are currently three options for the
+listener protocol:
 
-If the protocol is set to `http`, the load balancer modifies the request to add an `X-Forwarded-For` HTTP header so your back-end servers can see the IP address of the clients.
+* `tcp`
+* `http`
+* `http+ws`
 
-When using the `http` protocol, there is a `2048` bytes limit on HTTP headers, 40 bytes of which are used by the `X-Forwarded-For` header.  If you require more than `2008` bytes of headers (very large cookies might need this), then you should use the `tcp` protocol, which has no such limitation.
+If the protocol is set to `tcp`, the load balancer makes a straight 
+unmodified tcp connection to the back-end servers.
+
+If the protocol is set to `http` or `http+ws`, the load balancer modifies
+the request to add an `X-Forwarded-For` HTTP header so your back-end servers
+can see the IP address of the clients.
+
+**Note:** When using the `http` or `http+ws` protocols, there is a `2048` bytes limit
+on HTTP headers, 40 bytes of which are used by the `X-Forwarded-For` header.
+If you require more than `2008` bytes of headers (very large cookies might
+need this), then you should use the `tcp` protocol, which has no such
+limitation.
+
+#### Timeout
+
+The timeout setting determines when inactive connections will be closed.
 
 ### Health Checks
 

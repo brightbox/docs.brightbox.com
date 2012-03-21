@@ -12,8 +12,9 @@ unresponsive servers from the pool until they recover.
 Load Balancers are of course completely configurable via our API, and
 therefore also via our CLI tool.
 
-This guide will show you how to create a new Load Balancer, add some servers and test it out.  For more in-depth documentation, see the [Load Balancer Reference](/reference/load-balancers).
-
+This guide will show you how to create a new Load Balancer, add some
+servers and test it out. For more in-depth documentation, see the 
+[Load Balancer Reference](/reference/load-balancers).
 
 ### Creating a new balancer
 
@@ -79,16 +80,16 @@ Now that our balancer has an IP, we can use curl to see it in action:
 
 ### Listeners
 
-Load Balancers listen on port `80` in http mode and port `443` in tcp
-mode by default. HTTP requests get a `X-Forwarded-For` header added as
-they pass through the balancer, so your web servers can find the
-user's IP address. TCP mode doesn't modify the request at all, so it
+By default, Load Balancers listen on port `80` in `http` and `http+ws`
+mode and port `443` in `tcp` mode. HTTP requests get a `X-Forwarded-For`
+header added as they pass through the balancer, so your web servers can
+find the user's IP address. TCP mode doesn't modify the request at all, so it
 can be used for SSL and other types of connections (like MySQL or
 SMTP).
 
 You can specify your own listeners in the format
-`in-port:out-port:type`. `in-port` is the port that the load balancer
-listens on and `type` is the mode, currently `http` or
+`in-port:out-port:type:timeout`. `in-port` is the port that the load balancer
+listens on and `type` is the mode, currently `http`, `http+ws` or
 `tcp`. `out-port` is the port the load balancer will connect to on
 your back end servers - usually this will be the same as
 `in-port`. You can comma separate multiple listeners.
@@ -105,15 +106,14 @@ you'd use:
 
 All these options can be set at creation time too.
 
-
 ### Health Checks
 
 By default, the cli will set up a health check based on your first
-listener. So if your first listener tcp port `25` (SMTP), then the
+listener. So if your first listener is `tcp` port `25` (SMTP), then the
 health check will be a tcp connect to port `25` on your back end
 servers.
 
-If your first listener is a http listener than the health check will
+If your first listener is a `http` listener than the health check will
 be a HTTP request expecting a `HTTP 200` response.
 
 You can, of course, specify your own health checks.
