@@ -31,6 +31,8 @@ Servers via the Brightbox Cloud API.
 [Using the Graphical Console](/guides/cli/graphical-console/)
 
 [Building a Windows Server](/guides/cli/windows-servers/)
+
+[Host multiple SSL sites with Port Translators](/guides/cli/port-translators)
 </div>
 
 <div class="grid_11 prefix_2" markdown="1">

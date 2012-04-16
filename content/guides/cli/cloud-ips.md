@@ -95,4 +95,4 @@ Unmapping an IP removes it from a server, but leaves it belonging to the account
 
 Here you created, mapped, remapped and unmapped a cloud IP.
 
-You might want to learn about zones or learn how to Create a snapshot.
+You might want to learn about [zones](http://docs.brightbox.com/reference/glossary/#zone) or learn how to [create a snapshot](http://docs.brightbox.com/guides/cli/create-a-snapshot/)
