@@ -29,7 +29,7 @@ title: Guides
 
 [Building a Windows Server](/guides/cli/windows-servers/)
 
-[Host multiple SSL sites with Port Translators](/guides/cli/port-translators)
+[Host multiple SSL sites using Cloud IP Port Translation](/guides/cli/port-translation)
 
 
 </div>
