@@ -6,12 +6,12 @@ section: Guides
 
 ### The problem
 
-You can map multiple
+Although you can map multiple
 [Cloud IPs](http://docs.brightbox.com/guides/cli/cloud-ips/) to a
-single Cloud Server, but it can have only one real IPv4 address of its
-own. So for example, if you map two Cloud IPs to a server listening on
-HTTPS port 443, both Cloud IPs will serve the same site with the same
-SSL certificate.
+Cloud Server, the server itself can only have one real IPv4
+address. So for example, if you map two Cloud IPs to a server
+listening on HTTPS port 443, both Cloud IPs will serve the same site
+with the same SSL certificate.
 
 ![](/images/port-translators-none.png)
 
@@ -120,14 +120,14 @@ listed using the <code>brightbox-cloudips show</code> command:
         interface_id: int-zylp1
     port_translators: 443:2443:tcp
 
-And you can change or remove them using the <code>brightbox-cloudips
-update</code>.
-
-You can define multiple translators per IP by comma separating them.
+You can define multiple translators per IP by comma separating them,
+and you can of course change or remove them at any time using the
+<code>brightbox-cloudips update</code> command.
 
 And you can translate UDP ports as well as TCP ports, so you can run
 things like multiple dns services on the same server too.
 
 You can learn more about Cloud IPs in the
 [Cloud IP guide](/guides/cli/cloud-ips) or in the
-[reference page](/reference/cli/cloud-ips).
+[reference page](/reference/cloud-ips) (which also has
+[more details about port translators](/reference/cloud-ips/#port_translators)).
