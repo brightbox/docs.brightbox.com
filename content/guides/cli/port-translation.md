@@ -1,40 +1,42 @@
 ---
 layout: default
-title: Port Translators
+title: Cloud IP Port Translation
 section: Guides
 ---
 
-### The problem
+### Background
 
-Although you can map multiple
-[Cloud IPs](http://docs.brightbox.com/guides/cli/cloud-ips/) to a
-Cloud Server, the server itself can only have one real IPv4
-address. So for example, if you map two Cloud IPs to a server
-listening on HTTPS port 443, both Cloud IPs will serve the same site
-with the same SSL certificate.
+Each Cloud Server has a single network interface, and therefore a single private
+"real" IPv4 address (`10.x.x.x`). So, whilst you can map multiple
+[Cloud IPs](http://docs.brightbox.com/guides/cli/cloud-ips/) to one
+Cloud Server, all traffic comes into it via the single IPv4 address. This
+makes hosting different web sites with different SSL certificates
+on the same server difficult, since the web server can't distinguish between
+the encrypted traffic from the different Cloud IPs.
+
+For example, if you map two Cloud IPs to a server listening on HTTPS port
+443, both Cloud IPs will serve the same site with the same SSL certificate.
 
 ![](/images/port-translators-none.png)
 
-This makes hosting different web sites with different SSL certificates
-on the same server difficult.
-
-You could use SSL's new
+The new SSL
 [Server Name Indication](http://en.wikipedia.org/wiki/Server_Name_Indication)
-feature to achieve this, but it is still not supported in all browsers
-(in particular, no version of Internet Explorer on Windows XP supports
-it).
+feature is designed to solve this kind of problem, but it is still
+not supported in all browsers (in particular, no version of Internet Explorer
+on Windows XP supports it).
 
-### The solution: Port Translators
+### The Solution: Port Translation
 
-Port Translators allow you to change the destination port of incoming
-connections on a particular Cloud IP. This behaviour can be used to
-host multiple SSL sites on a single server or load balancer.
+Port Translation enables you to change the destination port of incoming
+connections on a particular [Cloud IP](http://docs.brightbox.com/guides/cli/cloud-ips/).
+This behaviour can be used to host multiple SSL sites on a single server or
+load balancer.
 
-So, let's assume we need to host two SSL sites on our server, one for
-<code>cats.com</code> and the other for <code>dogs.com</code>
+For example, let's assume we need to host two SSL sites on our server, one for
+`cats.com` and the other for `dogs.com`
 
-We configure our Apache web server so that cats.com listens on port
-<code>443</code> as usual:
+We configure our Apache web server so that cats.com listens on port `443`
+as usual:
 
     Listen 443
     
@@ -67,8 +69,8 @@ Then we create our first Cloud IP as normal and map it to our server:
 If we update the dns for <code>cats.com</code> to point at this IP
 then the <code>cats.com</code> site is now live.
 
-Now we configure Apache so that <code>dogs.com</code> listens on another port,
-let's use <code>2443</code>
+Now we configure Apache so that <code>dogs.com</code> listens on a different
+port, let's use <code>2443</code>
 
     Listen 2443
     
@@ -102,12 +104,11 @@ And then map it to the server as normal:
 
 ![](/images/port-translators-2443.png)
 
-Now if we update the dns for <code>dogs.com</code> to point at this
-second IP and then <code>dogs.com</code> is live too!
+Now if we update the DNS for <code>dogs.com</code> to point at this
+second IP, then <code>dogs.com</code> is live too!
 
-Port translators are associated with the Cloud IP, so when you move
-the IP to a new server the translators move with it.  You can see them
-listed using the <code>brightbox-cloudips show</code> command:
+You can view the port translators for a particular Cloud IP using the 
+<code>brightbox-cloudips show</code> command:
 
     $ brightbox-cloudips show cip-dnx8z
     
@@ -120,14 +121,14 @@ listed using the <code>brightbox-cloudips show</code> command:
         interface_id: int-zylp1
     port_translators: 443:2443:tcp
 
-You can define multiple translators per IP by comma separating them,
-and you can of course change or remove them at any time using the
+You can define multiple translators per Cloud IP by comma separating them,
+and you can, of course, change or remove them at any time using the
 <code>brightbox-cloudips update</code> command.
 
-And you can translate UDP ports as well as TCP ports, so you can run
-things like multiple dns services on the same server too.
+You can translate UDP ports as well as TCP ports, so you can run
+things like multiple DNS services on the same server too.
 
 You can learn more about Cloud IPs in the
 [Cloud IP guide](/guides/cli/cloud-ips) or in the
 [reference page](/reference/cloud-ips) (which also has
-[more details about port translators](/reference/cloud-ips/#port_translators)).
+[more details about port translation](/reference/cloud-ips/#port_translation)).
