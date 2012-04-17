@@ -68,28 +68,30 @@ Custom reverse DNS for Cloud IPs is covered in the [DNS reference](/reference/dn
 
 ### Port Translation
 
-Port Translation enables you to change the destination port of a tcp or
-udp connection on a Cloud IP. They can be used to host
-multiple distinct services on the same port on a single Cloud Server
-or Load Balancer and can also be used to host multiple SSL sites on the
-same Cloud Server.
+Port Translation can be used to change the destination port of a tcp
+or udp connection coming into a Cloud IP. They can be used to emulate
+having multiple IP addresses on a Cloud Server. It's commonly used to
+host multiple TLS/SSL sites on the same server.
+
+Port Translation applies only to connections coming into a Cloud IP -
+they do not affect outgoing connections from the Cloud Server.
 
 See the [Port Translation guide](/guides/cli/port-translation/) for a
 walk through on how to use them.
 
 #### Port Translation and Firewalling
 
-Cloud IPs (and therefore Port Translation) act on traffic before the
-[Cloud Firewall](/reference/firewall/). So, for example, if you're translating
-source port <code>443</code> on a Cloud IP to destination port <code>2443</code>
-on a Cloud Server, your firewall rules would need to allow port
-<code>2443</code>.
+As with Cloud IP mappings, Port Translation acts on traffic before the
+[Cloud Firewall](/reference/firewall/). So, for example, if you're
+translating port <code>443</code> on a Cloud IP to port
+<code>2443</code> on a Cloud Server, your firewall rules would need to
+allow port <code>2443</code>.
 
 #### Port Translation and Load Balancers
 
 Cloud IPs with port translations can of course be mapped to
 [load balancers](/reference/load-balancers/) too.  You need to specify
-your load balancer listeners to use the translated destination port. So,
-if you're translating port <code>443</code> to port <code>2443</code> then your
+your load balancer listeners to use the translated port. So, if you're
+translating port <code>443</code> to port <code>2443</code> then your
 load balancer needs a listener on port <code>2443</code>.
 
