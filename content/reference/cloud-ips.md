@@ -69,8 +69,8 @@ Custom reverse DNS for Cloud IPs is covered in the [DNS reference](/reference/dn
 ### Port Translation
 
 Port Translation can be used to change the destination port of a tcp
-or udp connection coming into a Cloud IP. They can be used to emulate
-having multiple IP addresses on a Cloud Server. It's commonly used to
+or udp connection coming into a Cloud IP. It can be used to emulate
+having multiple private IP addresses on a Cloud Server. It's commonly used to
 host multiple TLS/SSL sites on the same server.
 
 Port Translation applies only to connections coming into a Cloud IP -
