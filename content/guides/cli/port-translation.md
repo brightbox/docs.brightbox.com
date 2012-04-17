@@ -9,21 +9,20 @@ section: Guides
 Each Cloud Server has a single network interface, and therefore a single private
 "real" IPv4 address (`10.x.x.x`). So, whilst you can map multiple
 [Cloud IPs](http://docs.brightbox.com/guides/cli/cloud-ips/) to one
-Cloud Server, all traffic comes into it via the single IPv4 address. This
-makes hosting different web sites with different SSL certificates
+Cloud Server, all traffic comes into the same single IPv4 address. This
+makes hosting different web sites with different TLS/SSL certificates
 on the same server difficult, since the web server can't distinguish between
-the encrypted traffic from the different Cloud IPs.
+the different Cloud IPs.
 
 For example, if you map two Cloud IPs to a server listening on HTTPS port
-443, both Cloud IPs will serve the same site with the same SSL certificate.
+`443`, both Cloud IPs will serve the same site with the same certificate.
 
 ![](/images/port-translators-none.png)
 
-The new SSL
+The new TLS/SSL
 [Server Name Indication](http://en.wikipedia.org/wiki/Server_Name_Indication)
-feature is designed to solve this kind of problem, but it is still
-not supported in all browsers (in particular, no version of Internet Explorer
-on Windows XP supports it).
+feature is designed to solve this kind of problem, but not all
+browsers support it (for example, Internet Explorer on Windows XP).
 
 ### The Solution: Port Translation
 
@@ -32,10 +31,10 @@ connections on a particular [Cloud IP](http://docs.brightbox.com/guides/cli/clou
 This behaviour can be used to host multiple SSL sites on a single server or
 load balancer.
 
-For example, let's assume we need to host two SSL sites on our server, one for
+For example, let's assume we need to host two TLS/SSL sites on our server, one for
 `cats.com` and the other for `dogs.com`
 
-We configure our Apache web server so that cats.com listens on port `443`
+We configure our Apache web server so that `cats.com` listens on port `443`
 as usual:
 
     Listen 443
@@ -66,11 +65,11 @@ Then we create our first Cloud IP as normal and map it to our server:
      cip-360ea  mapped  109.107.37.80  srv-9igaa    cats (cip-109-107-37-80.gb1...
     -------------------------------------------------------------------------------
 
-If we update the dns for <code>cats.com</code> to point at this IP
-then the <code>cats.com</code> site is now live.
+If we update the dns for `cats.com` to point at this IP
+then the `cats.com` site is now live.
 
-Now we configure Apache so that <code>dogs.com</code> listens on a different
-port, let's use <code>2443</code>
+Now we configure Apache so that `dogs.com` listens on a different
+port, let's use `2443`
 
     Listen 2443
     
@@ -83,7 +82,7 @@ port, let's use <code>2443</code>
     </VirtualHost>
 
 Now we create a second Cloud IP, but this time we specify a port
-translator to translate port <code>443</code> to <code>2443</code>:
+translation to translate tcp port `443` to `2443`:
 
     $ brightbox-cloudips create -n "dogs" --port-translators=443:2443:tcp
     
@@ -104,11 +103,11 @@ And then map it to the server as normal:
 
 ![](/images/port-translators-2443.png)
 
-Now if we update the DNS for <code>dogs.com</code> to point at this
-second IP, then <code>dogs.com</code> is live too!
+Now if we update the DNS for `dogs.com` to point at this
+second IP, then `dogs.com` is live too!
 
 You can view the port translators for a particular Cloud IP using the 
-<code>brightbox-cloudips show</code> command:
+`brightbox-cloudips show` command:
 
     $ brightbox-cloudips show cip-dnx8z
     
@@ -123,7 +122,7 @@ You can view the port translators for a particular Cloud IP using the
 
 You can define multiple translators per Cloud IP by comma separating them,
 and you can, of course, change or remove them at any time using the
-<code>brightbox-cloudips update</code> command.
+`brightbox-cloudips update` command.
 
 You can translate UDP ports as well as TCP ports, so you can run
 things like multiple DNS services on the same server too.
