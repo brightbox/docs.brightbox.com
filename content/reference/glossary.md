@@ -11,6 +11,8 @@ least one Account through which they manage their resources, such as
 to create multiple Accounts, for example, to manage resources for separate
 customers of your own.
 
+See the [Accounts](/reference/accounts/) page for more information.
+
 ### Account Limits
 
 Each Account is created with default resource limits which determine the total

@@ -50,4 +50,11 @@ Our RESTful HTTP API.
 
 Our convenience DNS records and Cloud IP reverse dns support.
 
+#### [Accounts](/reference/accounts/)
+
+All Brightbox services are provided through an Account.
+
+#### [Billing](/reference/billing/)
+
+Billing documentation
 </div>
