@@ -82,7 +82,7 @@ more, giving existing users a chance to update their systems.
 
 ### Image size
 
-An Image is stored in the Image Library as a "sparse file".
+An Image is stored in the Image Library in a compressed format.
 Basically, this means any zeroes in the Image don't actually take up
 space in the Image Library.
 
@@ -95,6 +95,9 @@ written to your Server (so including the zeroes).
 This means that the [server type](/reference/glossary/#server_type)
 you choose for your server must have a disk at least as big as the
 `virtual_size` of your Image, or it will not fit.
+
+The system will fail attempts to uploaded images and snapshot servers
+that generate a compressed image bigger than 50GB.
 
 ### Username
 
@@ -114,5 +117,5 @@ and build servers from them.
 ### Official Images
 
 An Image with the attribute `official` set to true has been provided
-by Brightbox.  It's mainly just used by the cli to display theses
+by Brightbox.  It's mainly just used by the cli to display these
 Images slightly differently to indicate they are trustworthy.
