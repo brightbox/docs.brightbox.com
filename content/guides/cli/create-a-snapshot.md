@@ -19,9 +19,9 @@ command. Just give it the id of the server you want to snapshot:
 
 ### View the snapshot image info
 
-Taking the snapshot is instantaneous, but it then takes a few minutes
-to be copied into the image library. You can see the resulting image
-in the image list:
+Taking the snapshot is instantaneous, but it then takes a little while
+to be copied into the image library depending upon the amount of data
+on the server. You can see the resulting image in the image list:
 
     $ brightbox-images list
     
@@ -65,6 +65,9 @@ virtual_size is how big the entire disk is and the disk_size is how
 big the actual snapshot is. The disk_size will vary depending on how
 much data is written to your server.
 
+Snapshots are limited to a maximum disk_size of 50GB. The system aborts
+snapshot requests that try to create images bigger than that, and sets
+the status to 'failed'.
 
 ### Create a new server using the snapshot
 
@@ -97,13 +100,12 @@ guide for more details).
     Password: xxxxxxxxxxxx
     lftp acc-h3nbk@ftp.library.gb1.brightbox.com:/> cd images
     lftp acc-h3nbk@ftp.library.gb1.brightbox.com:/images> ls -h
-    -rw-r--r--   1 acc-h3nbk library    420.1M Dec 19 13:00 img-y22uq.gz
-    lftp acc-h3nbk@ftp.library.gb1.brightbox.com:/images> get img-y22uq.gz 
+    -rw-r--r--   1 acc-h3nbk library    420.1M Dec 19 13:00 img-y22uq
+    lftp acc-h3nbk@ftp.library.gb1.brightbox.com:/images> get img-y22uq 
 
-The image is just a raw copy of the disk, compressed using the gzip
-utility. You can uncompress it using gunzip and boot it using
-virtualisation software such as kvm, or xen (in hvm mode).
-
+The image is in 'qcow2' format. You can boot it directly using kvm
+virtualisation software, or use the `qemu-img` tool to convert it into
+other formats.
 
 ## Would you like to know more?  
 

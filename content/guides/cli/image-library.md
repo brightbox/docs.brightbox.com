@@ -102,6 +102,7 @@ From then on, any new servers created with this image are put in
 compatibility mode and will work without `virtio` drivers.
 
 
+
 ### Image access
 
 Uploaded images and snapshot images are private by default, which
@@ -136,4 +137,9 @@ are listed with the status `deprecated`:
     ------------------------------------------------------------------------------
      img-7geqi  acc-xxxxx  upload  2011-05-19  deprecated  3050  slackware (i686)
     ------------------------------------------------------------------------------
+
+### Image Format
+
+The registration service can handle raw format images, compressed raw
+images, or compressed image formats supported by the kvm 'qemu-img' tool.
 
