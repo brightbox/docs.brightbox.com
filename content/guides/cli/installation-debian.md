@@ -15,6 +15,5 @@ native gems. On Debian you can install these with this command:
 You'll need to install a newer version of rubygems than the one currently packaged with Debian. We recommend the
 [Tryphon repositories](http://debian.tryphon.eu/).
 
-You should now be ready to run the installation gem (installation-gem.md).
-
+You should now be ready to [install the CLI Ruby Gem] (/guides/cli/installation-gem/).
 
