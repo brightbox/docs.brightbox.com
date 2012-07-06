@@ -71,7 +71,7 @@ Firstly, create a shell script we want to run on boot. In this case we want to i
 
 Then create a new server with an Ubuntu image, specifying the shell script as user data:
 
-    $ brightbox-servers create --user-data-file ud-test-script.sh img-9vxqi
+    $ brightbox-servers create --user-data-file=ud-test-script.sh img-9vxqi
     Creating a nano (typ-4nssg) server with image Ubuntu Maverick 10.10 server (img-9vxqi) with 0k of user data
     
      id         status    type  zone   created_on  image_id   cloud_ips  name
