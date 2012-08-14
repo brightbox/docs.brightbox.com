@@ -32,6 +32,9 @@ should open with your web browser. The token is valid for 15 minutes.
 ![Screenshot of logged in console](/images/console-logged-in.png)
 
 You can reactivate the console at any time - a new token will just be
-regenerated.  You can only access the console of Cloud Servers that
-are active (i.e: "powered on") and if you're behind a firewall you'll
-need to have tcp port 50000 allowed out to our console server.
+regenerated. You can only access the console of Cloud Servers that
+are active (i.e: "powered on").
+
+Normally, the console works over https using the usual tcp port 443,
+but if your browser is a bit old and has to fall back to Flash, then
+it will use tcp port 843 as well.
