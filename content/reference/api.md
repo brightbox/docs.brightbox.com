@@ -20,7 +20,9 @@ written in Ruby. See the [CLI documentation](/guides/cli/) for more information.
 #### Fog: the Ruby cloud computing library
 
 We've added support for the Brightbox Cloud API to [Fog](http://fog.io) "The 
-Ruby cloud services library". The Brightbox CLI uses Fog.
+Ruby cloud services library".
+
+To get started using Fog see our [Getting Started with Fog Guide](/guides/fog/).
 
 #### Apache Libcloud
 

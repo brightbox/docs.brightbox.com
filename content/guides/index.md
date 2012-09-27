@@ -42,6 +42,10 @@ title: Guides
 
 [Brightbox Cloud Load Balancers](http://www.youtube.com/watch?v=03zdxQPEnPI)
 
+### Coding
+
+[Controlling Brightbox Cloud with Ruby and Fog](/guides/ruby/fog/)
+
 ### 3rd party guides
 
 [Solid FreeBSD Server: the Foundation](http://www.wunki.org/posts/2011-04-05-solid-freebsd-server-foundation.html)
