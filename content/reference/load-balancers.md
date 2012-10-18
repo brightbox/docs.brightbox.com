@@ -73,14 +73,14 @@ timeout is 50,000 milliseconds (50 seconds).
 
 ### Health Checks
 
-Each Load Balancer can have one or more health checks. A health check defines
+Each Load Balancer can have one health check. A health check defines
 how the Load Balancer detects problems with your back-end servers. The
 Load Balancer will not send requests to unhealthy back-end servers
 until they recover.
 
 #### Port and timings
 
-Each health check has several options. The `port` is the tcp port that the
+The health check has several options. The `port` is the tcp port that the
 Load Balancer will attempt to connect to on each back-end server.
 `timeout` is how long in milliseconds the Load Balancer will wait for the
 connection to complete before deciding the health check failed. `interval`
@@ -104,7 +104,7 @@ When `type` is set to `tcp`, the `request` option is ignored.
 
 #### Thresholds
 
-There are two "thresholds" associated with each health check which are used
+There are two "thresholds" associated with the health check which are used
 to control when back-end servers are considered unhealthy.
 
 `threshold_down` sets the number of consecutive health checks that must
