@@ -1,22 +1,22 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    adsf (1.0.1)
+    adsf (1.1.1)
       rack (>= 1.0.0)
-    builder (3.0.0)
-    cri (2.0.2)
-    fssm (0.2.7)
-    json (1.5.3)
-    kramdown (0.13.3)
-    maruku (0.6.0)
+    builder (3.1.4)
+    colored (1.2)
+    cri (2.3.0)
+      colored (>= 1.2)
+    fssm (0.2.9)
+    json (1.7.5)
+    kramdown (0.14.0)
+    maruku (0.6.1)
       syntax (>= 1.0.0)
-    mime-types (1.16)
-    nanoc (3.2.1)
-      nanoc3 (>= 3.2.1)
-    nanoc3 (3.2.1)
-      cri (~> 2.0)
-    nokogiri (1.4.4)
-    rack (1.3.2)
+    mime-types (1.19)
+    nanoc (3.4.2)
+      cri (~> 2.2)
+    nokogiri (1.5.5)
+    rack (1.4.1)
     syntax (1.0.0)
 
 PLATFORMS
@@ -30,6 +30,6 @@ DEPENDENCIES
   kramdown
   maruku
   mime-types
-  nanoc
+  nanoc (~> 3.4.0)
   nokogiri
   rack

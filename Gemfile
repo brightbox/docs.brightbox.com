@@ -1,7 +1,7 @@
 source :rubygems
 
 # Generating
-gem "nanoc"
+gem "nanoc", "~> 3.4.0"
 gem "maruku"
 gem "kramdown"
 gem "builder"
