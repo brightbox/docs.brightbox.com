@@ -9,37 +9,9 @@
     
     <%= clear %>
     
-     <div id="share">
-      <p><a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="brightbox">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script></p>
-      
-      <div id="fb-root"></div>
-      <script>(function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));</script>
-
-     <p><div class="fb-like" data-href="<%= url_for(@item) %>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div></p>
-     
-     <!-- Place this tag where you want the +1 button to render -->
-     <p><g:plusone size="small"></g:plusone></p>
-
-     <!-- Place this render call where appropriate -->
-     <script type="text/javascript">
-       window.___gcfg = {lang: 'en-GB'};
-
-       (function() {
-         var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-         po.src = 'https://apis.google.com/js/plusone.js';
-         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-       })();
-     </script>
-      
-      <p class="last_updated">Last updated: <%= @item.mtime.strftime("%d %b %Y at %H:%M %Z") %></p>
-      
-      </div>
+    <div id="share">
+      <p class="last_updated">Last updated: <%= @item.mtime.strftime("%d %b %Y at %H:%M %Z") %></p>      
+    </div>
       
   </div><!-- /content -->
 </div><!-- /main -->
