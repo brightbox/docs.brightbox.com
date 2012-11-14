@@ -141,11 +141,11 @@ You can, of course, specify your own health checks.
 To make a http health check request for `/status.html` on your back
 end servers:
 
-    $ brightbox-lbs update --hc-type http --hc-port 80 --hc-request "/status.html" lba-c76a7
+$ brightbox-lbs update --hc-type=http --hc-port=80 --hc-request="/status.html" lba-c76a7
 
 To make a tcp connect check on port `22`:
 
-    $ brightbox-lbs update --hc-type tcp --hc-port 22 lba-c76a7
+    $ brightbox-lbs update --hc-type=tcp --hc-port=22 lba-c76a7
 
 The options `--hc-down` and `--hc-up` set how many consecutive health
 checks need to fail or succeed for the back end server to be
