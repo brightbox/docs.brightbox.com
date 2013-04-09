@@ -2,7 +2,9 @@
 # before nanoc starts compiling.
 require "yaml"
 
-MAIN_SITE_URL = "http://brightbox.com"
+if !defined?(MAIN_SITE_URL)
+  MAIN_SITE_URL = "http://brightbox.com"
+end
 
 def primary_nav
   YAML.load <<-EOF
