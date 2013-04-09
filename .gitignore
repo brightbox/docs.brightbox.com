@@ -4,3 +4,5 @@ log/
 tmp/
 vendor/cache
 crash.log
+vendor/bundle
+.bundle
