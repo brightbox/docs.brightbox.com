@@ -24,13 +24,14 @@ end
 	END
       end
       system(
-        'tar',
-	'-cvzf', output_filename,
-	'--directory', dir,
-	'./metadata.json',
-	'./Vagrantfile'
+             'tar',
+             '--owner=nobody',
+             '--group=nogroup',
+             '-cvzf', output_filename,
+             '--directory', dir,
+             './metadata.json',
+             './Vagrantfile'
       ) || raise("Failed to create box file")
-      
     end
   end
 
