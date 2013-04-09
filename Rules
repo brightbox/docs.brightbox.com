@@ -29,6 +29,10 @@ end
 compile '/static/*' do
 end
 
+compile '/vagrant/*' do
+  filter :box
+end
+
 compile '*' do
   break if item.binary?
 
@@ -54,6 +58,10 @@ end
 route '/static/*' do
   # /static/foo.html/ => /foo.html
   item.identifier[7..-2]
+end
+
+route '/vagrant/*' do
+  item.identifier.chop + '.box'
 end
 
 route '*' do

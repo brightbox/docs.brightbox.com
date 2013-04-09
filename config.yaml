@@ -39,6 +39,10 @@ data_sources:
     type: static
     items_root: /static/
 
+  -
+    type: brightbox_images
+    items_root: /vagrant/
+
 # Configuration for the “watch” command, which watches a site for changes and
 # recompiles if necessary.
 watcher:

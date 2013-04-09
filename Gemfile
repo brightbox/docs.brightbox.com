@@ -1,5 +1,3 @@
-source :rubygems
-
 # Generating
 gem "nanoc", "~> 3.4.0"
 gem "maruku"
@@ -14,3 +12,4 @@ gem "mime-types"
 gem "fssm"
 #gem "rb-fsevent" if PLATFORM["darwin"] # Mac
 gem "adsf"
+gem "fog"

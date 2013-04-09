@@ -3,3 +3,4 @@ public/
 log/
 tmp/
 vendor/cache
+crash.log
