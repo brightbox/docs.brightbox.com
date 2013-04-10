@@ -21,7 +21,7 @@ private
     raw_items = @connection.list_images
 
     raw_items.inject([]) do |result, raw_item|
-      unless raw_item["status"] == "deleted" && raw_item["public"]
+      if raw_item["public"] && raw_item["status"] != "deleted"
 	mtime = Time.parse(raw_item["created_at"])
 	attributes = raw_item.dup
 	attributes.delete("ancestor")
