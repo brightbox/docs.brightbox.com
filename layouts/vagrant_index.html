@@ -1,0 +1,30 @@
+<div id="main">
+	<div class="content container_24">
+
+		<%= render "breadcrumbs" %>
+
+		<h2>Brightbox Cloud Vagrant image list</h2>
+		<p class="last_updated">Last updated: <%= Time.now.strftime("%d %b %Y") %></p>
+		<table>
+			<tr>
+				<th>Id</th>
+				<th>Owner</th>
+				<th>Arch</th>
+				<th>Name</th>
+				<th></th>
+			</tr>
+			<% item[:images].each do |image| %>
+			<tr>
+				<td><code><%= image[:id] %></code></td>
+				<td><%= image[:official] ? "Brightbox" : "<code>#{image[:owner]}</code>" %></td>
+				<td><%= image[:arch] %></td>
+				<td><%= image[:name] %></td>
+				<td><a href="/vagrant/<%= image[:id] %>.box">Vagrant file</a></td>
+			</tr>
+			<% end %>
+		</table>
+
+		<%= clear %>
+
+	</div><!-- /content -->
+</div><!-- /main -->

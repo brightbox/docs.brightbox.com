@@ -3,7 +3,7 @@ require 'fog'
 class BrightboxImages < Nanoc::DataSource
 
   identifier :brightbox_images
-  
+
   def items
     @items ||= fetch_images
   end
@@ -16,18 +16,22 @@ class BrightboxImages < Nanoc::DataSource
 private
 
   require 'json'
-  
+
   def fetch_images
     raw_items = @connection.list_images
 
     raw_items.inject([]) do |result, raw_item|
       if raw_item["public"] && raw_item["status"] != "deleted"
-	mtime = Time.parse(raw_item["created_at"])
-	attributes = raw_item.dup
-	attributes.delete("ancestor")
-	identifier = "/#{raw_item['id']}/"
+        mtime = Time.parse(raw_item["created_at"])
+        attributes = raw_item.dup
+        attributes.delete("ancestor")
+        rendered = JSON.dump(attributes)
 
-	result << Nanoc::Item.new(JSON.dump(attributes), attributes, identifier, mtime)
+        attributes[:title] = attributes["id"]
+        attributes[:kind] = "brightbox_image"
+        identifier = "/#{raw_item['id']}/"
+
+        result << Nanoc::Item.new(rendered, attributes, identifier, mtime)
       end
       result
     end
