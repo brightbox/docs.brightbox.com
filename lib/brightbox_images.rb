@@ -29,6 +29,7 @@ private
 
 	result << Nanoc::Item.new(JSON.dump(attributes), attributes, identifier, mtime)
       end
+      result
     end
   rescue Excon::Errors::Unauthorized
     raise "Failed to connect to Brightbox API. Check Fog credentials"
