@@ -2,11 +2,6 @@
 
 require 'tmpdir'
 
-def generate_vagrant!
-  images = @items.select {|item| item[:kind] == "brightbox_image" }
-  @items << Nanoc3::Item.new("", { :title => "Vagrant server images", :images => images }, "/vagrant/images" )
-end
-
 class VagrantBoxes < Nanoc::Filter
   identifier :box
   type :text => :binary
@@ -32,7 +27,7 @@ end
              'tar',
              '--owner=nobody',
              '--group=nogroup',
-             '-cvzf', output_filename,
+             '-czf', output_filename,
              '--directory', dir,
              './metadata.json',
              './Vagrantfile'

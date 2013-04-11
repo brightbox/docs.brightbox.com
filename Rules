@@ -16,6 +16,7 @@
 
 preprocess do
   generate_vagrant!
+  generate_simplestreams!
 end
 
 # =====================
@@ -42,6 +43,33 @@ compile '/vagrant/img*' do
   filter :box
 end
 
+compile '/streams/v1/index/', :rep => :js do
+  filter :simplestreams_index
+end
+
+compile '/streams/*', :rep => :js do
+  filter :simplestreams
+end
+
+compile '/streams/v1/index/', :rep => :sjs do
+  filter :simplestreams_index
+  filter :gpgsign, :clearsign => true
+end
+
+compile '/streams/*', :rep => :sjs do
+  filter :simplestreams
+  filter :gpgsign, :clearsign => true
+end
+
+compile '/streams/v1/index/', :rep => :gpg do
+  filter :simplestreams_index
+  filter :gpgsign
+end
+
+compile '/streams/*', :rep => :gpg do
+  filter :simplestreams
+  filter :gpgsign
+end
 
 # compile '/machine/images/img*' do
 #   filter :erb
@@ -84,6 +112,22 @@ end
 
 route '/vagrant/img*' do
   item.identifier.chop + '.box'
+end
+
+route '/streams/v1/*/' do
+  # No default rep
+end
+
+route '*', :rep => :js do
+  item.identifier.chop + '.js'
+end
+
+route '*', :rep => :sjs do
+  item.identifier.chop + '.sjs'
+end
+
+route '*', :rep => :gpg do
+  item.identifier.chop + '.js.gpg'
 end
 
 route '*' do

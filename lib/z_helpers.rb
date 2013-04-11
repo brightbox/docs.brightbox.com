@@ -7,5 +7,6 @@ include Nanoc3::Helpers::Blogging
 # This *has* to come after Blogging is included
 include ExtendBlogging
 include PaginationLinks
+include PreprocessHelpers
 
 include Nanoc3::Helpers::XMLSitemap
