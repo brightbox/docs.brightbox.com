@@ -15,6 +15,8 @@
 #   because “*” matches zero or more characters.
 
 preprocess do
+  # Add dummy box
+  @items << Nanoc3::Item.new('', {}, "/vagrant/dummy/")
   generate_vagrant!
   generate_simplestreams!
 end
@@ -39,7 +41,7 @@ compile '/vagrant/images' do
   layout "base"
 end
 
-compile '/vagrant/img*' do
+compile '/vagrant/*' do
   filter :box
 end
 
@@ -110,7 +112,11 @@ route '/static/*' do
   item.identifier[7..-2]
 end
 
-route '/vagrant/img*' do
+route '/vagrant/img*/' do
+  item.identifier.chop + '.box'
+end
+
+route '/vagrant/dummy/' do
   item.identifier.chop + '.box'
 end
 

@@ -7,7 +7,9 @@ module PreprocessHelpers
       sort do |a, b|
 	[a[:owner], a[:name], a[:arch]] <=> [b[:owner], b[:name], b[:arch]]
       end
-    @items << Nanoc3::Item.new("", { :title => "Vagrant server images", :images => images }, "/vagrant/images" )
+    @items << Nanoc3::Item.new("", { :title => "Vagrant server images", :images => images }, "/vagrant/images/" )
+    #Add dummy image
+    @items << Nanoc3::Item.new('', {}, "/vagrant/dummy/")
   end
 
   def generate_simplestreams!
