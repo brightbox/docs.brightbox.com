@@ -41,7 +41,7 @@ compile '/vagrant/images' do
   layout "base"
 end
 
-compile '/vagrant/*' do
+compile '/vagrant/+' do
   filter :box
 end
 
