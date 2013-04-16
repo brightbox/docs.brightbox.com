@@ -10,16 +10,18 @@ class SimpleStreams < Nanoc::Filter
   def run(content, params={})
     stream_hash=Hash.new {|hash,key| hash[key] = Hash.new(&hash.default_proc)}
     item[:images].each do |image|
-      stream_hash["products"][image[:name]]["username"] = image[:username] if image[:username]
-      stream_hash["products"][image[:name]]["arch"] = image[:arch]
-      stream_hash["products"][image[:name]]["pubname"] = image[:name]
-      stream_hash["products"][image[:name]]["versions"][image[:created_at]]["items"]["brightbox_image"] = {
-        "id" => image[:id]
+      content, product, version, item, release = PreprocessHelpers::fetch_upstream_details(image)
+      stream_hash["products"][product]["username"] = image[:username] if image[:username]
+      stream_hash["products"][product]["arch"] = image[:arch]
+      stream_hash["products"][product]["versions"][version]["pubname"] = image[:name]
+      stream_hash["products"][product]["versions"][version]["label"] = release
+      stream_hash["products"][product]["versions"][version]["items"]["brightbox_image"] = {
+        "id" => image[:id],
+        "vagrant_url" => "http://docs.brightbox.com/vagrant/#{image[:id]}.box",
+	"datatype" => "image-ids",
+	"status" => image[:status]
       }
-      stream_hash["products"][image[:name]]["versions"][image[:created_at]]["items"]["vagrant_box"] = {
-        "path" => "vagrant/#{image[:id]}.box",
-	"ftype" => "box"
-      }
+      stream_hash["products"][product]["versions"][version]["items"]["brightbox_image"]["compatibility_mode"] = true if image[:compatibility_mode]
     end
     stream_hash["content_id"] = item[:content_id]
     stream_hash["format"] = "products:1.0"
@@ -46,8 +48,7 @@ class SimpleStreamsIndex < Nanoc::Filter
     stream_hash["clouds"] = [
       {
         'region' => 'gb1',
-	'auth_url' => 'http://api.gb1.brightbox.com',
-	'api_url' => 'http://api.gb1.brightbox.com'
+	'endpoint' => 'https://api.gb1.brightbox.com',
       }
     ]
     stream_hash["format"] = "index:1.0"
