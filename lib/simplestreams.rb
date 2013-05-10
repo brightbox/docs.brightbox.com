@@ -41,7 +41,7 @@ class SimpleStreamsIndex < Nanoc::Filter
       stream_hash['index'][content_id] = {
 	'cloudname' => 'brightbox',
 	'format' => 'products:1.0',
-        'path' => "streams/v1/#{content_id}.js",
+        'path' => "streams/v1/#{content_id}.json",
 	'products' => products.to_a
       }
     end
