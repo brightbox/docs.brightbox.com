@@ -45,20 +45,20 @@ compile '/vagrant/+' do
   filter :box
 end
 
-compile '/streams/v1/index/', :rep => :js do
+compile '/streams/v1/index/', :rep => :json do
   filter :simplestreams_index
 end
 
-compile '/streams/*', :rep => :js do
+compile '/streams/*', :rep => :json do
   filter :simplestreams
 end
 
-compile '/streams/v1/index/', :rep => :sjs do
+compile '/streams/v1/index/', :rep => :sjson do
   filter :simplestreams_index
   filter :gpgsign, :clearsign => true
 end
 
-compile '/streams/*', :rep => :sjs do
+compile '/streams/*', :rep => :sjson do
   filter :simplestreams
   filter :gpgsign, :clearsign => true
 end
@@ -124,16 +124,16 @@ route '/streams/v1/*/' do
   # No default rep
 end
 
-route '*', :rep => :js do
-  item.identifier.chop + '.js'
+route '*', :rep => :json do
+  item.identifier.chop + '.json'
 end
 
-route '*', :rep => :sjs do
-  item.identifier.chop + '.sjs'
+route '*', :rep => :sjson do
+  item.identifier.chop + '.sjson'
 end
 
 route '*', :rep => :gpg do
-  item.identifier.chop + '.js.gpg'
+  item.identifier.chop + '.json.gpg'
 end
 
 route '*' do
