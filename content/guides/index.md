@@ -5,9 +5,11 @@ title: Guides
 
 <div class="grid_11 alpha" markdown="1">
 
-[Getting Started](/guides/cli/getting-started/)
+[Getting Started](/guides/getting-started/)
 
-[Brightbox Manager Guides](/guides/manager/)
+### CLI Guides
+
+[Getting Started with the CLI](/guides/cli/getting-started/)
 
 [Cloud IPs](/guides/cli/cloud-ips/)
 
