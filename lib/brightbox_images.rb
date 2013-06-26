@@ -9,8 +9,14 @@ class BrightboxImages < Nanoc::DataSource
   end
 
   # Put the credentials in the ~/.fog file
-  def up
-    @connection = Fog::Compute.new(:provider => :brightbox)
+  def connection
+    if @connection
+      @connection
+    else
+      cpath = File.expand_path File.join(File.dirname(__FILE__), '..', '.fog')
+      ourconfig = YAML::load_file(cpath) rescue {}
+      @connection = Fog::Compute::Brightbox.new ourconfig
+    end
   end
 
 private
@@ -18,7 +24,7 @@ private
   require 'json'
 
   def fetch_images
-    raw_items = @connection.list_images
+    raw_items = connection.list_images
 
     raw_items.inject([]) do |result, raw_item|
       if raw_item["public"] && raw_item["status"] != "deleted"
@@ -35,6 +41,9 @@ private
       end
       result
     end
+  rescue ArgumentError
+    STDERR.puts "WARNING: Fog not configured, not generating vagrant files"
+    []
   rescue Excon::Errors::Unauthorized
     raise "Failed to connect to Brightbox API. Check Fog credentials"
   end

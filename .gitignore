@@ -6,3 +6,5 @@ vendor/cache
 crash.log
 vendor/bundle
 .bundle
+.fog
+.rsync_cache
