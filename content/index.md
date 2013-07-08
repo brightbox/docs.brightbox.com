@@ -5,7 +5,7 @@ layout: default
 
 <div class="grid_11 alpha" markdown="1">
 
-#### [Getting Started](/guides/cli/getting-started/)
+#### [Getting Started](/guides/getting-started/)
 
 A step-by-step guide to getting up and running quickly.
 
