@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Getting Started with the Brightbox Manager
+title: Getting Started
 section: Brightbox Manager
 ---
 
