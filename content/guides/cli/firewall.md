@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Cloud Firewall
-section: Guides
+section: CLI
 ---
 
 The Brightbox Cloud Firewall provides a highly-configurable facility

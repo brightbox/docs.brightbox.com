@@ -1,6 +1,7 @@
 ---
 layout: default
 title: CLI Installation on Windows Systems
+section: CLI
 ---
 
 You can use our Ruby gem package to install the CLI on Windows-based systems.

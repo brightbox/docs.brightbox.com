@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Image Library
+section: CLI
 ---
 
 The image library holds [Server Images](/reference/server-images/) and

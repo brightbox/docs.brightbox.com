@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Graphical Console
-section: Guides
+section: CLI
 ---
 
 The Graphical Console gives you encrypted access to your Cloud Server
@@ -38,3 +38,6 @@ are active (i.e: "powered on").
 Normally, the console works over https using the usual tcp port 443,
 but if your browser is a bit old and has to fall back to Flash, then
 it will use tcp port 843 as well.
+
+You can also access the console using the browser-based
+[Brightbox Manager](/guides/manager/graphical-console/).

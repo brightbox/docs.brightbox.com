@@ -1,6 +1,7 @@
 ---
 layout: default
 title: CLI Installation for Debian
+section: CLI
 ---
 
 You can use our Ruby gem package to install the CLI on Debian.

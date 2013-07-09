@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Reverse DNS
-section: Guides
+section: CLI
 ---
 
 Brightbox [Cloud IPs](/reference/cloud-ips/) have a default generic reverse DNS entry. For example:

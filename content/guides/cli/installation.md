@@ -1,6 +1,7 @@
 ---
 layout: default
 title: CLI Installation
+section: CLI
 ---
 
 Select the Operating System of the machine where you want to install

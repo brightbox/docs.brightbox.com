@@ -1,6 +1,7 @@
 ---
 layout: default
 title: CLI Installation on Red Hat-based Linux Distributions
+section: CLI
 ---
 
 You can use our Ruby gem package to install the CLI on Red Hat-based

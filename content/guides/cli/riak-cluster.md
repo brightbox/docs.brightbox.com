@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Building a Riak Cluster
-section: Guides
+section: CLI
 ---
 
 This guide takes you through building a small four node

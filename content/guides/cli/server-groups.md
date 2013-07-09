@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Server Groups
-section: Guides
+section: CLI
 ---
 
 Server Groups let you logically organise your Cloud Servers. They're the foundation of other Brightbox Cloud services, such as the [Cloud Firewall](/guides/cli/firewall/).

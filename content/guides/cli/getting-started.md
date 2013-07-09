@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Getting Started with the CLI
+title: Getting Started
 section: CLI
 ---
 

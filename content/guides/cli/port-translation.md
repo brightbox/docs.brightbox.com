@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Cloud IP Port Translation
-section: Guides
+section: CLI
 ---
 
 ### Background

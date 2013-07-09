@@ -1,6 +1,7 @@
 ---
 layout: default
 title: CLI Installation for Ubuntu
+section: CLI
 ---
 
 To install the Command Line Interface in Ubuntu add the Brightbox ppa

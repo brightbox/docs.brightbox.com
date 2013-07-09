@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Load Balancers
-section: Guides
+section: CLI
 ---
 
 Load Balancers distribute traffic between a pool of your servers,

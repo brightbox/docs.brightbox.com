@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Brightbox CLI Ruby Gem Installation Installation
+section: CLI
 ---
 
 Once you have checked the dependencies for your operating system, you

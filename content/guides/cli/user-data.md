@@ -1,6 +1,7 @@
 ---
 layout: default
 title: User Data
+section: CLI
 ---
 
 Every server has access to its own metadata via the EC2 compatible

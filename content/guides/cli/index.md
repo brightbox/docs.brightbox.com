@@ -5,7 +5,7 @@ section: Guides
 ---
 
 The Brightbox CLI is a command line interface to create and manage
-Servers via the Brightbox Cloud API.
+resources via the Brightbox Cloud API.
 
 <div class="grid_11 alpha" markdown="1">
 [Installing the CLI](/guides/cli/installation/)

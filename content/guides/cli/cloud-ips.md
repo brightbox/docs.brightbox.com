@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Cloud IPs
-section: Guides
+section: CLI
 ---
 
 Cloud IPs are publicly accessible IP addresses that can be moved

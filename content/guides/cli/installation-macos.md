@@ -1,6 +1,7 @@
 ---
 layout: default
 title: CLI Installation on MacOS X
+section: CLI
 ---
 
 You can use our Ruby gem package to install the CLI on OSX.

@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Creating a snapshot
+section: CLI
 ---
 
 Snapshotting a server takes an instant copy of the server's disk which
