@@ -13,13 +13,13 @@ New servers are not automatically given new passwords. Most
 [Server Images](/reference/server-images/) are configured to install your ssh
 key from the [user data](/guides/cli/user-data/) service.
 
-So, just make sure that you have
-[provided your ssh key](/guides/cli/getting-started/#configuring_your_ssh_key)
-and you'll be able to access new servers.
+So, just make sure that you have provided your ssh key with
+[Brightbox Manager](/guides/manager/ssh-keys/) or with the
+[cli](/guides/cli/getting-started/#configuring_your_ssh_key) and
+you'll be able to access new servers.
 
-Updating your key does not add it to existing servers. So if you've
-built a server that doesn't have your ssh key on, you'll need to
-destroy it and build a new one once you've updated your ssh key.
+Updating your key does not add it to existing servers - it only
+affects new servers.
 
 #### Why is the filesystem on my Cloud Servers so small?
 
