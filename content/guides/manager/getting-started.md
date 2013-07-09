@@ -86,12 +86,10 @@ For convenience there is a dns record that points to the first Cloud IP mapped t
 
 Here you used the Brightbox Manager to create an Ubuntu server, mapped a Cloud IP to it and connected in using ssh.
 
-You might want to learn more about
+There is another guide for [building a Windows server](/guides/manager/windows-servers/), which covers using the graphical console to set a password.
+
+You might also want to learn more about
 [Cloud IPs](/reference/cloud-ips/), or
 [discover zones](/reference/glossary/#zone).
 
 Or perhaps you'd prefer to use our [command line interface](/guides/cli/getting-started) to manage your Brightbox Cloud resources?
-
-You might also want to learn a bit about the default
-[firewall policy](/guides/manager/firewall/), and how to change it.
-

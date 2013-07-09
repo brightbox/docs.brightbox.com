@@ -15,6 +15,8 @@ title: Guides
 
 [Managing SSH Keys](/guides/manager/ssh-keys/)
 
+[Using the Graphical Console](/guides/manager/graphical-console)
+
 ### CLI Guides
 
 [Getting Started with the CLI](/guides/cli/getting-started/)
