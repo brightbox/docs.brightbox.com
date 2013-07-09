@@ -40,7 +40,7 @@ As you can see here, we've built one new server and it's been given the identifi
 
 #### Your server is now active
 
-At this point your server is active and if you have an IPv6 internet connection, you can ssh into it directly using the IPv6 dns name. Our official Ubuntu images are pre-instled with a user named `ubuntu`:
+At this point your server is active and if you have an IPv6 internet connection, you can ssh into it directly using the IPv6 dns name. Our official Ubuntu images are pre-installed with a user named `ubuntu`:
 
     $ ssh -l ubuntu ipv6.srv-c3cmw.gb1.brightbox.com
     The authenticity of host 'ipv6.srv-c3cmw.gb1.brightbox.com (2a02:1348:14c:e18:24:19ff:fef0:3862)' can't be established.
@@ -50,4 +50,48 @@ At this point your server is active and if you have an IPv6 internet connection,
     Welcome to Ubuntu 12.04.2 LTS (GNU/Linux 3.2.0-41-virtual i686)
     
     ubuntu@srv-c3cmw:~$
+
+
+### Mapping a Cloud IP
+
+To give it a public IPv4 address, you need to map a [Cloud IP](/reference/cloud-ips/) to it.
+
+Click "Cloud IPs" in the sidebar on the left, and click "New Cloud IP".
+
+We want this Cloud IP mapped onto the server we just built, so click the destination select box and select that server from the list. You can also give the IP a descriptive name to help you keep track of it. Click "Create".
+
+![](/images/manage-new-cloud-ip-cropped.png)
+
+A new Cloud IP is now allocated for you and mapped onto your Cloud Server. In this case we've been allocated the IP `109.107.35.95` with the identifier `cip-4bu8v`.
+
+![](/images/manage-cloud-ips-list-cropped.png)
+
+Your server is now accessible by the new Cloud IP, so you can ssh into it:
+
+    $ ssh -l ubuntu 109.107.35.95
+    The authenticity of host '109.107.35.95 (109.107.35.95)' can't be established.
+    ECDSA key fingerprint is 19:6d:48:40:63:83:10:53:b1:39:d6:ba:84:1c:20:33.
+    Are you sure you want to continue connecting (yes/no)? yes
+    Warning: Permanently added '109.107.35.95' (ECDSA) to the list of known hosts.
+    Welcome to Ubuntu 12.04.2 LTS (GNU/Linux 3.2.0-41-virtual i686)
+    
+    ubuntu@srv-c3cmw:~$
+
+For convenience there is a dns record that points to the first Cloud IP mapped to a server, in this case `public.srv-c2cmw.gb1.brightbox.com`
+
+    $ host public.srv-c3cmw.gb1.brightbox.com
+    public.srv-c3cmw.gb1.brightbox.com has address 109.107.35.95
+
+### Would you like to know more?
+
+Here you used the Brightbox Manager to create an Ubuntu server, mapped a Cloud IP to it and connected in using ssh.
+
+You might want to learn more about
+[Cloud IPs](/reference/cloud-ips/), or
+[discover zones](/reference/glossary/#zone).
+
+Or perhaps you'd prefer to use our [command line interface](/guides/cli/getting-started) to manage your Brightbox Cloud resources?
+
+You might also want to learn a bit about the default
+[firewall policy](/guides/manager/firewall/), and how to change it.
 
