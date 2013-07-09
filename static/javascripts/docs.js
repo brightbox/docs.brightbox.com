@@ -1,5 +1,4 @@
 head.js("/javascripts/search-data.js", function() {
-  
 	$("input#search").show().autocomplete({
 		autoFocus: false,
 		source: function(req, res) { window.search_index(req.term, res); },
@@ -13,8 +12,8 @@ head.js("/javascripts/search-data.js", function() {
 			$(this).val( ui.item.title );
 			return false;
 		}
-	}).data("autocomplete")._renderItem = function( ul, item ) {
-			return $( "<li></li>" )
+	}).data("ui-autocomplete")._renderItem = function( ul, item ) {
+			return $( "<li>" )
 				.data( "item.autocomplete", item )
 				.append( "<a>" + item.title + "</a>" )
 				.appendTo( ul );
