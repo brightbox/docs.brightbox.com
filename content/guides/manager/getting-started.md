@@ -16,7 +16,7 @@ Once logged in, you're presented with the dashboard which gives an overview of y
 
 ### Setting an ssh key
 
-If you didn't specify a public ssh key when you first signed up...link.
+When a new server is built, it will attempt to install your ssh key on boot so you can log into it. If you didn't specify a public ssh key when you first signed up for Brightbox Cloud then you'll need to [set one now](/guides/manager/ssh-keys).
 
 ### Building a server
 
@@ -28,7 +28,7 @@ Click "New Cloud Server" to show the dialog box for configuring a new server.
 
 ![](/images/manage-new-cloud-server-image-cropped.png)
 
-Here I've chosen a suitable name for my first server and increased the server type to "Mini" which gives us 1GB RAM.
+Here I've chosen a suitable name for my first server and increased the [server type](/reference/glossary/#server_type) to "Mini" which gives us 1GB RAM.
 
 I've also searched the image list below to find the Ubuntu 12.04 release, codenamed "Precise" and selected the 32bit image.
 

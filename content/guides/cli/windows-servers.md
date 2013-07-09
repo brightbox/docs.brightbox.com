@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Building a Windows Server
-section: Guide
+section: CLI Guides
 ---
 
 Brightbox Cloud supports Microsoft Windows® as an operating system,

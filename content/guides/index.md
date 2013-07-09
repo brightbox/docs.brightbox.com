@@ -7,6 +7,14 @@ title: Guides
 
 [Getting Started](/guides/getting-started/)
 
+### Manager Guides
+
+[Getting Started with Brightbox Manager](/guides/manager/getting-started/)
+
+[Managing API Clients](/guides/manager/api-clients/)
+
+[Managing SSH Keys](/guides/manager/ssh-keys/)
+
 ### CLI Guides
 
 [Getting Started with the CLI](/guides/cli/getting-started/)

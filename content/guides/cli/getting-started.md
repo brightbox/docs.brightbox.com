@@ -1,9 +1,10 @@
 ---
 layout: default
 title: Getting Started with the CLI
+section: CLI
 ---
 
-We have a lovely [web based GUI](https://manage.brightbox.com) for
+We have a lovely [browser-based GUI](/guides/manager/) for
 managing your Brightbox Cloud resources, but sometimes the power of a
 command line interface is desired.
 
@@ -15,7 +16,7 @@ Server via SSH.
 ### Create an Account and API Client
 
 Firstly,
-[sign up for a Brightbox Cloud Account]/guides/getting-started/signup/)
+[sign up for a Brightbox Cloud Account](/guides/getting-started/signup/)
 using [Brightbox Manager](https://manage.brightbox.com/signup).
 
 Once you've signed up, you now need to
