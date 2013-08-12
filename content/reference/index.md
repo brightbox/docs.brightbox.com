@@ -54,6 +54,10 @@ Our convenience DNS records and Cloud IP reverse dns support.
 
 All Brightbox services are provided through an Account.
 
+#### [Collaboration](/reference/collaboration)
+
+Collaboration allows you to grant access to your account to other users.
+
 #### [Billing](/reference/billing/)
 
 Billing documentation
