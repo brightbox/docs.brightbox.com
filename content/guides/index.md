@@ -54,6 +54,17 @@ title: Guides
 
 [Brightbox Cloud Load Balancers](http://www.youtube.com/watch?v=03zdxQPEnPI)
 
+[Using Windows Server 2008 on Brightbox](http://www.youtube.com/watch?v=V9oehab1-kU)
+
+[Bootstaller, easy Linux distro netboot installation](http://www.youtube.com/watch?v=t0eEhfL5Unc)
+
+[Introducing Brightbox Cloud Manager](http://www.youtube.com/watch?v=Tzq29MtnLjk)
+
+[Building a Windows server with Brightbox Cloud Manager](http://www.youtube.com/watch?v=tmh_E9zhRQg)
+
+[Firewall policies and server groups with Brightbox Cloud Manager](http://www.youtube.com/watch?v=Q3eYMV_hbDk)
+
+
 ### Coding
 
 [Controlling Brightbox Cloud with Ruby and Fog](/guides/ruby/fog/)
