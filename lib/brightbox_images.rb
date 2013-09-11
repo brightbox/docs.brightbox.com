@@ -35,6 +35,7 @@ private
 
         attributes[:title] = attributes["id"]
         attributes[:kind] = "brightbox_image"
+        attributes[:search] = false
         identifier = "/#{raw_item['id']}/"
 
         result << Nanoc::Item.new(rendered, attributes, identifier, mtime)

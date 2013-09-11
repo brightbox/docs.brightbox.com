@@ -55,7 +55,6 @@ def search_index
     next if item[:search] === false
     next if item.identifier =~ /css|js\/?$/
     next if item.identifier =~ /\/tag\/|\/page\//
-    next if item[:type] == "brightbox_image"
     search_terms_for(item).each do |term|
       idx["terms"][term] ||= []
       idx["terms"][term] << id
