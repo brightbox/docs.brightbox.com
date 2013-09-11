@@ -137,10 +137,9 @@ Brightbox Cloud features, such as the
 ### Server Type
 
 A Server Type represents a particular set of [Cloud Server](#cloud_server)
-specifications, in terms of RAM size, disk size and number of CPU cores.
+specifications, in terms of RAM size, disk size/type and number of CPU cores.
 
-For example, a "Small" Server Type specifies 2048MB of RAM, 81920MB disk and
-4 CPU cores.
+For more information, see the [Server Types](/reference/server-types/) reference page.
 
 ### Region
 
