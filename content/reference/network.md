@@ -12,7 +12,7 @@ The gateway IP is also a recursive DNS service, also advertised by DHCP.
 
 ### IPv6
 
-Each Cloud Server is also assigned an IPv6 `/64`. Cloud Servers usually generate their own IPv6 address(es) from the advertised prefix using it's own MAC address, as per RFC 4862, though any IPv6 address within the given `/64` can be used.
+Each Cloud Server is also assigned an IPv6 `/64`. Cloud Servers usually generate their own IPv6 address(es) from the advertised prefix using their MAC address, as per RFC 4862, though any IPv6 address within the given `/64` can be used.
 
 Some images are configured by default to generate additional [temporary IPv6 address](http://en.wikipedia.org/wiki/IPv6_address#Temporary_addresses) for privacy reasons and will use these addresses randomly for outgoing connections.
 
