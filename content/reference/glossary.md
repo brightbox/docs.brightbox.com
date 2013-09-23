@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Glossary
+section: Reference
 ---
 
 ### Account
