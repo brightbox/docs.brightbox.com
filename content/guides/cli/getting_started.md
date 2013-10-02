@@ -13,45 +13,52 @@ interface tool, which uses our API. This guide will take you from
 creating a Brightbox Cloud Account to logging into your first Cloud
 Server via SSH.
 
-### Create an Account and API Client
+### Create an Account and OAuth Application
 
 Firstly,
 [sign up for a Brightbox Cloud Account](/guides/getting-started/signup/)
 using [Brightbox Manager](https://manage.brightbox.com/signup).
 
 Once you've signed up, you now need to
-[create an API Client](/guides/manager/api-clients/) which you'll use
-to configure the CLI below. An API Client is simply a pair of access
-credentials for accessing the API, consisting of a client identifier
-(like `cli-xxxxx`) and a secret.
+[create an OAuth Application](/guides/manager/user-applications/) which you'll use
+to configure the CLI below. An OAuth Application is simply a pair of access
+credentials that authenticate the method you're using to access the API. They
+consist of an application identifier (like `app-xxxxx`) and a secret.
+You'll use these in conjunction with your username and password to authenticate
+against the API.
 
 ### Initial setup
 
 #### Installation
 
-Now that you have an account and an API Client, you'll need to
+Now that you have an account and an OAuth Application, you'll need to
 [install the cli software](/guides/cli/installation/). Go do that and
 come back here. I'll wait for you.
 
 #### Configuration
 
-You can now configure the CLI with the credentials for the API client
-you created.
+You can now configure the CLI with OAuth Application credentials that you created.
 
 To configure the cli with these credentials, run the following
 command:
 
-    $ brightbox-config client_add cli-xxxxx thesecretstring
-		
-    Using config file /home/john/.brightbox/config
-    Creating new api client config cli-xxxxx
+    $ brightbox config user_add your@email-address app-xxxxx thesecretstring
+    
+    Using config file /Home/john/.brightbox/config
+    Enter your password :
+    Creating new client config your@email-address
+    The default account of acc-12345 has been selected
+
+Notice that an account has automatically been selected to be your default account.
+If you only have one account then that's fine. However, if you have multiple
+accounts or are a collaborator on another user's account you can change this later.
 
 #### Initial test
 
 You should be able to retrieve details of your user now. Note your id
 as you'll need it in a moment:
 
-    $ brightbox-users list
+    $ brightbox users list
     
      id         name        email_address         accounts
     -------------------------------------------------------
@@ -63,7 +70,7 @@ as you'll need it in a moment:
 You need to upload your public ssh key so that you can log into newly
 created servers:
 
-    $ brightbox-users update -f my-ssh-key.pub usr-xxxxx
+    $ brightbox users update -f my-ssh-key.pub usr-xxxxx
                id: usr-xxxxx
              name: John Doe
     email_address: john@example.com
@@ -77,7 +84,7 @@ created servers:
 First, let's choose an operating system
 [Image](/reference/server-images/) to use:
 
-    $ brightbox-images list
+    $ brightbox images list
 
      id         owner      type      created_on  status   size   name                                                     
     -----------------------------------------------------------------------------------------------------------------------
@@ -113,7 +120,7 @@ identifier of `img-ovv3h`. We can inspect the details of the image
 using `brightbox-images show`. The `username` field shows that the
 default account is named `ubuntu`.
 
-    $ brightbox-images show img-ovv3h
+    $ brightbox images show img-ovv3h
 
                     id: img-ovv3h
                   type: official
@@ -137,8 +144,8 @@ default account is named `ubuntu`.
 Now you can create a server using that image. Give it a name of `my
 first server` so you can identify it easily later:
 
-    $ brightbox-servers create -n "my first server" img-ovv3h
-		
+    $ brightbox servers create -n "my first server" img-ovv3h
+    
     Creating 1 'nano' (typ-4nssg) server with image ubuntu-precise-12.04-amd64-server (img-ovv3h)
     
      id         status    type  zone   created_on  image_id   cloud_ips  name           
@@ -152,8 +159,8 @@ If you wait a few moments and show the details of the new server, it
 should have changed status from `creating` to `active`, which means
 it has been built and has started up:
 
-    $ brightbox-servers show srv-zx1hd
-    		
+    $ brightbox servers show srv-zx1hd
+        
                  id: srv-zx1hd
              status: active
                name: my first server
@@ -178,7 +185,7 @@ it has been built and has started up:
           snapshots: 
       server_groups: grp-98v4n
 
-			
+      
 #### Mapping a cloud IP
 
 So now you have a server with a IPv6 address and a private IPv4
@@ -186,7 +193,7 @@ address.  You can reach it straight away if you have an IPv6 Internet
 connection:
 
     $ ping6 ipv6.srv-zx1hd.gb1.brightbox.com
-		
+    
     PING ipv6.srv-zx1hd.gb1.brightbox.com(2a02:1348:14c:4f3:24:19ff:fef0:13ce) 56 data bytes
     64 bytes from 2a02:1348:14c:4f3:24:19ff:fef0:13ce: icmp_seq=1 ttl=54 time=13.8 ms
     
@@ -198,7 +205,7 @@ To give it a public IPv4 address, you need to map a
 [Cloud IP](/reference/cloud-ips/) to it. Firstly, create a Cloud IP on
 your account:
 
-    $ brightbox-cloudips create
+    $ brightbox cloudips create
 
      id         status    public_ip      destination  reverse_dns                          name
     --------------------------------------------------------------------------------------------
@@ -208,8 +215,8 @@ your account:
 Then map it to your server using the Cloud IP identifier and your
 server identifier:
 
-    $ brightbox-cloudips map cip-360ea srv-zx1hd
-		
+    $ brightbox cloudips map cip-360ea srv-zx1hd
+    
     Mapping cip-360ea to interface int-x4kve on srv-zx1hd
 
 
@@ -227,12 +234,12 @@ uses the `ubuntu` account by default:
     
     ubuntu@srv-zx1hd:~$ uptime
      13:02:07 up  0:01,  1 user,  load average: 0.04, 0.01, 0.00
-		 
+     
 For convenience, there is also a dns entry for the first Cloud IP
 mapped to a server:
 
     $ host public.srv-zx1hd.gb1.brightbox.com
-		
+    
     public.srv-zx1hd.gb1.brightbox.com has address 109.107.37.80
 
 ### Would you like to know more?
