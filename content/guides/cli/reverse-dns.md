@@ -21,9 +21,9 @@ You can customise the reverse DNS very easily using the cli (since version 0.14)
 
 **Note:** It's important that you set up the forward mapping first, Brightbox Cloud will reject attempts to set up a reverse DNS entry if your corresponding forward DNS entry is missing.
 
-Showing the help for the `brightbox-cloudips` command reveals some DNS options:
+Showing the help for the `brightbox cloudips` command reveals some DNS options:
 
-    $ brightbox-cloudips help update
+    $ brightbox cloudips help update
     update [command options] cloudip-id
         update Cloud IPs
     
@@ -33,14 +33,14 @@ Showing the help for the `brightbox-cloudips` command reveals some DNS options:
 
 So now I need to find the identifier of this Cloud IP:
 
-    $ brightbox-cloudips list | grep 109.107.38.125
+    $ brightbox cloudips list | grep 109.107.38.125
      id         status    public_ip       destination  reverse_dns                         
     ----------------------------------------------------------------------------------------
      cip-wh8d7  unmapped  109.107.38.125               cip-109-107-38-125.gb1.brightbox.com
 
 My identifier is `cip-wh8d7`. I can now update the reverse DNS:
 
-    $ brightbox-cloudips update --reverse-dns=mailserver.example.com cip-wh8d7		
+    $ brightbox cloudips update --reverse-dns=mailserver.example.com cip-wh8d7		
 		
      id         status    public_ip       destination  reverse_dns     
     --------------------------------------------------------------------------
@@ -60,7 +60,7 @@ If the forward DNS mapping is later removed, or changed to point at a different 
 
 It's simple to manually remove the custom DNS and go back to the default:
 
-    $ brightbox-cloudips update --delete-reverse-dns cip-wh8d7
+    $ brightbox cloudips update --delete-reverse-dns cip-wh8d7
     
      id         status    public_ip       destination  reverse_dns                         
     ----------------------------------------------------------------------------------------

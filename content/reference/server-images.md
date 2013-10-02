@@ -13,7 +13,7 @@ To create your own image, you can either
 upload a new image to the Image library and register it (see
 [Image Library Guide](/guides/cli/image-library) for a walk-though)
 
-Images can be managed using the `brightbox-images` command line tool.
+Images can be managed using the `brightbox images` command line tool.
 
 The Image you choose affects some aspects of the Server it is used to
 create.

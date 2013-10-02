@@ -18,12 +18,12 @@ servers and test it out. For more in-depth documentation, see the
 
 ### Creating a new balancer
 
-You manage Load Balancers using the `brightbox-lbs` command. We're
+You manage Load Balancers using the `brightbox lbs` command. We're
 going to create a new balancer called `test` that will balance between
 two web servers. It balances ports `80` and `443` by default, so we
 don't need any other options:
 
-    $ brightbox-lbs create -n "test" srv-hrmmb srv-h4lxv
+    $ brightbox lbs create -n "test" srv-hrmmb srv-h4lxv
     Creating a new load balancer
     
      id         status    created_on  cloud_ips  nodes                 name
@@ -39,7 +39,7 @@ fail in a row then the server will be taken out of the pool until it
 recovers. Both listeners have an inactive connection timeout of 50000ms
 (50 seconds):
 
-    $ brightbox-lbs show lba-c76a7
+    $ brightbox lbs show lba-c76a7
              id: lba-c76a7
          status: active
            name: test
@@ -56,7 +56,7 @@ recovers. Both listeners have an inactive connection timeout of 50000ms
 Once the balancer is created, we now map a Cloud IP to make it
 available via the Internet:
 
-    $ brightbox-cloudips map cip-tqg43 lba-c76a7
+    $ brightbox cloudips map cip-tqg43 lba-c76a7
     Mapping cip-tqg43 to load balancer lba-c76a7
     
      id         status  public_ip       destination  reverse_dns                         
@@ -112,17 +112,17 @@ timeout of 1 day.
 If you want to change your balancer to handle your mail servers you could
 change the listeners for IMAP and SSL IMAP:
 
-    $ brightbox-lbs update -l 143:143:tcp,993:993:tcp lba-c76a7
+    $ brightbox lbs update -l 143:143:tcp,993:993:tcp lba-c76a7
 
 If you want your site available on multiple ports `80`, `90` and `100`,
 you'd use:
 
-    $ brightbox-lbs update -l 80:80:http,90:80:http,100:80:http lba-c76a7
+    $ brightbox lbs update -l 80:80:http,90:80:http,100:80:http lba-c76a7
 
 If you want to run both WebSockets and standard HTTP traffic on port `80` you
 would use:
 
-    $ brightbox-lba update -l 80:80:http+ws:30000
+    $ brightbox lba update -l 80:80:http+ws:30000
 
 All of these options can be set at creation time too.
 
@@ -141,11 +141,11 @@ You can, of course, specify your own health checks.
 To make a http health check request for `/status.html` on your back
 end servers:
 
-$ brightbox-lbs update --hc-type=http --hc-port=80 --hc-request="/status.html" lba-c76a7
+$ brightbox lbs update --hc-type=http --hc-port=80 --hc-request="/status.html" lba-c76a7
 
 To make a tcp connect check on port `22`:
 
-    $ brightbox-lbs update --hc-type=tcp --hc-port=22 lba-c76a7
+    $ brightbox lbs update --hc-type=tcp --hc-port=22 lba-c76a7
 
 The options `--hc-down` and `--hc-up` set how many consecutive health
 checks need to fail or succeed for the back end server to be

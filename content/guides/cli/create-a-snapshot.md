@@ -12,10 +12,10 @@ The snapshots can also be downloaded from the image library.
 
 ### Create the snapshot
 
-Snapshots are created using the brightbox-servers snapshot
+Snapshots are created using the `brightbox servers` snapshot
 command. Just give it the id of the server you want to snapshot:
 
-    $ brightbox-servers snapshot srv-gwgk2
+    $ brightbox servers snapshot srv-gwgk2
     Snapshotting server srv-gwgk2
 
 ### View the snapshot image info
@@ -24,7 +24,7 @@ Taking the snapshot is instantaneous, but it then takes a little while
 to be copied into the image library depending upon the amount of data
 on the server. You can see the resulting image in the image list:
 
-    $ brightbox-images list
+    $ brightbox images list
     
      id         owner      type      created_on  status    size   name                                       
     ----------------------------------------------------------------------------------------------------------
@@ -45,7 +45,7 @@ The snapshot has been given the image id `img-y22uq` and is currently
 creating. The name field indicates the image is the result of a
 snapshot of `srv-gwgk2`.
 
-    $ brightbox-images show img-y22uq 
+    $ brightbox images show img-y22uq 
                     id: img-y22uq
                   type: snapshot
                  owner: acc-h3nbk
@@ -75,7 +75,7 @@ the status to 'failed'.
 The snapshot image can be used like any other image. You can build a
 clone of the original server like this:
 
-    $ brightbox-servers create -n "myclone" img-y22uq
+    $ brightbox servers create -n "myclone" img-y22uq
     Creating a nano (typ-4nssg) server with image Snapshot of srv-gwgk2 19 Dec 12:57 (img-y22uq)
     
      id         status    type  zone   created_on  image_id   cloud_ips  name   

@@ -15,7 +15,7 @@ Once you've created an OAuth Application id and secret, you can configure the cl
 
 Alternatively, you can still use an API client id and secret, like this:
 
-    $ brightbox-config client_add cli-2igtb theclientsecret
+    $ brightbox config client_add cli-2igtb theclientsecret
     Using config file /home/ubuntu/.brightbox/config
     Creating new api client config cli-2igtb
 

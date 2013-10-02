@@ -117,7 +117,7 @@ First, let's choose an operating system
 
 Let's go with `ubuntu-precise-12.04-amd64-server`, which is has an
 identifier of `img-ovv3h`. We can inspect the details of the image
-using `brightbox-images show`. The `username` field shows that the
+using `brightbox images show`. The `username` field shows that the
 default account is named `ubuntu`.
 
     $ brightbox images show img-ovv3h

@@ -16,7 +16,7 @@ speed.
 
 First, we need to choose an [Image](/reference/server-images/) to use:
 
-    $ brightbox-images list | grep Windows
+    $ brightbox images list | grep Windows
 
      id         owner      type      created_on  status  size   name                           
     --------------------------------------------------------------------------------------------
@@ -25,7 +25,7 @@ First, we need to choose an [Image](/reference/server-images/) to use:
 
 We can see there is an "official" Brightbox image for "Windows Server 2008 R2":
 
-    $ brightbox-images show img-4q98z
+    $ brightbox images show img-4q98z
     
                     id: img-4q98z
                   type: official
@@ -45,7 +45,7 @@ We can see there is an "official" Brightbox image for "Windows Server 2008 R2":
 
 Now we just build a server like any other, using this image id:
 
-    $ brightbox-servers create -n "webserver" -t mini img-4q98z
+    $ brightbox servers create -n "webserver" -t mini img-4q98z
     
     Creating a mini (typ-iqisj) server with image Windows Server 2008 R2 (img-4q98z)
     
@@ -61,14 +61,14 @@ While the new server is building, which should take around 2 minutes,
 let's make sure our default [firewall policy](/reference/firewall/)
 allow us to connect to this server via remote desktop (RDP).
 
-    $ brightbox-firewall-policies list
+    $ brightbox firewall-policies list
     
      id         server_group  name                
     -----------------------------------------------
      fwp-hvik9  grp-98v4n     default             
     -----------------------------------------------
 
-    $ brightbox-firewall-rules list fwp-hvik9
+    $ brightbox firewall-rules list fwp-hvik9
     
      id         protocol  source     sport  destination  dport      icmp_type     description
     ------------------------------------------------------------------------------------------
@@ -82,7 +82,7 @@ As we can see here, only tcp ports `80`, `443` and `22` are allowed by
 the default policy. Let's add a rule to allow the remote desktop
 service (`tcp` port `3389`):
 
-    $ brightbox-firewall-rules create --source=any --protocol=tcp --dport=3389 fwp-hvik9
+    $ brightbox firewall-rules create --source=any --protocol=tcp --dport=3389 fwp-hvik9
     
      id         protocol  source  sport  destination  dport  icmp_type  description
     --------------------------------------------------------------------------------
@@ -94,7 +94,7 @@ service (`tcp` port `3389`):
 Once the server has changed to status `active` you can activate the
 [graphical console](/guides/cli/graphical-console/).
 
-    $ brightbox-servers activate_console srv-whijs
+    $ brightbox servers activate_console srv-whijs
     
     Activating console for server srv-whijs
     
@@ -121,14 +121,14 @@ setup locally you can connect directly right now using the dns name
 `ipv6.srv-whijs.gb1.brightbox.com`. If you're not IPv6 enabled you'll
 need to map a [Cloud IP](/reference/cloud-ips/) to it first:
 
-    $ brightbox-cloudips create
+    $ brightbox cloudips create
     
      id         status    public_ip       destination  reverse_dns                         
     ----------------------------------------------------------------------------------------
      cip-zd2me  unmapped  109.107.38.252               cip-109-107-38-252.gb1.brightbox.com
     ----------------------------------------------------------------------------------------
     
-    $ brightbox-cloudips map cip-zd2me srv-whijs
+    $ brightbox cloudips map cip-zd2me srv-whijs
     
     Mapping cip-zd2me to interface int-gj1km on srv-whijs
     
