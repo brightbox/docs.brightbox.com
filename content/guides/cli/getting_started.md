@@ -49,9 +49,11 @@ command:
     Creating new client config your@email-address
     The default account of acc-12345 has been selected
 
-Notice that an account has automatically been selected to be your default account.
-If you only have one account then that's fine. However, if you have multiple
-accounts or are a collaborator on another user's account you can change this later.
+Notice that an account has automatically been selected to be your
+default account.  If you only have one account then that's
+fine. However, if you have multiple accounts or are a
+[collaborator](/reference/collaboration/) on another user's account
+you can change this later.
 
 #### Initial test
 

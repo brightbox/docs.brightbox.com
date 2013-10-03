@@ -5,10 +5,9 @@ section: CLI
 ---
 
 Cloud IPs are publicly accessible IP addresses that can be moved
-instantly between servers in the Brightbox Cloud. They belong to an
+instantly between servers in Brightbox Cloud. They belong to an
 account until they are destroyed. Once created, they can be mapped to
 any server belonging to the same account.
-
 
 ### Creating a cloud IP
 You create cloud ips using the `brightbox cloudips` Command Line Interface tool:
@@ -95,4 +94,4 @@ Unmapping an IP removes it from a server, but leaves it belonging to the account
 
 Here you created, mapped, remapped and unmapped a cloud IP.
 
-You might want to learn about [zones](http://docs.brightbox.com/reference/glossary/#zone) or learn how to [create a snapshot](http://docs.brightbox.com/guides/cli/create-a-snapshot/)
+You might want to learn about [zones](/reference/glossary/#zone) or learn how to [create a snapshot](/guides/cli/create-a-snapshot/)
