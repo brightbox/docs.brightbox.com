@@ -32,7 +32,7 @@ resources via the Brightbox Cloud API.
 
 [Building a Windows Server](/guides/cli/windows-servers/)
 
-[Host multiple SSL sites with Port Translators](/guides/cli/port-translators)
+[Host multiple SSL sites with Port Translators](/guides/cli/port-translation/)
 </div>
 
 <div class="grid_11 prefix_2" markdown="1">
