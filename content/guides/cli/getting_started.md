@@ -69,8 +69,8 @@ as you'll need it in a moment:
 
 #### Configuring your ssh key
 
-You need to upload your public ssh key so that you can log into newly
-created servers:
+If you didn't provide a public ssh key when you signed up, you need to
+do that now so that you can log into newly created servers:
 
     $ brightbox users update -f my-ssh-key.pub usr-xxxxx
                id: usr-xxxxx
