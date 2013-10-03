@@ -4,13 +4,14 @@ title: Managing API Clients
 section: Brightbox Manager
 ---
 
-An API Client is required whenever you authenticate with the API, such as when you use the [command line interface](/guides/cli/).
+An API Client can be used to provide API access to a single account.
+API Clients are most useful when writing scripts, such as when you're writing [Fog](/guides/ruby/fog/) scripts or automating use of the [command line interface](/guides/cli/).
 
-You can create multiple API Clients, which allows you to selectively revoke access at a later date. For example, you might allocate an API Client for each member of your team.
+You can create multiple API Clients, which allows you to selectively revoke access at a later date. For example, you might allocate an API Client for each script you create.
 
 ### Generating API Clients
 
-To generate a new API Client, click the "Accont & Billing" button in the sidebar and then the "API Access" tab at the top right.
+To generate a new API Client, click the settings button (the cog) in the sidebar and then the `API Access` link from the dropdown.
 
 ![](/images/manage-api-clients.png)
 
