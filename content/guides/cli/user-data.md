@@ -19,7 +19,7 @@ can't be larger than 16k in size.
 Firstly, create a new server with "hello world" as the user data. You
 can use any image, but I'm going to use Ubuntu Lucid:
 
-    $ brightbox-servers create --user-data "Hello World" img-hm6oj
+    $ brightbox servers create --user-data "Hello World" img-hm6oj
     Creating a nano (typ-4nssg) server with image Ubuntu Lucid 10.04 server (img-hm6oj) with 0k of user data
     
      id         status    type  zone   created_on  image_id   cloud_ips  name
@@ -29,7 +29,7 @@ can use any image, but I'm going to use Ubuntu Lucid:
 
 Once it's active, map a cloud IP to it:
 
-    $ brightbox-cloudips map cip-3b0ha srv-agvxl
+    $ brightbox cloudips map cip-3b0ha srv-agvxl
     Mapping cip-3b0ha to interface int-nmgcx on srv-agvxl
     
      id         status  public_ip       server_id  interface_id  reverse_dns                         
@@ -72,7 +72,7 @@ Firstly, create a shell script we want to run on boot. In this case we want to i
 
 Then create a new server with an Ubuntu image, specifying the shell script as user data:
 
-    $ brightbox-servers create --user-data-file=ud-test-script.sh img-9vxqi
+    $ brightbox servers create --user-data-file=ud-test-script.sh img-9vxqi
     Creating a nano (typ-4nssg) server with image Ubuntu Maverick 10.10 server (img-9vxqi) with 0k of user data
     
      id         status    type  zone   created_on  image_id   cloud_ips  name
@@ -82,7 +82,7 @@ Then create a new server with an Ubuntu image, specifying the shell script as us
 
 Once it's active, map a cloud IP to it:
 
-    $ brightbox-cloudips map cip-1um8s srv-q1pj6
+    $ brightbox cloudips map cip-1um8s srv-q1pj6
     Mapping cip-1um8s to interface int-1rb7h on srv-q1pj6
     
      id         status  public_ip       server_id  interface_id  reverse_dns                         

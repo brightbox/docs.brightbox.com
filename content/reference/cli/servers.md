@@ -3,11 +3,11 @@ layout: default
 title: CLI Server Management
 ---
 
-## brightbox-servers create
+## brightbox servers create
 
 The create command builds a new server from an image and boots it.
 
-    $ brightbox-servers create [options] image_id
+    $ brightbox servers create [options] image_id
 
 `image_id` is the identifier of the [image](/reference/glossary/#image) you'd like installed on the server.
 

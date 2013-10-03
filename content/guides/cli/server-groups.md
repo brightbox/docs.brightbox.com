@@ -6,9 +6,9 @@ section: CLI
 
 Server Groups let you logically organise your Cloud Servers. They're the foundation of other Brightbox Cloud services, such as the [Cloud Firewall](/guides/cli/firewall/).
 
-You manage Server Groups with the `brightbox-groups` command[^1]
+You manage Server Groups with the `brightbox groups` command[^1]
 
-    $ brightbox-groups list
+    $ brightbox groups list
     
      id         server_count  name                    
     ---------------------------------------------------
@@ -21,7 +21,7 @@ All accounts have a group named `default` that all new servers are added to unle
 
 Let's create two new groups, one for some web servers and one for some database servers.
 
-    $ brightbox-groups create -n "web servers"
+    $ brightbox groups create -n "web servers"
     Creating a new server group
     
      id         server_count  name       
@@ -29,7 +29,7 @@ Let's create two new groups, one for some web servers and one for some database 
      grp-f4rpy  0             web servers
     --------------------------------------
     
-    $ brightbox-groups create -n "db servers"
+    $ brightbox groups create -n "db servers"
     Creating a new server group
     
      id         server_count  name      
@@ -37,7 +37,7 @@ Let's create two new groups, one for some web servers and one for some database 
      grp-ncapg  0             db servers
     -------------------------------------
     
-    $ brightbox-groups list
+    $ brightbox groups list
     
      id         server_count  name                    
     ---------------------------------------------------
@@ -50,7 +50,7 @@ Let's create two new groups, one for some web servers and one for some database 
 
 Then we'll add the servers to the appropriate group. Adding them leaves them in the default group too:
 
-    $ brightbox-servers list
+    $ brightbox servers list
     
      id         status    type    zone   created_on  image_id   cloud_ip_ids  name       
     -------------------------------------------------------------------------------------
@@ -60,13 +60,13 @@ Then we'll add the servers to the appropriate group. Adding them leaves them in 
      srv-5x0ct  active    large   gb1-b  2011-10-11  img-4gqhs                db-b
     -------------------------------------------------------------------------------------
     
-    $ brightbox-groups add_servers grp-f4rpy srv-13y2j srv-25adm
+    $ brightbox groups add_servers grp-f4rpy srv-13y2j srv-25adm
     Adding 2 servers to server group grp-f4rpy
     
-    $ brightbox-groups add_servers grp-ncapg srv-uj1wm srv-5x0ct
+    $ brightbox groups add_servers grp-ncapg srv-uj1wm srv-5x0ct
     Adding 2 servers to server group grp-ncapg
     
-    $ brightbox-groups list
+    $ brightbox groups list
     
      id         server_count  name                    
     ---------------------------------------------------
@@ -79,7 +79,7 @@ Then we'll add the servers to the appropriate group. Adding them leaves them in 
 
 So now we have the two web servers in the `web servers` group, and the two database servers in the `db servers` group. All four servers are also in the default group.  Let's create a new web server and put it straight into the `web servers` group:
 
-    $ brightbox-servers create -t mini -n "web3" -g grp-f4rpy img-4gqhs
+    $ brightbox servers create -t mini -n "web3" -g grp-f4rpy img-4gqhs
     
     Creating a mini (typ-iqisj) server with image Ubuntu Lucid 10.04 server (img-4gqhs) in groups grp-f4rpy
     
@@ -88,7 +88,7 @@ So now we have the two web servers in the `web servers` group, and the two datab
      srv-abxcu  creating  mini  gb1-a  2011-10-31  img-4gqhs                web3
     -----------------------------------------------------------------------------
     
-    $ brightbox-groups list
+    $ brightbox groups list
     
      id         server_count  name                    
     ---------------------------------------------------
@@ -101,10 +101,10 @@ Notice that the new server did not go into the `default` group - it was added on
 
 ### Removing servers from a group
 
-Let's now remove all the servers from the default group. We can get all the ids of the servers in a group using the `brightbox-groups show` command.
+Let's now remove all the servers from the default group. We can get all the ids of the servers in a group using the `brightbox groups show` command.
 
 
-    $ brightbox-groups show grp-98v4n
+    $ brightbox groups show grp-98v4n
     
                  id: grp-98v4n
                name: default
@@ -112,7 +112,7 @@ Let's now remove all the servers from the default group. We can get all the ids 
     firewall_policy: fwp-hvik9
         description: All new servers are added to this group unless specified otherwise.
     
-    $ brightbox-groups remove_servers grp-98v4n srv-13y2j srv-25adm srv-uj1wm srv-5x0ct
+    $ brightbox groups remove_servers grp-98v4n srv-13y2j srv-25adm srv-uj1wm srv-5x0ct
     
     Removing 4 servers from server group grp-98v4n
     
@@ -121,7 +121,7 @@ Let's now remove all the servers from the default group. We can get all the ids 
      grp-98v4n  0             default
     ----------------------------------
 
-    $ brightbox-groups list
+    $ brightbox groups list
 		
      id         server_count  name                    
     ---------------------------------------------------
@@ -131,11 +131,11 @@ Let's now remove all the servers from the default group. We can get all the ids 
     ---------------------------------------------------
 
 
-Rather than add servers to one group and then remove them from the other, we could have just used the `brightbox-groups move_servers` command, which has the same overall result.
+Rather than add servers to one group and then remove them from the other, we could have just used the `brightbox groups move_servers` command, which has the same overall result.
 
 ### Firewalling
 
 See the [Cloud Firewall guide](/guides/cli/firewall/) on how to control access to, from and between groups.
 
 [^1]:
-The `brightbox-groups` command was first available in version 0.15 of the brightbox-cli.
+The `brightbox groups` command was first available in version 0.15 of the brightbox cli.

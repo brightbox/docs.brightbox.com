@@ -14,10 +14,10 @@ command line interface, a modern web browser with support for HTML5
 canvas (e.g: Firefox 3.6+, Chrome, Safari, IE 9+) and web sockets (or
 instead Flash).
 
-Call the `activate_console` command using the `brightbox-servers`
+Call the `activate_console` command using the `brightbox servers`
 command line tool:
 
-    $ brightbox-servers activate_console srv-su22m
+    $ brightbox servers activate_console srv-su22m
     
     Activating console for server srv-su22m
     

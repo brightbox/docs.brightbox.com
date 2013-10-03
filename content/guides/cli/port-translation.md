@@ -50,14 +50,14 @@ as usual:
 
 Then we create our first Cloud IP as normal and map it to our server:
     
-    $ brightbox-cloudips create -n "cats" 
+    $ brightbox cloudips create -n "cats" 
     
      id         status    public_ip      destination  name
     -------------------------------------------------------------------------------
      cip-360ea  unmapped  109.107.37.80               cats (cip-109-107-37-80.g...
     -------------------------------------------------------------------------------
     
-    $ brightbox-cloudips map cip-360ea srv-9igaa
+    $ brightbox cloudips map cip-360ea srv-9igaa
     Mapping cip-360ea to interface int-zylp1 on srv-9igaa
     
      id         status  public_ip      destination  name                   
@@ -84,7 +84,7 @@ port, let's use `2443`
 Now we create a second Cloud IP, but this time we specify a port
 translation to translate tcp port `443` to `2443`:
 
-    $ brightbox-cloudips create -n "dogs" --port-translators=443:2443:tcp
+    $ brightbox cloudips create -n "dogs" --port-translators=443:2443:tcp
     
      id         status    public_ip       destination  name
     -------------------------------------------------------------------------------
@@ -93,7 +93,7 @@ translation to translate tcp port `443` to `2443`:
 
 And then map it to the server as normal:
 
-    $ brightbox-cloudips map cip-dnx8z srv-9igaa
+    $ brightbox cloudips map cip-dnx8z srv-9igaa
     Mapping cip-dnx8z to interface int-zylp1 on srv-9igaa
     
      id         status  public_ip       destination  name                  
@@ -107,9 +107,9 @@ Now if we update the DNS for `dogs.com` to point at this
 second IP, then `dogs.com` is live too!
 
 You can view the port translators for a particular Cloud IP using the 
-`brightbox-cloudips show` command:
+`brightbox cloudips show` command:
 
-    $ brightbox-cloudips show cip-dnx8z
+    $ brightbox cloudips show cip-dnx8z
     
                   id: cip-dnx8z
                 name: dogs
@@ -122,7 +122,7 @@ You can view the port translators for a particular Cloud IP using the
 
 You can define multiple translators per Cloud IP by comma separating them,
 and you can, of course, change or remove them at any time using the
-`brightbox-cloudips update` command.
+`brightbox cloudips update` command.
 
 You can translate UDP ports as well as TCP ports, so you can run
 things like multiple DNS services on the same server too.

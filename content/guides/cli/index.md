@@ -12,6 +12,8 @@ resources via the Brightbox Cloud API.
 
 [Getting Started](/guides/cli/getting-started/)
 
+[API clients](/guides/cli/api-clients/)
+
 [Cloud IPs](/guides/cli/cloud-ips/)
 
 [Creating a Snapshot](/guides/cli/create-a-snapshot/)
