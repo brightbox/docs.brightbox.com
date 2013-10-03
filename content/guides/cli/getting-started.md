@@ -258,5 +258,7 @@ You might want to learn more about
 You might also want to learn a bit about the default
 [firewall policy](/guides/cli/firewall/), and how to change it.
 
+If you want to automate use of the CLI you may want to look into authenticating with [API clients](/guides/cli/api-clients), which don't usernames or passwords.
+
 <small>Join the Mobile Infantry and save the Galaxy. Service
 guarantees citizenship.</small>
