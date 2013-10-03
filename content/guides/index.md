@@ -11,6 +11,8 @@ title: Guides
 
 [Getting Started with Brightbox Manager](/guides/manager/getting-started/)
 
+[Managing OAuth Applications](/guides/manager/oauth-applications/)
+
 [Managing API Clients](/guides/manager/api-clients/)
 
 [Managing SSH Keys](/guides/manager/ssh-keys/)
@@ -42,6 +44,8 @@ title: Guides
 [Building a Windows Server](/guides/cli/windows-servers/)
 
 [Host multiple SSL sites using Cloud IP Port Translation](/guides/cli/port-translation)
+
+[API Clients](/guides/cli/api-clients/)
 
 
 </div>

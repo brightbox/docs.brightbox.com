@@ -19,13 +19,12 @@ Firstly,
 [sign up for a Brightbox Cloud Account](/guides/getting-started/signup/)
 using [Brightbox Manager](https://manage.brightbox.com/signup).
 
-Once you've signed up, you now need to
-[create an OAuth Application](/guides/manager/user-applications/) which you'll use
-to configure the CLI below. An OAuth Application is simply a pair of access
-credentials that authenticate the method you're using to access the API. They
-consist of an application identifier (like `app-xxxxx`) and a secret.
-You'll use these in conjunction with your username and password to authenticate
-against the API.
+Once you've signed up, you'll need to
+[create an OAuth Application](/guides/manager/oauth-applications/). An
+OAuth Application is simply a pair of access credentials that an
+application can use to authenticate itself with the API. They consist
+of an application identifier (like `app-xxxxx`) and a secret. You'll
+use these in conjunction with your username and password to login.
 
 ### Initial setup
 
