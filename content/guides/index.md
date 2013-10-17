@@ -83,6 +83,8 @@ title: Guides
 
 ### More
 
+[Building a CoreOS Cluster on Brightbox Cloud](/guides/cli/coreos/)
+
 [Building a Riak Cluster on Brightbox Cloud](/guides/cli/riak-cluster/)
 
 </div>

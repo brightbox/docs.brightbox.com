@@ -46,5 +46,8 @@ resources via the Brightbox Cloud API.
 [CLI development](/reference/cli/development/)
 
 ### More
+
+[Building a CoreOS Cluster on Brightbox Cloud](/guides/cli/coreos/)
+
 [Building a Riak Cluster](/guides/cli/riak-cluster/)
 </div>
