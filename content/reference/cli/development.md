@@ -4,11 +4,9 @@ title: CLI Development
 section: Reference
 ---
 
-The CLI source code is available on
-[Github](https://github.com/brightbox/brightbox-cli).
+The CLI source code is available on [Github](https://github.com/brightbox/brightbox-cli).
 
-Please file any feature requests or bug reports to the
-[Github Issues system](https://github.com/brightbox/brightbox cli/issues).
+Please file any feature requests or bug reports to the [Github Issues system](https://github.com/brightbox/brightbox-cli/issues).
 
 ## Debugging the CLI
 
