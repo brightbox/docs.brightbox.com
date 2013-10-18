@@ -61,10 +61,11 @@ And then allow all outgoing access from the servers in the group:
 
 At this stage, we could download the CoreOS [OpenStack image](http://storage.core-os.net/coreos/amd64-generic/) (which works on Brightbox Cloud) and [register it](http://localhost:3005/guides/cli/image-library/) with the image libary which is pretty easy to do, but we're currently providing a CoreOS image for testing with so you can just use that. You can find it by listing all images and grepping for CoreOS:
 
-    $ brightbox images list --show-all | grep CoreOS
+    $ brightbox images list | grep CoreOS
     
-     id         owner      type      created_on  status   size   name                                            ---------------------------------------------------------------------------------------------------------
-     img-e2i1m  acc-h3nbk  upload    2013-10-17  public   5457   CoreOS 94.0.0 (x86_64)
+     id         owner      type      created_on  status   size   name
+	 ---------------------------------------------------------------------------------------------------------
+	 img-smsyn  brightbox  official  2013-10-18  public   5457   CoreOS 94.0.0 (x86_64)  
 
 ### Build the servers
 
@@ -79,23 +80,21 @@ You can use any random string so we'll use the `uuid` tool here to generate one:
 
 Then build three servers using the image, in the server group we created and specifying the token as the user data:
 
-    $ brightbox servers create -i 3 --type small --name "coreos" --user-data $TOKEN --server-groups grp-cdl6h img-e2i1m
+    $ brightbox servers create -i 3 --type small --name "coreos" --user-data $TOKEN --server-groups grp-cdl6h img-smsyn
 
-    Creating 3 small (typ-8fych) servers with image CoreOS 94.0.0 (img-e2i1m) in groups grp-cdl6h with 0.05k of user data
+    Creating 3 small (typ-8fych) servers with image CoreOS 94.0.0 (img-smsyn) in groups grp-cdl6h with 0.05k of user data
     
      id         status    type   zone   created_on  image_id   cloud_ip_ids  name  
     --------------------------------------------------------------------------------
-     srv-ko2sk  creating  small  gb1-a  2013-10-17  img-e2i1m                coreos
-     srv-vynng  creating  small  gb1-a  2013-10-17  img-e2i1m                coreos
-     srv-7tf5d  creating  small  gb1-a  2013-10-17  img-e2i1m                coreos
+     srv-ko2sk  creating  small  gb1-a  2013-10-18  img-smsyn                coreos
+     srv-vynng  creating  small  gb1-a  2013-10-18  img-smsyn                coreos
+     srv-7tf5d  creating  small  gb1-a  2013-10-18  img-smsyn                coreos
     --------------------------------------------------------------------------------
 
 
 ### Accessing the cluster
 
-Those servers should just a minute to build and boot. They
-automatically install your Brightbox Cloud ssh key on bootup, so you
-can ssh in straight away.
+Those servers should take just a minute to build and boot. They automatically install your Brightbox Cloud ssh key on bootup, so you can ssh in straight away as the `core` user.
 
 If you've got ipv6 locally, you can ssh in directly:
 
@@ -116,7 +115,7 @@ If you don't have ipv6, you'll need to [create and map a Cloud IP](/guides/cli/c
 
 ### Testing out etcd
 
-The [CoreOS guide](http://coreos.com/docs/guides/) Takes you though playing with the etcd service:
+The [CoreOS guide](http://coreos.com/docs/guides/) takes you though playing with the etcd service:
 
     $ curl -L http://127.0.0.1:4001/v1/keys/message -d value="Hello world"
     {"action":"SET","key":"/message","prevValue":"Hello world","value":"Hello world","index":12}
