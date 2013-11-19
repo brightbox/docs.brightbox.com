@@ -14,11 +14,11 @@ the loss of an entire Zone without disruption.
 
 Load Balancers are
 [configurable via our API](https://api.gb1.brightbox.com/1.0/#load_balancer),
-and therefore also via our CLI tool. For a step-by-step guide on using the
+and therefore also via our CLI tool and GUI. For a step-by-step guide on using the
 CLI to manage Load Balancers, see the
 [Load Balancer CLI Guide](/guides/cli/load-balancers/).
 
-### Listeners
+## Listeners
 
 Each Load Balancer consists of one or more listeners which control the ports
 and protocols it responds to.
@@ -29,7 +29,7 @@ Listeners have four attributes:
   connections
 * `out-port` is the port the load balancer will connect to on your back end
   servers - this will usually be the same as `in-port`
-* `type` is the mode, currently `http`, `http+ws` or `tcp`
+* `type` is the protocol the listener should use, can be `http`, `http+ws`, `https`, `https+wss` or `tcp`
 * `timeout` is the time (in milliseconds) after which inactive
   connections will be closed. It defaults to 50 seconds if not
   specified.
@@ -38,47 +38,66 @@ So, if your back-end servers have a web service running on port `3000` but
 you want the load balancer to serve requests on port `80`, you would use a
 listener with an `in` port of `80` and an `out` port of `3000`.
 
-#### Type
+### Type
 
-There are currently three options for the listener `type`.
+There are currently five options for the listener type.
 
-* `tcp`
-* `http`
-* `http+ws`
+#### TCP
 
 If the type is set to `tcp`, the load balancer makes a straight
-unmodified tcp connection to the back-end servers.
+unmodified tcp connection to the back-end servers. Useful for load
+balancing non-http services such as SMTP or SSH.
 
-If the type is set to `http` or `http+ws`, the load balancer modifies
-the request to add an `X-Forwarded-For` HTTP header so your back-end servers
-can see the IP address of the clients.
+#### HTTP
 
-In `http+ws` mode, Load Balancers handle standard HTTP traffic and
-WebSockets traffic over the same port. The `timeout` (either default or
-specified) is be applied to standard HTTP traffic, whilst WebSockets
-connections are given a fixed timeout of 1 day.
+All the `http` types are HTTP listeners and the load balancer parses
+the request and adds a `X-Forwarded-For` header, so your back-end
+servers can see the IP address of the client.
 
-**Note:** When using the `http` or `http+ws` types, there is a `2048`
-byte limit on HTTP headers, 40 bytes of which are used by the
-`X-Forwarded-For` header. If you require more than `2008` bytes of headers
-(very large cookies might need this), then you should use the `tcp` protocol,
-which has no such limitation.
+#### SSL and TLS
 
-#### Timeout
+The `https` type supports secure connections using SSLv3, TLS 1.0, 1.1
+and 1.2. All https listeners on a load balancer will use the one same
+[x509](https://en.wikipedia.org/wiki/X.509) certificate and private
+key, which you need to provide in PEM format. Any
+[intermediate certificates](https://en.wikipedia.org/wiki/Intermediate_certificate_authorities)
+should go after the main certificate in the certificate PEM file.
+
+#### WebSockets
+
+With `http+ws` and `https+wss` listener types, Load Balancers can accept both
+standard HTTP and
+[WebSocket](https://en.wikipedia.org/wiki/WebSockets) connections over
+the same port. The `timeout` (either default or specified) is applied
+to standard HTTP connections and WebSocket connections are given a
+fixed timeout of 1 day.
+
+#### HTTP Header Limits
+
+When using the HTTP types, there is a `2048` byte limit on HTTP
+headers, `40` bytes of which are used by the `X-Forwarded-For`
+header. Requests that exceed this limit will get a HTTP 400 (Bad
+Request) error.
+
+If you require more than `2048` bytes of headers for your
+requests or responses (very large cookies might need this), then you
+should use the `tcp` listener type, which has no such limitation.
+
+### Timeout
 
 The timeout setting determines how long inactive connections remain
-open before they are closed. The timeout is specified in milliseconds
-and must be between 5,000 and 86,400,000 (one day). By default the
-timeout is 50,000 milliseconds (50 seconds).
+open before they are closed by the load balancer. The timeout is
+specified in milliseconds and must be between `5000` and `86400000`
+(one day). By default the timeout is `50000` milliseconds (50 seconds).
 
-### Health Checks
+## Health Checks
 
 Each Load Balancer can have one health check. A health check defines
 how the Load Balancer detects problems with your back-end servers. The
 Load Balancer will not send requests to unhealthy back-end servers
 until they recover.
 
-#### Port and timings
+### Port and timings
 
 The health check has several options. The `port` is the tcp port that the
 Load Balancer will attempt to connect to on each back-end server.
@@ -86,12 +105,11 @@ Load Balancer will attempt to connect to on each back-end server.
 connection to complete before deciding the health check failed. `interval`
 is how long in milliseconds between each health check.
 
-**Note:** The health checks are run for each listener, so if you specify a
-20 second interval and have 2 listeners you will actually see checks
+The health checks are run for each listener, so if you specify a 20
+second interval and have 2 listeners you will actually see checks
 every 10 seconds on the back end servers.
 
-
-#### Types
+### Types
 
 The `type` option specifies whether the health check is a standard tcp
 connect attempt or a more detailed HTTP check.  It can be set to `tcp`
@@ -102,7 +120,7 @@ used by the Load Balancer when making the HTTP health check request.
 
 When `type` is set to `tcp`, the `request` option is ignored.
 
-#### Thresholds
+### Thresholds
 
 There are two "thresholds" associated with the health check which are used
 to control when back-end servers are considered unhealthy.
@@ -118,11 +136,11 @@ and ready for new requests.  This can help when a back-end server isn't
 completely unhealthy and some health checks are succeeding. In this case
 you usually do not want the server to start receiving requests.
 
-### Balancing Policies
+## Balancing Policies
 
 The Load Balancer policy defines how requests are distributed between servers.
 
-#### Round Robin
+### Round Robin
 
 When the `policy` is set to `round-robin`, the Load Balancer simply passes
 each new request to each back-end server in turn. So request 1 goes to
@@ -132,7 +150,7 @@ server A again.
 This policy is best when your requests tend to take about the same amount
 of time to complete.
 
-#### Least Connections
+### Least Connections
 
 When the `policy` is set to `least-connections`, the Load Balancer passes
 each new request to the back-end server with the least number of connections
