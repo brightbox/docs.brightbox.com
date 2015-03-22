@@ -38,7 +38,7 @@ new connection. Let's create a script to list images and call it
 
     compute = Fog::Compute.new(
       :provider => :brightbox,
-      :brightbox_client_id => "your_api_client_id"
+      :brightbox_client_id => "your_api_client_id",
       :brightbox_secret => "your_secret"
     )
 
@@ -80,13 +80,7 @@ create a server with that image:
 If we don't specify any image or other details, Fog will create a `nano`
 server type instance with Ubuntu Precise 12.04 server within zone `gb1-a`.
 
-Now let's add a Cloud IP to this server. We start by allocating a
-Cloud IP and then we map it to the ID of our newly created server:
-
-    cloud_ip = compute.cloud_ips.allocate
-    cloud_ip.map(server)
-
-That's it. We can check the status of our server using:
+We can check the status of our server using:
 
     server.reload.state
 
@@ -94,8 +88,14 @@ Or we can wait until Fog determines that the server is ready:
 
     server.wait_for { ready? }
 
-That's it. As soon as the server is ready the ruby script will
+As soon as the server is ready the ruby script will
 continue and we can start using our server.
+
+Now let's add a Cloud IP to this server. We start by allocating a
+Cloud IP and then we map it to the ID of our newly created server:
+
+    cloud_ip = compute.cloud_ips.allocate
+    cloud_ip.map(server)
 
 It's also worth noting that we can snapshot a server and spawn
 multiple copies of it later. We could, for example, create a worker
