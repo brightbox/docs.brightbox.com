@@ -2,39 +2,6 @@
 # before nanoc starts compiling.
 require "yaml"
 
-if !defined?(MAIN_SITE_URL)
-  MAIN_SITE_URL = "http://brightbox.com"
-end
-
-def primary_nav
-  YAML.load <<-EOF
-    - label: Pricing
-      url: /pricing
-    - label: Community
-      url: /community
-    - label: Support
-      url: /support
-    - label: Blog
-      url: /blog
-    - label: About
-      url: /about
-  EOF
-end
-
-def main_nav_link_class_for params={}
-  raise ArgumentError, "missing :path or :link argument" unless params[:path] && params[:link]
-  # path with leading / trimmed, use the first section of it == link with leading / trimmed
-  %{ class="current"} if params[:path][1..-1].split("/").first == params[:link][%r{^/?(.*)$}, 1]
-end
-
-def label_for item
-  item[:label] || item[:title]
-end
-
-def current_section
-  "community"
-end
-
 def clear
   '<div class="clear">.</div>'
 end

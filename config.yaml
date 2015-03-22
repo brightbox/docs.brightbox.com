@@ -19,14 +19,6 @@ index_filenames: [ 'index.html' ]
 # before and after the last site compilation.
 enable_output_diff: false
 
-# Posts to show per page
-posts_per_page: 10
-
-# Sitemap generator requires this set
-base_url: http://docs.brightbox.com
-
-default_key: E159ED2B
-
 # The data sources where nanoc loads its data from. This is an array of
 # hashes; each array element represents a single data source. By default,
 # there is only a single data source that reads data from the “content/” and
@@ -40,11 +32,6 @@ data_sources:
   -
     type: static
     items_root: /static/
-
-  -
-    type: brightbox_images
-    items_root: /vagrant/
-
 
 # Configuration for the “watch” command, which watches a site for changes and
 # recompiles if necessary.

@@ -14,76 +14,20 @@
 #   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
 #   because “*” matches zero or more characters.
 
-preprocess do
-  # Add dummy box
-  @items << Nanoc3::Item.new('', {}, "/vagrant/dummy/")
-  generate_vagrant!
-  generate_simplestreams!
-end
 
 # =====================
 # = Compilation rules =
 # =====================
 
-compile '/search-data/' do
-  filter :erb
-end
-
-compile "/sitemap" do
-  filter :erb
-end
-
 compile '/static/*' do
 end
 
-compile '/vagrant/images' do
-  layout "vagrant_index"
+compile '/docs/*' do
+  filter :kramdown
+  filter :erb
+  layout "docs"
   layout "base"
 end
-
-compile '/vagrant/+' do
-  filter :box
-end
-
-compile '/streams/v1/index/', :rep => :json do
-  filter :simplestreams_index
-end
-
-compile '/streams/*', :rep => :json do
-  filter :simplestreams
-end
-
-compile '/streams/v1/index/', :rep => :sjson do
-  filter :simplestreams_index
-  filter :gpgsign, :clearsign => true
-end
-
-compile '/streams/*', :rep => :sjson do
-  filter :simplestreams
-  filter :gpgsign, :clearsign => true
-end
-
-compile '/streams/v1/index/', :rep => :gpg do
-  filter :simplestreams_index
-  filter :gpgsign
-end
-
-compile '/streams/*', :rep => :gpg do
-  filter :simplestreams
-  filter :gpgsign
-end
-
-# compile '/machine/images/img*' do
-#   filter :erb
-#   layout "machine_image"
-#   layout "base"
-# end
-
-# compile '/machine_images/' do
-#   filter :erb
-#   layout "machine_image_index"
-#   layout "base"
-# end
 
 compile '*' do
   break if item.binary?
@@ -95,45 +39,14 @@ compile '*' do
   layout "base"
 end
 
+
 # ==========
 # = Routes =
 # ==========
 
-route "/sitemap" do
-  "/sitemap.xml"
-end
-
-route '/search-data/' do
-  "/javascripts"+item.identifier[0..-2]+".js"
-end
-
 route '/static/*' do
   # /static/foo.html/ => /foo.html
   item.identifier[7..-2]
-end
-
-route '/vagrant/img*/' do
-  item.identifier.chop + '.box'
-end
-
-route '/vagrant/dummy/' do
-  item.identifier.chop + '.box'
-end
-
-route '/streams/v1/*/' do
-  # No default rep
-end
-
-route '*', :rep => :json do
-  item.identifier.chop + '.json'
-end
-
-route '*', :rep => :sjson do
-  item.identifier.chop + '.sjson'
-end
-
-route '*', :rep => :gpg do
-  item.identifier.chop + '.json.gpg'
 end
 
 route '*' do

@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-gem "nanoc", "~> 3.4.0"
+gem "nanoc", "~> 3.6.6"
 gem "maruku"
 gem "kramdown"
 gem "builder"

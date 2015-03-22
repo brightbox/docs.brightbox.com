@@ -1,0 +1,15 @@
+<div id="main">
+  <div class="content container_24">
+    
+    <h2><%= @item[:title] %></h2>
+    
+    <%= yield %>
+    
+    <%= clear %>
+    
+    <div id="share">
+      <p class="last_updated">Last updated: <%= @item.mtime.strftime("%d %b %Y at %H:%M %Z") %></p>      
+    </div>
+      
+  </div><!-- /content -->
+</div><!-- /main -->

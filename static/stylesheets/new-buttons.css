@@ -1,0 +1,212 @@
+/*
+
+New style buttons.
+
+new-buttons = main class for new buttons. maybe do some resets. Default is empty blue link coloured.
+
+primary = coloured "cta" buttons, with slight gradient (green, orange, blue)
+flat-ish = shadow but no gradient
+flat = no shadow or gradient
+
+*/
+
+@charset "UTF-8"; 
+
+@font-face {
+  font-family: "orbit-page";
+  src:url("/fonts/orbit-page.eot");
+  src:url("/fonts/orbit-page.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/orbit-page.woff") format("woff"),
+    url("/fonts/orbit-page.ttf") format("truetype"),
+    url("/fonts/orbit-page.svg#orbit-page") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.new-btn {
+  font-size: 17px;
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  min-width: 120px;
+  font-family: 'Lato';
+  line-height: 1em;
+  text-decoration: none;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 3px;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  margin-right: 2em;
+  padding: 0.8em 1.4em;
+  padding-top: 0.6em;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.25);
+  box-shadow:
+    inset 0px 0px 0px 1px rgba(0,0,0,0.18),
+    0px 2px 1px -1px rgba(0,0,0,0.25);
+}
+
+.new-btn:after {
+  content:'';
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  right: 1px;
+  bottom: 1px;
+  border: 1px solid rgba(255,255,255,0.25);
+}
+
+.new-btn:last-child {
+  margin-right: 0;
+}
+
+.new-btn:hover,
+.new-btn:visited:hover {
+  text-decoration: none;
+  box-shadow:
+    inset 0px 0px 0px 1px rgba(0,0,0,0.25),
+    0px 2px 1px -1px rgba(0,0,0,0.30);
+}
+
+.new-btn:hover:after {
+  border: 1px solid rgba(255,255,255,0.40);
+}
+
+.new-btn:active {
+  text-decoration: none;
+  top: 1px;
+  box-shadow:
+    inset 0px 0px 0px 1px rgba(0,0,0,0.2);
+}
+
+.new-btn:active:after {
+  display:none;
+}
+
+/**** Add a span around button to give a transparent border ***/
+
+.new-btn-halo {
+  transition: all 0.1s linear;
+  padding-bottom: 1px;
+  border-radius: 4px;
+  display: inline-block;
+  border: 3px solid rgba(0,0,0,0.08);
+}
+
+.new-btn-halo:hover {
+  border-color: rgba(0,0,0,0.12);
+}
+
+.new-btn-halo .new-btn {
+    box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.18);
+}
+
+
+
+/**** Button colour options ****/
+
+.green, .new-btn {
+  color: #fff;
+  background: #69ba1c;
+  background-image: linear-gradient(rgb(141, 204, 53), rgb(70, 162, 4)); 
+}
+
+.blue {
+  background: #2773c0;
+  background-image: linear-gradient(rgb(68, 145, 199),rgb(16, 91, 175));
+}
+
+.orange {
+  background: #e67a23;
+  background-image: linear-gradient(to bottom, #e98c40 0%, #e67a23 60%);
+}
+
+.red {
+  background: #E1411E;
+  background-image: linear-gradient(to bottom, #E1411E 0%, #B61D1A 100%);
+}
+
+.new-btn-caret {
+  padding-right: 2.3em;
+}
+
+.new-btn-caret:before {
+  transition: all 0.1s ease-out;
+  font-family: "orbit-page";
+  font-size: 11px;
+  content: "n";
+  position: absolute;
+  top: 1em;
+  right: 1.55em;
+}
+
+.new-btn-caret:hover:before {
+  right: 1.3em;
+}
+
+.new-btn-flatish, .new-btn-flatish:hover,
+.new-btn-flat, .new-btn-flat:hover {
+  border: none;  
+  box-shadow: none;
+}
+
+.new-btn-flat, .new-btn-outline {
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.new-btn-flat, .new-btn-flatish, .new-btn-outline {
+  background-image: none;
+}
+
+.new-btn-flat:after, .new-btn-flatish:after, .new-btn-outline:after {
+  display: none;
+}
+
+
+
+.new-btn-flat, .new-btn-flat:hover {
+  font-weight: 400;
+  letter-spacing: 0;
+  border: 0;
+}
+
+.new-btn-flat:hover:after {
+  display:block;
+  border: none;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255,255,255,0.1);
+}
+
+.new-btn-flat:active {
+  top: 0;
+  box-shadow: none;
+}
+
+.new-btn-flatish, .new-btn-flatish:hover {
+  box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.2);
+}
+
+.new-btn-flatish:active {
+  box-shadow: inset 0px -1px 0px 0px rgba(0,0,0,0.2);  
+}
+
+.new-btn-outline, .new-btn-outline:hover {
+  color: #0099CC;
+  letter-spacing: none;
+  background: none;
+  box-shadow: inset 0px 0px 0px 1px #0099CC;
+}
+
+.new-btn-outline.white, .new-btn-outline.white:hover {
+  color: #fff;
+  box-shadow: inset 0px 0px 0px 1px rgba(255,255,255,1);
+}
+
+
+
+
