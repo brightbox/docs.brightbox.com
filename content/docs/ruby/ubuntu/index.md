@@ -3,7 +3,11 @@ layout: default
 title: Ruby packages for Ubuntu
 ---
 
-Brightbox have been providing optimised Ruby packages for Ubuntu for years. We're currently maintaining packages for Ruby 2.2, 2.1, 2.0, 1.9.3, and 1.8.7. Our Ruby 1.9.3 and 1.8.7 packages are modified with various performance improvements.
+Brightbox have been providing optimised Ruby packages for Ubuntu for years. We're currently maintaining packages for Ruby 2.3, 2.2, 2.1, 2.0, 1.9.3, and 1.8.7. Our Ruby 1.9.3 and 1.8.7 packages are modified with various performance improvements.
+
+#### Ruby 2.3
+
+We provide Ruby 2.3 packages for Ubuntu Wily, Vivid and Trusty. Our Ruby 2.3 packages are built from unmodified versions of Ruby.
 
 #### Ruby 2.2
 
