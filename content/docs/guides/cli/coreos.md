@@ -14,6 +14,7 @@ Everything here can also be achieved with the [Brightbox Manager](/docs/guides/m
 
 First of all, let's create a server group to put the new servers into:
 
+    #!shell
     $ brightbox groups create -n "coreos"
     
     Creating a new server group
@@ -25,6 +26,7 @@ First of all, let's create a server group to put the new servers into:
 
 And then create a [firewall policy](/docs/guides/cli/firewall/) for the group using its identifier:
 
+    #!shell
     $ brightbox firewall-policies create -n "coreos" grp-cdl6h
     
      id         server_group  name  
@@ -36,6 +38,7 @@ And then create a [firewall policy](/docs/guides/cli/firewall/) for the group us
 
 Now let's define the firewall rules for this new policy. First we'll allow ssh access in from anywhere:
 
+    #!shell
     $ brightbox firewall-rules create --source any --protocol tcp --dport 22 fwp-dw0n6
     
      id         protocol  source  sport  destination  dport  icmp_type  description
@@ -45,6 +48,7 @@ Now let's define the firewall rules for this new policy. First we'll allow ssh a
 
 And then we'll allow the CoreOS etcd ports `7001` and `4001`, allowing access from only the other nodes in the group.
 
+    #!shell
     $ brightbox firewall-rules create --source grp-cdl6h --protocol tcp --dport 7001,4001 fwp-dw0n6
     
      id         protocol  source     sport  destination  dport      icmp_type  description
@@ -54,6 +58,7 @@ And then we'll allow the CoreOS etcd ports `7001` and `4001`, allowing access fr
 
 And then allow all outgoing access from the servers in the group:
 
+    #!shell
     $ brightbox firewall-rules create --destination any fwp-dw0n6
     
      id         protocol  source  sport  destination  dport  icmp_type  description
@@ -65,6 +70,7 @@ And then allow all outgoing access from the servers in the group:
 
 At this stage, we could download the CoreOS [OpenStack image](http://storage.core-os.net/coreos/amd64-generic/) (which works on Brightbox Cloud) and [register it](/docs/guides/cli/image-library/) with the image libary which is pretty easy to do, but we're currently providing a CoreOS image for testing with so you can just use that. You can find it by listing all images and grepping for CoreOS:
 
+    #!shell
     $ brightbox images list | grep CoreOS
     
      id         owner      type      created_on  status   size   name
@@ -77,6 +83,7 @@ Before building the cluster, we need to generate a unique identifier for it, whi
 
 You can use any random string so we'll use the `uuid` tool here to generate one:
 
+    #!shell
     $ TOKEN=`uuid`
     
     $ echo $TOKEN
@@ -84,6 +91,7 @@ You can use any random string so we'll use the `uuid` tool here to generate one:
 
 Then build three servers using the image, in the server group we created and specifying the token as the user data:
 
+    #!shell
     $ brightbox servers create -i 3 --type small --name "coreos" --user-data $TOKEN --server-groups grp-cdl6h img-9ogji
 
     Creating 3 small (typ-8fych) servers with image CoreOS 94.0.0 (img-9ogji) in groups grp-cdl6h with 0.05k of user data
@@ -102,6 +110,7 @@ Those servers should take just a minute to build and boot. They automatically in
 
 If you've got ipv6 locally, you can ssh in directly:
 
+    #!shell
     $ ssh core@ipv6.srv-n8uak.gb1.brightbox.com
     The authenticity of host 'ipv6.srv-n8uak.gb1.brightbox.com (2a02:1348:17c:423d:24:19ff:fef1:8f6)' can't be established.
     RSA key fingerprint is 99:a5:13:60:07:5d:ac:eb:4b:f2:cb:c9:b2:ab:d7:21.
@@ -113,7 +122,7 @@ If you've got ipv6 locally, you can ssh in directly:
      / /   / __ \/ ___/ _ \/ / / /\__ \
     / /___/ /_/ / /  /  __/ /_/ /___/ /
     \____/\____/_/   \___/\____//____/
-    core@srv-n8uak ~ $
+    core@srv-n8uak:~$
 
 If you don't have ipv6, you'll need to [create and map a Cloud IP](/docs/guides/cli/cloud-ips/) first.
 
@@ -121,6 +130,7 @@ If you don't have ipv6, you'll need to [create and map a Cloud IP](/docs/guides/
 
 The [CoreOS guide](http://coreos.com/docs/guides/) takes you though playing with the etcd service:
 
+    #!shell
     $ curl -L http://127.0.0.1:4001/v1/keys/message -d value="Hello world"
     {"action":"SET","key":"/message","prevValue":"Hello world","value":"Hello world","index":12}
     
@@ -130,6 +140,7 @@ The [CoreOS guide](http://coreos.com/docs/guides/) takes you though playing with
 
 Or you could kick off some [docker containers](http://coreos.com/docs/guides/#container-management-with-docker):
 
+    #!shell
     $ docker run busybox /bin/echo hello world
 	Unable to find image     'busybox' (tag: latest) locally
 	Pulling repository busybox

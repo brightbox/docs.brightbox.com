@@ -83,6 +83,7 @@ That's the Orbit side all done. The simplest way to test it is via our [SFTP](/d
 
 You'll notice that you can't see any containers in the list, as the API Client doesn't have permission to list them. But you can still enter the backups container and upload data to it just fine:
 
+    #!shell
     $ sftp cli-hgtla@sftp.orbit.brightbox.com
     
     cli-hgtla@sftp.orbit.brightbox.com's password:

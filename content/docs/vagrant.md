@@ -17,16 +17,19 @@ Vagrant is available for Mac OS X, Windows, Debian, Ubuntu, Centos, Redhat and F
 
 If you're running Ubuntu 14.04 Trusty, it's as easy as installing the official Ubuntu package, like this:
 
+    #!shell
     $ sudo apt-get install vagrant
 
 ### Install the Vagrant Brightbox plugin
 
 To install the brightbox plugin, you may need the libxml and libxslt dependencies. On Ubuntu and Debian, you can get those like this:
 
+    #!shell
     $ sudo apt-get install libxml2-dev libxslt-dev
 
 Then install the plugin:
 
+    #!shell
     $ vagrant plugin install vagrant-brightbox
 
     Installing the 'vagrant-brightbox' plugin. This can take a few minutes...
@@ -36,6 +39,7 @@ Then install the plugin:
 
 Create a new directory for your project, change to it and initialise Vagrant:
 
+    #!shell
     $ vagrant init
     
     A `Vagrantfile` has been placed in this directory. You are now
@@ -45,6 +49,7 @@ Create a new directory for your project, change to it and initialise Vagrant:
 
 Then, create a new [API client](/docs/reference/api-clients/) on your Brightbox account and add the credentials to the `Vagrantfile`:
 
+    #!ruby
     config.vm.provider :brightbox do |brightbox|
       brightbox.client_id = "cli-abcde"
       brightbox.secret = "yoursecret"
@@ -56,12 +61,14 @@ You'll need to have
 [setup a public ssh key](/docs/guides/manager/ssh-keys/) with
 Brightbox Cloud so that you can access newly built servers. Then, tell Vagrant to use your private key, by adding this to the `Vagrantfile`:
 
+    #!ruby
     config.ssh.private_key_path  = "~/.ssh/yourprivate.key"
 
 ### Choose an image to use as a box
 
 Use the [Brightbox Vagrant box index](/vagrant/images/) to find a box definition. For this example we'll select an Ubuntu 12.04 Precise image, and add it as the base box:
 
+    #!shell
     $ vagrant box add base http://brightbox.com/vagrant/img-py9ti.box
 
     Downloading box from URL: http://brightbox.com/vagrant/img-py9ti.box
@@ -72,6 +79,7 @@ Use the [Brightbox Vagrant box index](/vagrant/images/) to find a box definition
 
 Then use `vagrant up` to launch a server. The plugin will automatically create a new Cloud IP and map it to the new machine for you, so you can access it over IPv4 straight away (your default firewall policy will need to allow SSH of course, which is the case unless you've changed the defaults):
 
+    #!shell
     $ vagrant up --provider=brightbox
     
     Bringing machine 'default' up with 'brightbox' provider...
@@ -89,6 +97,7 @@ Then use `vagrant up` to launch a server. The plugin will automatically create a
 
 For reference, a minimal `Vagrantfile` for use with Brightbox looks like this:
 
+    #!ruby
     Vagrant.configure("2") do |config|
       config.vm.box = "base"
       config.vm.box_url = "http://brightbox.com/vagrant/img-py9ti.box"

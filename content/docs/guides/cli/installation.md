@@ -4,14 +4,12 @@ title: CLI Installation
 section: CLI
 ---
 
-Select the Operating System of the machine where you want to install
-the CLI tools and follow the instructions on that page.
+All you need to install our CLI is an installed version of Ruby 1.9 or higher.
 
-* [Macintosh OSX](/docs/guides/cli/installation-macos/)
-* [Windows](/docs/guides/cli/installation-windows/)
+There are slightly different instructions depending on your operating system:
+
 * [Ubuntu Linux](/docs/guides/cli/installation-ubuntu/)
-* [Fedora Linux](/docs/guides/cli/installation-redhat/)
-* [RedHat Enterprise Linux](/docs/guides/cli/installation-redhat/)
-* [CentOS](/docs/guides/cli/installation-redhat/)
-* [Scientific Linux](/docs/guides/cli/installation-redhat/)
 * [Debian GNU/Linux](/docs/guides/cli/installation-debian/)
+* [RedHat, Fedora, Centos or Scientific Linux](/docs/guides/cli/installation-redhat/)
+* [Windows](/docs/guides/cli/installation-windows/)
+* [Macintosh OSX](/docs/guides/cli/installation-macos/)

@@ -16,6 +16,7 @@ speed.
 
 First, we need to choose an [Image](/docs/reference/server-images/) to use:
 
+    #!shell
     $ brightbox images list | grep Windows
 
      id         owner      type      created_on  status  size   name                           
@@ -25,6 +26,7 @@ First, we need to choose an [Image](/docs/reference/server-images/) to use:
 
 We can see there is an "official" Brightbox image for "Windows Server 2008 R2":
 
+    #!shell
     $ brightbox images show img-4q98z
     
                     id: img-4q98z
@@ -45,6 +47,7 @@ We can see there is an "official" Brightbox image for "Windows Server 2008 R2":
 
 Now we just build a server like any other, using this image id:
 
+    #!shell
     $ brightbox servers create -n "webserver" -t mini img-4q98z
     
     Creating a mini (typ-iqisj) server with image Windows Server 2008 R2 (img-4q98z)
@@ -61,6 +64,7 @@ While the new server is building, which should take around 2 minutes,
 let's make sure our default [firewall policy](/docs/reference/firewall/)
 allow us to connect to this server via remote desktop (RDP).
 
+    #!shell
     $ brightbox firewall-policies list
     
      id         server_group  name                
@@ -82,6 +86,7 @@ As we can see here, only tcp ports `80`, `443` and `22` are allowed by
 the default policy. Let's add a rule to allow the remote desktop
 service (`tcp` port `3389`):
 
+    #!shell
     $ brightbox firewall-rules create --source=any --protocol=tcp --dport=3389 fwp-hvik9
     
      id         protocol  source  sport  destination  dport  icmp_type  description
@@ -94,6 +99,7 @@ service (`tcp` port `3389`):
 Once the server has changed to status `active` you can activate the
 [graphical console](/docs/guides/cli/graphical-console/).
 
+    #!shell
     $ brightbox servers activate_console srv-whijs
     
     Activating console for server srv-whijs
@@ -121,6 +127,7 @@ setup locally you can connect directly right now using the dns name
 `ipv6.srv-whijs.gb1.brightbox.com`. If you're not IPv6 enabled you'll
 need to map a [Cloud IP](/docs/reference/cloud-ips/) to it first:
 
+    #!shell
     $ brightbox cloudips create
     
      id         status    public_ip       destination  reverse_dns                         
@@ -139,6 +146,7 @@ need to map a [Cloud IP](/docs/reference/cloud-ips/) to it first:
 
 And now you can access your server using the password you set:
 
+    #!shell
     $ rdesktop -u administrator public.srv-whijs.gb1.brightbox.com
 
 ![](/images/docs/windows-ie9.png)

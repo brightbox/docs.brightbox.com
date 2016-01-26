@@ -20,8 +20,9 @@ Most distributions allow a server to be updated automatically upon the release o
 
 If you have already provisioned a [cloud server](/docs/reference/cloud-servers) running Ubuntu you can install it via:
 
-       $ sudo apt-get install unattended-upgrades
-       $ sudo dpkg-reconfigure unattended-upgrades
+    #!shell
+    $ sudo apt-get install unattended-upgrades
+    $ sudo dpkg-reconfigure unattended-upgrades
 
 Once this has been done you'll find your packages will update automatically once per day.  This should severely reduce the chances of a compromise due to publicly disclosed security issues (although it is worth remembering that this will just cover _system_ packages, not any software you install from external sources, such as Wordpress etc.)
 

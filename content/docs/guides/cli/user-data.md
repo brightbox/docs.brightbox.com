@@ -19,6 +19,7 @@ can't be larger than 16k in size.
 Firstly, create a new server with "hello world" as the user data. You
 can use any image, but I'm going to use Ubuntu Lucid:
 
+    #!shell
     $ brightbox servers create --user-data "Hello World" img-hm6oj
     Creating a nano (typ-4nssg) server with image Ubuntu Lucid 10.04 server (img-hm6oj) with 0k of user data
     
@@ -29,6 +30,7 @@ can use any image, but I'm going to use Ubuntu Lucid:
 
 Once it's active, map a cloud IP to it:
 
+    #!shell
     $ brightbox cloudips map cip-3b0ha srv-agvxl
     Mapping cip-3b0ha to interface int-nmgcx on srv-agvxl
     
@@ -39,6 +41,7 @@ Once it's active, map a cloud IP to it:
 
 Then ssh in and grab the user data using curl:
 
+    #!shell
     $ ssh ubuntu@public.srv-agvxl.gb1.brightbox.com
     ubuntu@srv-agvxl:~$ curl http://169.254.169.254/latest/user-data
     Hello World
@@ -60,6 +63,7 @@ Our official Ubuntu images are pre-installed with the cloud-init package, which 
 ### Basic Ubuntu cloud-init example
 Firstly, create a shell script we want to run on boot. In this case we want to install a web server and generate a page to serve:
 
+    #!shell
     $ cat > ud-test-script.sh <<EOF
     #!/bin/sh
     apt-get update
@@ -72,6 +76,7 @@ Firstly, create a shell script we want to run on boot. In this case we want to i
 
 Then create a new server with an Ubuntu image, specifying the shell script as user data:
 
+    #!shell
     $ brightbox servers create --user-data-file=ud-test-script.sh img-9vxqi
     Creating a nano (typ-4nssg) server with image Ubuntu Maverick 10.10 server (img-9vxqi) with 0k of user data
     
@@ -82,6 +87,7 @@ Then create a new server with an Ubuntu image, specifying the shell script as us
 
 Once it's active, map a cloud IP to it:
 
+    #!shell
     $ brightbox cloudips map cip-1um8s srv-q1pj6
     Mapping cip-1um8s to interface int-1rb7h on srv-q1pj6
     
@@ -92,6 +98,7 @@ Once it's active, map a cloud IP to it:
 
 Then load the web page to prove the script executed:
 
+    #!shell
     $ curl public.srv-q1pj6.gb1.brightbox.com
     Hello from the Brightbox Cloud at Sun Nov 21 21:19:12 GMT 2010
 

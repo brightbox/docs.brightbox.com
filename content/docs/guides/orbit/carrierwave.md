@@ -18,11 +18,13 @@ use [Brightbox Orbit](/docs/reference/orbit/) as well.
 
 First off you need a simple Rails application, so create one like this:
 
-    rails mynewapp
+    #!shell
+    $ rails mynewapp
 
 Next you need to add both `carrierwave` and `fog` dependencies to your
 application by adding the following lines to the `Gemfile`:
 
+    #!ruby
     gem "carrierwave"
     gem "fog"
     gem "fog-brightbox", "~> 0.4.1"
@@ -33,7 +35,8 @@ standalone `fog-brightbox` you will get an error. You also require a version of
 
 Next make sure the gems are installed:
 
-    bundle install
+    #!shell
+    $ bundle install
 
 Now you can configure your application.
 
@@ -49,6 +52,7 @@ created or regenerated).
 Add the credentials to an initializer by creating a new file within the project
 called `config/initializers/carrerwave.rb` with the following content:
 
+    #!ruby
     CarrierWave.configure do |config|
       config.fog_credentials = {
         :provider => "Brightbox",
@@ -69,13 +73,15 @@ Orbit containers using the Brightbox Manager.
 You need to generate an uploader that uses the new fog configuration. So
 generate it with:
 
-    rails generate uploader Avatar
+    #!shell
+    $ rails generate uploader Avatar
 
 Now edit `app/uploaders/avatar_uploader.rb` to update our `AvatarUploader`
 to use `fog` as its store.
 
 You don't need much more than the following:
 
+    #!ruby
     class AvatarUploader < CarrierWave::Uploader::Base
       storage :fog
     end
@@ -98,6 +104,7 @@ And you should have now uploaded a local file to your Orbit container!
 
 Now use the `swift` CLI tool to just check it uploaded.
 
+    #!shell
     $ swift -A https://orbit.brightbox.com/v1/acc-12345 -U cli-12345 -K clientsecret list my_container
     uploads/Avatar.jpg
 

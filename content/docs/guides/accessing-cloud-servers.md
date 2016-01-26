@@ -33,7 +33,7 @@ You're asked for your public ssh key when you first sign up and you can change i
 
 ### How do I generate an SSH key?
 
-You can generate an SSH using the [`ssh-keygen`](https://help.ubuntu.com/community/SSH/OpenSSH/Keys) command line tool. Or, if you're on Windows, you can use [Putty](http://katsande.com/using-puttygen-to-generate-ssh-private-public-keys).
+You can generate an SSH using the [`ssh-keygen`](https://help.ubuntu.com/community/SSH/OpenSSH/Keys) command line tool. Or, if you're on Windows, you can use [Putty](http://winscp.net/eng/docs/ui_puttygen).
 
 ### I added or changed my key but I still can't log in
 

@@ -66,12 +66,10 @@ Uploading a new object is just a matter of making a HTTP PUT request with the ob
 
 As easy as making a GET request:
     
-    curl -I -H "x-auth-token: a586756da259f4c5699a92ebaa359b8e" https://orbit.brightbox.com/v1/acc-xxxxx/avatars/jason.jpg
-    HTTP/1.1 200 OK
-    Content-Length: 33396
-    Last-Modified: Thu, 24 Jul 2014 14:17:21 GMT
-    Etag: 7e880ef4c52a4c0f2755983b55a3942f
-    Content-Type: image/jpeg
+    curl -O -H "x-auth-token: a586756da259f4c5699a92ebaa359b8e" https://orbit.brightbox.com/v1/acc-xxxxx/avatars/jason.jpg
+      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                     Dload  Upload   Total   Spent    Left  Speed
+    100 33396  100 33396    0     0  95160      0 --:--:-- --:--:-- --:--:-- 95190
 
 #### Access control
 

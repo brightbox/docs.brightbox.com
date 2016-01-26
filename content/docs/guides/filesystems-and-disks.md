@@ -17,12 +17,14 @@ automatically grow the partition and file system during the first boot
 Most other images leave the work for you to do manually, so when you
 first boot a server the file system might look very small:
 
+    #!shell
     $ df -h
     Filesystem            Size  Used Avail Use% Mounted on
     /dev/vda1             1.3G  754M  501M  61% /
 
 And the partition table might look like this:
 
+    #!shell
     $ sfdisk -uM -l /dev/vda
     
     Disk /dev/vda: 20805 cylinders, 16 heads, 63 sectors/track
@@ -40,11 +42,13 @@ then grow the file system.
 If the image is Ubuntu Natty or newer, you can use the `growpart` tool
 to grow the partition:
 
+    #!shell
     $ growpart /dev/vda 1
 
 If the image is an older Ubuntu, you can usually grow the main
 partition automatically using the `sfdisk` tool and a bit of scripting:
 
+    #!shell
     $ START=`sfdisk -uS /dev/vda -d | grep vda1 | awk '{print $4}'` && printf "$START\n;0\n;0\n;0\n" | sfdisk --force -uS -x /dev/vda
 
 **WARNING:** The above script blindly grows the first partition to the
@@ -57,6 +61,7 @@ which usually needs a reboot. Then you can grow the file system.
 In the case of the Ubuntu images, you can grow the default filesystem
 like this:
 
+    #!shell
     $ resize2fs /dev/vda1
 
 Our official Centos images comes with LVM, so you grow the partition

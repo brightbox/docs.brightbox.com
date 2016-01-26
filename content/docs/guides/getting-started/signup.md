@@ -43,4 +43,4 @@ If you miss the call or mistype the number, click <q>Restart verification</q> an
 
 ### Finished!
 
-Sign up is now complete and you'll be taken to the [dashboard](https://manager.brightbox.com) where you can start [building your cloud servers](/docs/guides/manager/getting-started).
+Sign up is now complete and you'll be taken to the [dashboard](https://manage.brightbox.com) where you can start [building your cloud servers](/docs/guides/manager/getting-started).

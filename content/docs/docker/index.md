@@ -12,5 +12,6 @@ There are a couple of ways to use Docker on Brightbox Cloud:
 
 * Install Docker on an [Ubuntu Cloud Server](/docs/ubuntu/)
 * Build a Cloud Server using [CoreOS](/docs/coreos/)
+* Deploy Docker servers using our [Docker Machine Driver](/blog/2015/11/11/docker-machine-driver/)
 
 We also have a guide on [running a private Docker registry on Brightbox Cloud](/docs/guides/docker/private-registry-with-orbit/), using Docker itself.

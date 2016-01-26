@@ -16,6 +16,7 @@ The snapshots can also be downloaded from the image library.
 Snapshots are created using the `brightbox servers snapshot`
 command. Just give it the identifier of the server you want to snapshot:
 
+    #!shell
     $ brightbox servers snapshot srv-gwgk2
     Snapshotting server srv-gwgk2
 
@@ -25,6 +26,7 @@ Taking the snapshot is instantaneous, but it then takes a little while
 to be copied into the image library depending upon the amount of data
 on the server. You can see the resulting image in the image list:
 
+    #!shell
     $ brightbox images list
     
      id         owner      type      created_on  status    size   name                                       
@@ -46,6 +48,7 @@ The snapshot has been given the image identifier `img-y22uq` and is
 currently creating. The name field indicates the image is the result
 of a snapshot of `srv-gwgk2`.
 
+    #!shell
     $ brightbox images show img-y22uq 
                     id: img-y22uq
                   type: snapshot
@@ -63,7 +66,7 @@ of a snapshot of `srv-gwgk2`.
 
 Here you can see that the snapshot copy has now completed and the
 status is private, which means only your account has access to it. The
-virtual_size is how big the entire disk is and the disk_size is how
+`virtual_size` is how big the entire disk is and the `disk_size` is how
 big the actual snapshot is. The disk_size will vary depending on how
 much data is written to your server.
 
@@ -76,6 +79,7 @@ the status to 'failed'.
 The snapshot image can be used like any other image. You can build a
 clone of the original server like this:
 
+    #!shell
     $ brightbox servers create -n "myclone" img-y22uq
     Creating a nano (typ-4nssg) server with image Snapshot of srv-gwgk2 19 Dec 12:57 (img-y22uq)
     
@@ -98,6 +102,7 @@ host.
 You'll need your image library ftp credentials (see the [Image Library
 guide](/docs/guides/cli/image-library/) for more details).
 
+    #!shell
     $ lftp acc-h3nbk@ftp.library.gb1.brightbox.com
     Password: xxxxxxxxxxxx
     lftp acc-h3nbk@ftp.library.gb1.brightbox.com:/> cd images

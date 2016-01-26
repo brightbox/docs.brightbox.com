@@ -29,6 +29,7 @@ So build a server that's big enough to download your snapshot to - you'll actual
 
 Use a recent official Ubuntu image, Utopic should be fine. Map a Cloud IP if you need to, SSH in and install some required tools:
 
+    #!shell
     $ sudo apt-get update
 	$ sudo apt-get install qemu-utils kpartx parted lftp
 
@@ -36,6 +37,7 @@ Use a recent official Ubuntu image, Utopic should be fine. Map a Cloud IP if you
 
 We need a local copy of the snapshot to work on. Snapshots are stored in the `images` container of [Orbit](/docs/reference/orbit/), our storage service. You can access the images using [SFTP](/docs/guides/orbit/sftp/), or using the OpenStack Swift command client, or simply by using a temporary url generated in Brightbox Manager. SFTP is a little slower than accessing Orbit directly, so we'll access it directly here:
 
+    #!shell
     $ wget -O img-3anq3  "https://orbit.brightbox.com/v1/acc-xxxxx/images/img-3anq3?temp_url_sig=7725f88959e1017&temp_url_expires=1421876813"
     
     2015-01-21 21:31:35 (75.2 MB/s) - 'img-3anq3' saved
@@ -44,6 +46,7 @@ We need a local copy of the snapshot to work on. Snapshots are stored in the `im
 
 The downloaded snapshot will be in QCOW2 format, so convert it to a raw file using `qemu-img`:
 
+    #!shell
     $ qemu-img convert -O raw img-3anq3 img-3anq3.raw
 
 This will create a file called `img-3anq3.raw` which is sparsely allocated, so it will look to be the full virtual size of the image but will only be the size of the actual image data.
@@ -54,6 +57,7 @@ You can delete the original image file now if you need the space, we won't need 
 
 So now we have a raw image file on disk. It doesn't contain the filesystem directly but instead has a partition table. That means we can't access the filesystem directly and instead have to use the `kpartx` tool to setup devices that point to the partitions inside this file.
 
+    #!shell
     $ sudo kpartx -av img-3anq3.raw
     add map loop0p1 (252:0): 0 83884032 linear /dev/loop0 2048
 
@@ -67,6 +71,7 @@ So now we need to shrink down the filesystem to a reasonable size. Brightbox Clo
 
 First, run the filesystem check on it. Most of our images use `ext4`, but if you've got something custom then use the appropriate tools:
 
+    #!shell
     $ e2fsck -fy /dev/mapper/loop0p1
     
     e2fsck 1.42.10 (18-May-2014)
@@ -81,6 +86,7 @@ If you snapshotted a running server, there might be one or two minor filesystem 
 
 Now resize the filesystem - we'll go with 5GB in this example:
 
+    #!shell
     $ resize2fs /dev/mapper/loop0p1 5120M
     
     resize2fs 1.42.10 (18-May-2014)
@@ -89,6 +95,7 @@ Now resize the filesystem - we'll go with 5GB in this example:
 
 We're done with the filesystem now, so we can remove the devices that were setup by `kpartx`:
 
+    #!shell
     $ sudo kpartx -d img-3anq3.raw
     loop deleted : /dev/loop0
 
@@ -98,6 +105,7 @@ We've shrunk down the filesystem so now we can shrink down the partition that co
 
 When resizing, you tell `parted` *where you want the partition to end rather than how big you want the partition*. A bit perplexing, but there we are. Most of our images have the partition starting at an offset of 1 megabyte, so resize to one megabyte larger than you made the filesystem (you can double check by listing the partitions and noting the `Start` position):
 
+    #!shell
     $ parted img-3anq3.raw 
 
     (parted) resizepart 1 5121MiB
@@ -109,6 +117,7 @@ When resizing, you tell `parted` *where you want the partition to end rather tha
 
 So now that the filesystem is shrunk, and the partition is shrunk, the only thing left is the actual "disk", which for a raw image file is just the file size. `qemu-img` can help us here too though. Shrink the image down to one megabyte bigger than your partition, for good luck:
 
+    #!shell
     $ qemu-img resize img-3anq3.raw 5122M
     Image resized.
 
@@ -116,6 +125,7 @@ So now that the filesystem is shrunk, and the partition is shrunk, the only thin
 
 Now we have a resized raw image, so we just need to convert it back to QCOW2 format:
 
+    #!shell
     $ qemu-img convert -O qcow2 -o compat=0.10 img-3anq3.raw img-3anq3.qcow2
 
 ### Register the newly resized image
@@ -130,6 +140,7 @@ Firstly, upload the new image to the Image Library incoming area using FTP. To g
 
 Then use your favourite FTP client to upload the new image:
 
+    #!shell
     $ lftp acc-xxxxx@ftp.library.gb1.brightbox.com
         Password:
     
@@ -149,6 +160,7 @@ Then tell the Image Library to register it. Brightbox Manager doesn't currently 
 
 Give the new image a name, specify the [cpu architecture](/docs/reference/server-images/#architecture) (`x84_64` should be fine for most situations) and the filename of the source file in the `incoming/` directory:
 
+    #!shell
     $ brightbox images register -a x86_64 --name "resized image" --source img-3anq3.qcow
     
      id         owner      type    created_on  status    size  name

@@ -13,6 +13,7 @@ accessible from each server at http://169.254.169.254.
 
 ### Example usage
 
+    #!shell
     $ curl http://169.254.169.254/latest/meta-data/
     hostname
     instance-id

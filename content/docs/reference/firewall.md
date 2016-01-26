@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Cloud Firewall
+keywords: firewall
 section: Reference
 ---
 

@@ -15,5 +15,6 @@ you set the DEBUG environment variable to 1. If you come across a bug,
 try rerunning the command with this set and send the output to us
 along with the report. Thanks!
 
+    #!shell
     $ DEBUG=1 brightbox servers explode
 

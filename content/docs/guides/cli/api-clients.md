@@ -24,6 +24,7 @@ You can now configure the CLI tool with the credentials for the API client you c
 To configure the CLI with these credentials, run the following
 command:
 
+    #!shell
     $ brightbox config client_add cli-xxxxx thesecretstring
 		
     Using config file /home/john/.brightbox/config

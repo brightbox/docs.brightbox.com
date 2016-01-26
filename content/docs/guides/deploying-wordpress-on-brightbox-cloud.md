@@ -81,8 +81,9 @@ It should be noted that we'll be automating the installation of a webserver, and
 
 In this case we'll be configuring the latest Ubuntu stable release for our webserver, so our installation recipe will certainly need to include the following commands:
 
-    apt-get update --quiet
-    apt-get install apache2 libapache2-mod-php5 php5-mysql
+    #!shell
+    $ apt-get update --quiet
+    $ apt-get install apache2 libapache2-mod-php5 php5-mysql
 
 This will take care of installing a webserver which is capable of handling PHP files, as well as ensuring that the PHP scripts can access MySQL.   We'll also want to download the most recent version of Wordpress, and perform a couple of other minor tweaks.  In short the following script will perform all the steps required to start the installation of Wordpress on a pristine instance of Ubuntu's stable release:
 
@@ -145,13 +146,15 @@ To complete the installation of Wordpress we need to configure it.  The Wordpres
 
 The Brightbox Ubuntu disk-images, which we chose to install from, have a preconfigured `ubuntu` user, so we can connect to that using the cloud IP we mapped in the previous section:
 
-     $ ssh ubuntu@109.107.36.113
+    #!shell
+    $ ssh ubuntu@109.107.36.113
 
 > **NOTE**: Replace the IP here with that mapped to your cloud server.
 
 Once you've done that you may use the MySQL client to create the database for your server - again replacing the details here with those that you received when you created your own Cloud SQL instance:
 
-     $ mysql --user=admin --password=u8qolu7u3nx3fgtm --host=109.107.36.113 -e "CREATE DATABASE wordpress"
+    #!shell
+    $ mysql --user=admin --password=u8qolu7u3nx3fgtm --host=109.107.36.113 -e "CREATE DATABASE wordpress"
 
 With the database created you may now visit your cloud IP to complete the installation wizard, using the same MySQL details you just created, at `http://109.107.36.113/wp-admin/install.php`
 

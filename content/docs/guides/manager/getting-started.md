@@ -46,6 +46,7 @@ As you can see here, we've built one new server and it's been given the identifi
 At this point your server is active and if you have an IPv6 internet connection [or tunnel](/blog/2014/10/23/getting-ipv6-at-home-with-teredo/), you can connect directly to it with SSH using the IPv6 DNS name. Our official Ubuntu images are pre-installed with a user named `ubuntu`. You can use `sudo` to get `root` access:
 
 
+    #!shell
     $ ssh -l ubuntu ipv6.srv-dmw0k.gb1.brightbox.com
     The authenticity of host 'ipv6.srv-dmw0k.gb1.brightbox.com (2a02:1348:178:42e9:24:19ff:fee1:ba6)' can't be established.
     ECDSA key fingerprint is f4:a0:2f:61:91:6e:4b:d0:3e:95:c4:ea:75:73:8e:85.
@@ -77,6 +78,7 @@ In this case we've been allocated the IP `109.107.38.214` with the identifier `c
 
 Your server is now accessible by the new Cloud IP, so you can ssh into it:
 
+    #!shell
     $ ssh -l ubuntu 109.107.38.214
     The authenticity of host '109.107.38.214 (109.107.38.214)' can't be established.
     ECDSA key fingerprint is f4:a0:2f:61:91:6e:4b:d0:3e:95:c4:ea:75:73:8e:85.
@@ -90,6 +92,7 @@ Your server is now accessible by the new Cloud IP, so you can ssh into it:
 
 For convenience there is a [DNS record](/docs/reference/dns/) that points to the first Cloud IP mapped to a server, in this case `public.srv-dmw0k.gb1.brightbox.com`
 
+    #!shell
     $ host public.srv-dmw0k.gb1.brightbox.com
     public.srv-dmw0k.gb1.brightbox.com has address 109.107.38.214
 
@@ -97,6 +100,6 @@ For convenience there is a [DNS record](/docs/reference/dns/) that points to the
 
 Here you used Brightbox Manager to create an Ubuntu server and then mapped a Cloud IP to it.
 
-You might also want to learn more about [accessing cloud servers](/docs/guides/accessing-cloud-servers/) or perhaps [Cloud IPs](/docs/reference/cloud-ips/). There are plenty of [other guides](http://localhost/docs/guides/) available too.
+You might also want to learn more about [accessing cloud servers](/docs/guides/accessing-cloud-servers/) or perhaps [Cloud IPs](/docs/reference/cloud-ips/). There are plenty of [other guides](/docs/guides/) available too.
 
 Or perhaps you'd prefer to use our [command line interface](/docs/guides/cli/getting-started) to manage your Brightbox Cloud resources?

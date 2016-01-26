@@ -37,6 +37,9 @@ API is [available on GitHub](https://github.com/rubiojr/knife-brightbox).
 Knife is the command-line tool which is part of the configuration management
 framework [Chef](http://wiki.opscode.com/display/chef/Home).
 
+#### Golang client
 
+We're developing a client library for the Go programming language. It's
+[available on GitHub](https://github.com/brightbox/gobrightbox).
 
 

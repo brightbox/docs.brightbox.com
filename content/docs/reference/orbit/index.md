@@ -50,6 +50,7 @@ We provide an SFTP service for use with Orbit. You can read and write objects us
 
 Just connect to `sftp.orbit.brightbox.com` using your Brightbox email address and password, or your API client and secret.
 
+    #!shell
     $ sftp john@example.com@sftp.orbit.brightbox.com
     john@example.com@sftp.orbit.brightbox.com's password: 
     Connected to sftp.orbit.brightbox.com.
@@ -60,6 +61,7 @@ Just connect to `sftp.orbit.brightbox.com` using your Brightbox email address an
 
 If you are a collaborator on multiple accounts, then you can specify the account by adding the account identifier to the end of the username, separated with a colon:
 
+    #!shell
     $ sftp john@example.com:acc-xxxxx@sftp.orbit.brightbox.com
 
 

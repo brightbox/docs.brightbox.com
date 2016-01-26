@@ -40,15 +40,6 @@ resources via the Brightbox Cloud API.
 </div>
 
 <div class="grid_11 prefix_2" markdown="1">
-### Reference
-[CLI Configuration](/docs/reference/cli/configuration/)
-
-[Managing Servers](/docs/reference/cli/servers/)
-
-[CLI development](/docs/reference/cli/development/)
-
-### More
-
 [Building a CoreOS Cluster on Brightbox Cloud](/docs/guides/cli/coreos/)
 
 [Building a Riak Cluster](/docs/guides/cli/riak-cluster/)

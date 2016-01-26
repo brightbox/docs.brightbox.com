@@ -17,6 +17,7 @@ instead Flash).
 Call the `activate_console` command using the `brightbox servers`
 command line tool:
 
+    #!shell
     $ brightbox servers activate_console srv-su22m
     
     Activating console for server srv-su22m

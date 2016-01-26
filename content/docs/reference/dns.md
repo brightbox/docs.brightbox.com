@@ -52,6 +52,7 @@ Brightbox Cloud provides a number of dynamic DNS records for convenience.
 
 Reverse DNS for private addresses works from within the Brightbox Cloud network:
 
+    #!shell
     $ host 10.240.119.222
     222.119.240.10.in-addr.arpa domain name pointer srv-su22m.gb1.brightbox.com.
 

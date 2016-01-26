@@ -49,36 +49,43 @@ Then to the <q>Image</q> tab and search for `trusty`, to find the Ubuntu 14.04 T
 
 All Brightbox Cloud Servers are [accessible](/docs/guides/accessing-cloud-servers/) via IPv6 by default, so if you have a IPv6 connection then you can SSH into the servers right now using their IPv6 hostnames, for example:
 
+    #!shell
     $ ssh ubuntu@ipv6.srv-5b8qz.gb1.brightbox.com
 
 If you don't have IPv6, it's quite easy to [setup a tunnel](/docs/guides/ipv6/). Or if you prefer, you can just map a [Cloud IP](/docs/reference/cloud-ips/) to each server and use IPv4. In the <q>Cloud Servers</q> list, click the <q>Add +</q> button in the <q>Cloud IPs</q> column, then select <q>Create & map new Cloud IP</q>. Do that for both servers, and then you can SSH into them using their public IPv4 hostnames, for example:
 
+    #!shell
     $ ssh ubuntu@public.srv-5b8.gb1.brightbox.com
 
 ### Install GlusterFS
 
 SSH into each server and run the following commands. First, add the GlusterFS Ubuntu package repository. The standard Ubuntu 14.04 GlusterFS packages aren't too bad, but better to have the newer version:
 
+    #!shell
     $ sudo apt-add-repository ppa:semiosis/ubuntu-glusterfs-3.5
 
 Then refresh the repository indexes:
 
+    #!shell
     $ sudo apt-get update
 
 Then install the GlusterFS server and client packages (and the Ubuntu English language pack whilst we're at it):
 
+    #!shell
     $ sudo apt-get -y install language-pack-en glusterfs-server glusterfs-client
 
 ### Initialize the GlusterFS cluster
 
 We now need to tell GlusterFS that these two servers should be a cluster. SSH into one of the servers and tell GlusterFS about the other one, like this:
 
+    #!shell
     ubuntu@srv-ngxbr:~$ sudo gluster peer probe srv-5b8qz
     
     peer probe: success
 
 You can now view the cluster status from either server like this:
 
+    #!shell
     ubuntu@srv-5b8qz:~$ sudo gluster peer status
     
     Number of Peers: 1
@@ -96,12 +103,14 @@ So, create a volume named `mirror` and tell GlusterFS to store two replicas. You
 
 You can run this command on either server, but you only have to run it on one:
 
+    #!shell
     $ sudo gluster volume create mirror replica 2 srv-ngxbr:/srv/export srv-5b8qz:/srv/export force
     
     volume create: mirror: success: please start the volume to access data
 
 Then start the volume:
 
+    #!shell
     $ sudo gluster volume start mirror
 	
     volume start: mirror: success
@@ -112,14 +121,17 @@ You'll see that GlusterFS has created `/srv/export` directories on both servers.
 
 To access the filesystem, you just need to mount it. First you need to make a mount point:
 
-    sudo mkdir /mnt/mirror
+    #!shell
+    $ sudo mkdir /mnt/mirror
 
 Then, to mount the filesystem you need to specify one of the servers to mount from. Since we're mounting the filesystem on the GlusterFS servers themselves, we can specify `localhost`:
 
-    sudo mount -t glusterfs localhost:/mirror /mnt/mirror
+    #!shell
+    $ sudo mount -t glusterfs localhost:/mirror /mnt/mirror
 
 And see that it's mounted:
 
+    #!shell
     ubuntu@srv-ngxbr:~$ df -h
 
     Filesystem         Size  Used Avail Use% Mounted on

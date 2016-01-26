@@ -9,7 +9,6 @@ Servers via the Brightbox Cloud API. It needs to be configured with
 an API client id and secret.
 
 * [Installing the CLI](/docs/guides/cli/installation/)
-* [CLI Configuration](/docs/reference/cli/configuration/)
-* [Managing Servers](/docs/reference/cli/servers/)
+* [Getting started with the CLI](/docs/guides/cli/getting-started/)
 * [CLI development](/docs/reference/cli/development/)
 * [Other CLI Guides](/docs/guides/cli/)

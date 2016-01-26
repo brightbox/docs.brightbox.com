@@ -11,19 +11,19 @@ We provide Ruby 2.3 packages for Ubuntu Wily, Vivid and Trusty. Our Ruby 2.3 pac
 
 #### Ruby 2.2
 
-We provide Ruby 2.2 packages for Ubuntu Utopic, Trusty and Precise. Our Ruby 2.2 packages are currently built from unmodified versions of Ruby.
+We provide Ruby 2.2 packages for Ubuntu Wily, Vivid, Trusty and Precise. Our Ruby 2.2 packages are currently built from unmodified versions of Ruby.
 
 #### Ruby 2.1
 
-We provide Ruby 2.1 packages for Ubuntu Utopic, Trusty and Precise. Our Ruby 2.1 packages are built from unmodified versions of Ruby.
+We provide Ruby 2.1 packages for Ubuntu Wily, Vivid, Trusty and Precise. Our Ruby 2.1 packages are built from unmodified versions of Ruby.
 
 #### Ruby 2.0
 
-We provide Ruby 2.0 packages for Ubuntu Trusty, Precise and Lucid. Our Ruby 2.0 packages are built from unmodified versions of Ruby.
+We provide Ruby 2.0 packages for Ubuntu Wily, Vivid, Trusty, Precise and Lucid. Our Ruby 2.0 packages are built from unmodified versions of Ruby.
 
 #### Ruby 1.9.3
 
-We provide Ruby 1.9.3 packages for Ubuntu Utopic, Trusty, Precise and Lucid. Our Ruby 1.9.3 packages include some major performance improvements:
+We provide Ruby 1.9.3 packages for Ubuntu Vivid, Trusty, Precise and Lucid. Our Ruby 1.9.3 packages include some major performance improvements:
 
 * Built with Google’s high performance memory allocator, tcmalloc
 * Added [Sokolov Yura](https://github.com/funny-falcon/ruby)’s performance patches
@@ -40,35 +40,44 @@ We provide Ruby 1.8.7 packages for Ubuntu Trusty, Precise and Lucid. Our Ruby 1.
 * Built with Google’s high performance memory allocator, tcmalloc
 * Updated rubygems packages to latest 1.3.x release
 
-
 ### Installation
 
 All the above packages are available from our
 [Launchpad package repository](https://launchpad.net/~brightbox/+archive/ruby-ng). 
+
 #### Adding the repository
 
 If you're using Ubuntu 14.04 (Trusty) or newer then you can add the package repository like this:
 
-    sudo apt-get install software-properties-common
-    sudo apt-add-repository ppa:brightbox/ruby-ng
-    sudo apt-get update
+    #!shell
+    $ sudo apt-get install software-properties-common
+    $ sudo apt-add-repository ppa:brightbox/ruby-ng
+    $ sudo apt-get update
 
 Or if you're on Ubuntu 12.04 (Precise) or older
 
-	sudo apt-get install python-software-properties
-    sudo apt-add-repository ppa:brightbox/ruby-ng
-    sudo apt-get update
+    #!shell
+    $ sudo apt-get install python-software-properties
+    $ sudo apt-add-repository ppa:brightbox/ruby-ng
+    $ sudo apt-get update
 
 #### Installing the packages
 
-Each version of Ruby has it's own packages - just install the packages for the versions you'd like to use.
+Each version of Ruby has its own packages - just install the packages for the versions you'd like to use.
 
 So to install Ruby1.8, Ruby 1.9.3 and Ruby 2.2
 
-    sudo apt-get install ruby1.8 ruby1.9.3 ruby2.2
+    #!shell
+    $ sudo apt-get install ruby1.8 ruby1.9.3 ruby2.2
 
-And you can run the different versions of ruby like this:
+And you'll probably need the `dev` packages so you can build native extensions
 
+    #!shell
+    $ sudo apt-get install ruby1.8-dev ruby1.9.3-dev ruby2.2-dev
+
+Then you can run the different versions of ruby like this:
+
+    #!shell
     $ ruby1.8 -v
     ruby 1.8.7 (2012-02-08 MBARI 8/0x8770 on patchlevel 358) [i486-linux], MBARI 0x8770, Ruby Enterprise Edition 2012.02
     
@@ -83,7 +92,8 @@ And you can run the different versions of ruby like this:
 
 You can also switch the default Ruby version back and forth between versions using the `ruby-switch` tool:
 
-	$ sudo apt-get install ruby-switch
+    #!shell
+    $ sudo apt-get install ruby-switch
 
     $ ruby -v
     ruby 1.8.7 (2012-02-08 MBARI 8/0x8770 on patchlevel 358) [i486-linux], MBARI 0x8770, Ruby Enterprise Edition 2012.02
@@ -105,7 +115,6 @@ You can also switch the default Ruby version back and forth between versions usi
 (note that Ruby 1.9.3 shows as 1.9.1, due to a historical Debian thing
 about binary compatibility)
 
-
 #### Gem binaries
 
 Any binaries installed by gems (such as bundler’s `bundle` command)
@@ -113,6 +122,7 @@ might not automatically use the current default version of ruby
 (preferring the version that was default at the time it was
 installed). In that case, you can explicitly run it under a specific version like this:
 
+    #!shell
     $ ruby1.9.1 -S bundle -v
 	Bundler version 1.6.3
 
@@ -122,7 +132,8 @@ If you're using multiple versions of ruby on a server, it's best to explicitly r
 
 The ruby 1.8 packages don't come with the rubygems libraries, so you need to install that separately if you need it:
 
-	$ sudo apt-get install ruby1.8 rubygems
+    #!shell
+    $ sudo apt-get install ruby1.8 rubygems
 
 Note that some very old versions of Rails do not work with the latest
 versions of Rubygems - if you're using our rubygems 1.3.7 packages and

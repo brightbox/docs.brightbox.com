@@ -90,10 +90,12 @@ The default admin account is `root` with a password of `5iveL!fe`.
 
 If you provided an SSH key during signup as suggested, you can ssh into your server using the username `ubuntu`:
 
-    ssh ubuntu@public.srv-xxxxx.gb1.brightbox.com
+    #!shell
+    $ ssh ubuntu@public.srv-xxxxx.gb1.brightbox.com
 
 And you can get root access using `sudo`:
 
+    #!shell
     ubuntu@srv-xxxxx:~$ sudo gitlab-ctl status
 	
     run: nginx: (pid 1612) 38s; run: log: (pid 1610) 38s

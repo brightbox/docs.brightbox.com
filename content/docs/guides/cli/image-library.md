@@ -20,6 +20,7 @@ To upload new images for registration, you use the TLS encrypted FTP
 service. Firstly, you need to reset your ftp password. So get your
 account identifier:
 
+    #!shell
     $ brightbox accounts list
     
      id         name    cloud_ip_limit  ram_limit  ram_used  ram_free
@@ -29,6 +30,7 @@ account identifier:
 
 and reset the ftp password:
 
+    #!shell
     $ brightbox accounts reset_ftp_password acc-xxxxx
     Resetting ftp password for acc-xxxxx
                       id: acc-xxxxx
@@ -56,6 +58,7 @@ Once you've uploaded your new image to the `incoming/` directory using
 ftp, you register it. In this case I've uploaded a 32bit image called
 `slackware.img`
 
+    #!shell
     $ brightbox images register -a i686 -n Slackware -d "Fresh slackware install" -s slackware.img
     
      id         owner      type    created_on  status    size  name            
@@ -67,6 +70,7 @@ Once it's been registered it will be deleted from `incoming/` and be
 available in the Orbit `images` container, named by the new images identifier
 (`img-7geqi` in this case). You can see it listed via the API now:
 
+    #!shell
     $ brightbox images list
     
      id         owner      type      created_on  status   size   name                                       
@@ -80,6 +84,7 @@ available in the Orbit `images` container, named by the new images identifier
 
 And it can be used to build servers in the usual manner:
 
+    #!shell
     $ brightbox servers create -n "my slackware box" img-7geqi
 		
 ### Compatibility mode
@@ -99,6 +104,7 @@ operating systems to work without modification.
 
 So to use compatibility mode, you set it on a particular image:
 
+    #!shell
     $ brightbox images update --mode=compatibility img-7geqi
 
 From then on, any new servers created with this image are put in
@@ -115,6 +121,7 @@ from them.
 If you make an image public, other Brightbox Cloud users can see them
 and build servers from them:
 
+    #!shell
     $ brightbox images update --public=true img-7geqi
 
 ### Deprecated images
@@ -132,7 +139,8 @@ invite any new users.
 Deprecated images that you own still shows up in your listings, but
 are listed with the status `deprecated`:
 
-    brightbox images update --deprecated=true img-7geqi
+    #!shell
+    $ brightbox images update --deprecated=true img-7geqi
     
     Updating image img-7geqi
     

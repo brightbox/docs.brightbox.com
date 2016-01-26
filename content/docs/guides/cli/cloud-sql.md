@@ -12,6 +12,7 @@ This guide will take you through creating a new Cloud SQL instance, setting it u
 
 Cloud SQL instances are managed using the `brightbox sql` command. First let's choose an instance type from the ones available:
 
+    #!shell
     $ brightbox sql types
     
      id         name    description  ram   disk  
@@ -23,6 +24,7 @@ Cloud SQL instances are managed using the `brightbox sql` command. First let's c
 
 Let's create a `Medium` Cloud SQL instance called `My first MySQL server`:
 
+    #!shell
     $ brightbox sql instances create --type dbt-6n6d0 --name "My first MySQL server" 
                 id: dbs-2yazz
               name: My first MySQL server
@@ -43,6 +45,7 @@ This starts creating a new instance with a MySQL user named `admin`. The `admin_
 
 So once this instance is built, it will change from status `creating` to status `active`:
 
+    #!shell
     $ brightbox sql instances 
     
      id         status  type       db_engine  zone   created_on  cloud_ip_ids  name                 
@@ -54,6 +57,7 @@ So once this instance is built, it will change from status `creating` to status 
 
 We now have to map a Cloud IP to the instance, so we can access it:
 
+    #!shell
     $ brightbox cloudips create --name "My MySQL IP"
     
      id         status    public_ip       destination  reverse_dns                           name       
@@ -75,6 +79,7 @@ And the last step before we can actually access the instance is to allow access 
 
 In this case I want to access the instance from my office, so I'll grant access to my IP address.
 
+    #!shell
     $ brightbox sql instances update --allow-access=93.184.216.119 dbs-2yazz
     Updating dbs-2yazz
     
@@ -89,6 +94,7 @@ You can add multiple IPs (or cloud servers etc.) by comma separating them.
 
 So now we can access the new MySQL instance via the Cloud IP using the standard mysql command line tools. Use the `admin` user and the `admin_password` that was generated when the instance was created:
 
+    #!shell
     $ mysql -h 109.107.38.255 -u admin -p
     Enter password: gkro6e8f4ib3nixa
     
@@ -103,6 +109,7 @@ So now we can access the new MySQL instance via the Cloud IP using the standard 
 
 We don't want to have our blog using the `admin` user, as it has too many privileges, so let's create a new user with less powers:
 
+    #!shell
     mysql> CREATE USER 'blog'@'%' IDENTIFIED BY 'zoow9peR';
     Query OK, 0 rows affected (0.02 sec)
     
@@ -111,6 +118,7 @@ We don't want to have our blog using the `admin` user, as it has too many privil
 
 Then reconnect as the new user and create the database. Here I'm loading a previous mysqldump I have of my blog's database too:
 
+    #!shell
     $ mysql -u blog -p -h 109.107.38.255
     Enter password: zoow9peR
     
@@ -140,6 +148,7 @@ Then reconnect as the new user and create the database. Here I'm loading a previ
 
 Now I need to allow my web servers access to the SQL instance. My web servers are in a server group:
 
+    #!shell
     $ brightbox groups 
     
      id         server_count  name              
@@ -151,6 +160,7 @@ Now I need to allow my web servers access to the SQL instance. My web servers ar
 
 So I can add that server group identifier to the access list for this SQL instance:
 
+    #!shell
     $ brightbox sql instances update --allow-access=93.184.216.119,grp-1ljcx dbs-2yazz
     Updating dbs-2yazz
     
@@ -165,6 +175,7 @@ And now all my web servers in my server group `grp-1ljcx` have access, and any s
 
 Let's take a snapshot of this new Cloud SQL instance before we go live with the blog:
 
+    #!shell
     $ brightbox sql instances snapshot dbs-2yazz
     Creating snapshot for dbs-2yazz
     
@@ -175,6 +186,7 @@ Let's take a snapshot of this new Cloud SQL instance before we go live with the 
 
 And we can then view the snapshot using the `brightbox sql snapshots` command:
 
+    #!shell
     $ brightbox sql snapshots
     
      id         status     created_on  name                                description
@@ -184,6 +196,7 @@ And we can then view the snapshot using the `brightbox sql snapshots` command:
 
 And now we'll create another Cloud SQL instance, using the snapshot of the other instance as a starting point. Just specify the snapshot identifier when building:
 
+    #!shell
     $ brightbox sql instances create --type dbt-6n6d0 --name "My cloned MySQL server"  --snapshot=dbi-ydtnk
                 id: dbs-rkl8e
               name: My cloned MySQL server
@@ -206,6 +219,7 @@ In this case, the `admin_password` is blank as it inherits the password in the s
 
 Let's say we upgraded our blog software and it went crazy and deleted some records from our live Cloud SQL instance (the one with the identifier `dbs-2yazz`). We can quickly switch to the cloned SQL instance (`dbs-rkl8e`) just by remapping the Cloud IP:
 
+    #!shell
     $ brightbox cloudips unmap cip-wgemn
     Unmapping Cloud IP cip-wgemn
     

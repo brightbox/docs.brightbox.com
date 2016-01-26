@@ -11,6 +11,7 @@ Linux distributions such as Fedora, CentOS, or Red Hat itself.
 
 On Red Hat derivatives use this command to install ruby:
 
+    #!shell
     $ sudo yum install ruby rubygems
 
 You should now be ready to [install the CLI Ruby Gem](/docs/guides/cli/installation-gem/).

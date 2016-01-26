@@ -72,11 +72,12 @@ We're providing [our own fork](https://registry.hub.docker.com/u/brightbox/regis
 
 So first, SSH into your new server and pull the Brightbox private repository Docker image:
 
+    #!shell
     $ ssh core@public.srv-xy5v4.gb1.brightbox.com
     
     CoreOS stable (557.2.0)
     
-    core@srv-xy5v4 ~ $ docker pull brightbox/registry
+    core@srv-xy5v4:~$ docker pull brightbox/registry
     
     Pulling repository brightbox/registry
     e5dc70f7a9c3: Download complete 
@@ -86,10 +87,11 @@ So first, SSH into your new server and pull the Brightbox private repository Doc
 
 Then start a new instance of the image, giving it the API client credentials you created, and the Orbit container name you chose. It runs on port 5000, so we'll expose that port:
 
-    core@srv-xy5v4 ~ $ docker run --name registry -d -e CLIENT_ID=cli-xxxxx -e CLIENT_SECRET=therandomsecret \
+    #!shell
+    core@srv-xy5v4:~$ docker run --name registry -d -e CLIENT_ID=cli-xxxxx -e CLIENT_SECRET=therandomsecret \
         -e ORBIT_CONTAINER=docker_registry -p 5000:5000 brightbox/registry
 
-    core@srv-xy5v4 ~ $ docker logs registry
+    core@srv-xy5v4:~$ docker logs registry
     13/Mar/2015:16:47:24 +0000 WARNING: Cache storage disabled!
     13/Mar/2015:16:47:24 +0000 WARNING: LRU cache disabled!
     13/Mar/2015:16:47:25 +0000 INFO: Starting new HTTPS connection (1): orbit.brightbox.com
@@ -106,6 +108,7 @@ Then start a new instance of the image, giving it the API client credentials you
 
 Now you can push and pull images to this repository. Say you have an app with a `Dockerfile`, such as [this example app](https://github.com/brightbox/docker-example-rails-app). Just check it out and build the image:
 
+    #!shell
     $ git clone https://github.com/brightbox/docker-example-rails-app.git
     Cloning into 'docker-example-rails-app'...
     remote: Counting objects: 65, done.
@@ -162,10 +165,12 @@ Now you can push and pull images to this repository. Say you have an app with a 
 
 Then tag the newly built image ready for pushing to the repository:
 
+    #!shell
     $ docker tag 26ba7a4f9705 localhost:5000/exampleapp:1.0
 
 And then push it to your repository:
 
+    #!shell
     $ docker push localhost:5000/exampleapp:1.0
     
     The push refers to a repository [localhost:5000/exampleapp] (len: 1)
@@ -179,6 +184,7 @@ And then push it to your repository:
 
 You can then see it on the remote repository by searching:
 
+    #!shell
     $ docker search localhost:5000/exampleapp
     
     NAME                 DESCRIPTION   STARS     OFFICIAL   AUTOMATED
@@ -188,14 +194,15 @@ You can then see it on the remote repository by searching:
 
 You can peek into the Orbit container directly and see the repository data stored there. Don't modify it directly though! We have an [SSH interface](/docs/guides/orbit/sftp/) for convenient access; just use the same API client identifier and secret to login:
 
+    #!shell
     $ sftp cli-xxxxx@sftp.orbit.brightbox.com
     cli-xxxxx@sftp.orbit.brightbox.com's password: 
     Connected to sftp.orbit.brightbox.com.
     
     sftp> ls -lah docker_registry/docker-registry/repositories/library/exampleapp
-    -rw-r--r--    0 0        0            1.6K Mar 20 11:45     docker_registry/docker-registry/repositories/library/exampleapp/_index_images
-    -rw-r--r--    0 0        0            138B Mar 20 11:45     docker_registry/docker-registry/repositories/library/exampleapp/tag1.0_json
-    -rw-r--r--    0 0        0             64B Mar 20 11:45     docker_registry/docker-registry/repositories/library/exampleapp/tag_1.0
+    -rw-r--r--    0 0   0   1.6K Mar 20 11:45  docker_registry/docker-registry/repositories/library/exampleapp/_index_images
+    -rw-r--r--    0 0   0   138B Mar 20 11:45  docker_registry/docker-registry/repositories/library/exampleapp/tag1.0_json
+    -rw-r--r--    0 0   0    64B Mar 20 11:45  docker_registry/docker-registry/repositories/library/exampleapp/tag_1.0
 
 
 ### Security

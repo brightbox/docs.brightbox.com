@@ -4,13 +4,13 @@ title: Cloud Firewall
 section: CLI
 ---
 
-The Brightbox Cloud Firewall provides a highly-configurable facility
-to control access to, from and between your Cloud Servers.  Rather
-than laboriously writing rules for every one of your Cloud Servers,
-you define rules for your
-[Server Groups](/docs/guides/cli/server-groups/). Then, whenever you add
-servers to the groups, all the rules are applied to all the relevant
-servers automatically.
+The Brightbox Cloud [Firewall](/docs/reference/firewall/) provides a
+highly-configurable facility to control access to, from and between your Cloud
+Servers. Rather than laboriously writing rules for every one of your Cloud
+Servers, you define rules for your
+[Server Groups](/docs/guides/cli/server-groups/). Then, whenever you add servers
+to the groups, all the rules are applied to all the relevant servers
+automatically.
 
 Let's set up firewalling for an example web cluster. We have two web
 servers and two database servers.
@@ -22,8 +22,8 @@ only the web servers.
 All the servers need to be accessible via ssh from our home Internet
 connection.
 
-You'll need version `0.15` or higher of the
-[brightbox cli](/docs/guides/cli/getting-started/) to follow this guide.
+You'll need the [Brightbox CLI](/docs/guides/cli/getting-started/) installed to
+follow this guide.
 
 ### Grouping the Servers
 
@@ -33,7 +33,7 @@ servers and one for the database servers. Managing Server Groups is
 explained in more detail in the
 [Server Groups Guide](/docs/guides/cli/server-groups/).
 
-
+    #!shell
     $ brightbox groups create -n "web servers"
     
     $ brightbox groups create -n "db servers"
@@ -62,6 +62,7 @@ the Server Group.
 So let's create two new firewall policies and map them to the new
 groups:
 
+    #!shell
     $ brightbox firewall-policies create -n "web access"
     
      id         server_group  name      
@@ -105,6 +106,7 @@ groups:
 So now we can define the allowed traffic. Let's add the incoming HTTP
 rule:
 
+    #!shell
     $ brightbox firewall-rules create --source=any --protocol=tcp --dport=80,443 fwp-emldu
     
      id         protocol  source  sport  destination  dport   icmp_type
@@ -137,6 +139,7 @@ very specifically, perhaps allowing them access to external APIs and
 SMTP relays or whatever. But for simplicitly here, we'll just add a
 rule allowing all access:
 
+    #!shell
     $ brightbox firewall-rules create --destination=any fwp-emldu
     
      id         protocol  source  sport  destination  dport  icmp_type
@@ -146,6 +149,7 @@ rule allowing all access:
 
 So now we can see the two rules:
 
+    #!shell
     $ brightbox firewall-rules list fwp-emldu
     
      id         protocol  source  sport  destination  dport   icmp_type
@@ -158,6 +162,7 @@ So now we can see the two rules:
 
 Let's add the same outgoing rule for the database servers:
 
+    #!shell
     $ brightbox firewall-rules create --destination=any fwp-7d4mt
     
      id         protocol  source  sport  destination  dport  icmp_type
@@ -171,6 +176,7 @@ source, protocol `tcp` and destination port `3306`. We of course need
 to add this rule to the `db access` policy that we applied to the `db
 servers` group:
 
+    #!shell
     $ brightbox firewall-rules create --source=grp-ncapg --protocol=tcp --dport=3306 fwp-7d4mt
     
      id         protocol  source     sport  destination  dport  icmp_type
@@ -183,6 +189,7 @@ servers` group:
 Right, now let's get the firewall rules active for our servers.  We
 have two web servers and two database servers:
 
+    #!shell
     $ brightbox servers list
     
      id         status    type    zone   created_on  image_id   cloud_ip_ids  name       
@@ -195,6 +202,7 @@ have two web servers and two database servers:
 
 And they're all currently in the `default` server group:
 
+    #!shell
     $ brightbox groups list
     
      id         server_count  name                    
@@ -206,6 +214,7 @@ And they're all currently in the `default` server group:
 
 So we move them into the appropriate groups:
 
+    #!shell
     $ brightbox groups move_servers -f grp-98v4n -t grp-f4rpy srv-13y2j srv-25adm 
     Moving 2 servers from server group grp-98v4n to server group grp-f4rpy
     
@@ -240,6 +249,7 @@ especially for remote admin access.
 
 So we create a new group called `ssh servers`:
 
+    #!shell
     $ brightbox groups create -n "ssh servers"
     
     Creating a new server group
@@ -251,6 +261,7 @@ So we create a new group called `ssh servers`:
 
 Then we create a new policy and apply it to the group:
 
+    #!shell
     $ brightbox firewall-policies create -n "remote admin access"
     
      id         server_group  name               
@@ -268,6 +279,7 @@ Then we create a new policy and apply it to the group:
 Then we create a rule allowing ssh access from our trusty home AOL
 dialup, with IP address `172.191.5.18`:
 
+    #!shell
     $ brightbox firewall-rules create --source=172.191.5.18 --protocol=tcp --dport=22 fwp-ekjbx
     
      id         protocol  source        sport  destination  dport  icmp_type
@@ -279,6 +291,7 @@ Now we need to add all the servers to this group, keeping them in
 their other group, so we use the `add_servers` command rather than
 `move_servers`:
 
+    #!shell
     $ brightbox groups add_servers grp-lqaky srv-13y2j srv-25adm srv-uj1wm srv-5x0ct
     
     Adding 4 servers to server group grp-lqaky
@@ -291,6 +304,7 @@ their other group, so we use the `add_servers` command rather than
 So now we can see there are two servers in the web and db groups, and
 all four servers are in the `ssh servers` group:
 
+    #!shell
     $ brightbox groups list
     
      id         server_count  name                    

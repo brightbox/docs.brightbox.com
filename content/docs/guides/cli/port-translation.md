@@ -49,7 +49,8 @@ as usual:
 
 
 Then we create our first Cloud IP as normal and map it to our server:
-    
+
+    #!shell
     $ brightbox cloudips create -n "cats" 
     
      id         status    public_ip      destination  name
@@ -84,6 +85,7 @@ port, let's use `2443`
 Now we create a second Cloud IP, but this time we specify a port
 translation to translate tcp port `443` to `2443`:
 
+    #!shell
     $ brightbox cloudips create -n "dogs" --port-translators=443:2443:tcp
     
      id         status    public_ip       destination  name
@@ -93,6 +95,7 @@ translation to translate tcp port `443` to `2443`:
 
 And then map it to the server as normal:
 
+    #!shell
     $ brightbox cloudips map cip-dnx8z srv-9igaa
     Mapping cip-dnx8z to interface int-zylp1 on srv-9igaa
     
@@ -109,6 +112,7 @@ second IP, then `dogs.com` is live too!
 You can view the port translators for a particular Cloud IP using the 
 `brightbox cloudips show` command:
 
+    #!shell
     $ brightbox cloudips show cip-dnx8z
     
                   id: cip-dnx8z

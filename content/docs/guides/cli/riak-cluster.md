@@ -16,6 +16,7 @@ Firstly, let's create a [Server Group](/docs/guides/cli/server-groups/) for
 the cluster and a
 [Firewall Policy](/docs/reference/firewall/):
 
+    #!shell
     $ brightbox groups create -n "riak"
     Creating a new server group
     
@@ -34,6 +35,7 @@ the cluster and a
 Now let's create a few simple firewall rules. We'll allow the Riak
 nodes to make unrestricted outgoing connections:
 
+    #!shell
     $ brightbox firewall-rules create --destination=any fwp-ev5q6
     
      id         protocol  source  sport  destination  dport  icmp_type  description
@@ -54,6 +56,7 @@ group (so Riak can communicate with itself):
 And we'll allow incoming ssh access from anywhere so we can manage the
 servers:
 
+    #!shell
     $ brightbox firewall-rules create --source=any --protocol=tcp --dport=22 fwp-ev5q6
     
      id         protocol  source  sport  destination  dport  icmp_type  description
@@ -127,6 +130,7 @@ the `brightbox types` command).
 
 Let's create our first server which we'll use as the "seed host":
 
+    #!shell
     $ brightbox servers create -n "riak server" -g grp-ekalx -z gb1-a -t nano -f install-riak.sh img-3ikco
     Creating 1 nano (typ-4nssg) servers with image Ubuntu Lucid 10.04 server (img-3ikco) in zone gb1-a in groups grp-ekalx with 0.95k of user data
     
@@ -147,6 +151,7 @@ and set the `SEED_HOST` variable to the name of this new server:
 We can now build the remaining three servers and they'll automatically
 join the cluster:
 
+    #!shell
     $ brightbox servers create -n "riak server" -g grp-ekalx -z gb1-a -t nano -f install-riak.sh img-3ikco
     Creating 1 nano (typ-4nssg) servers with image Ubuntu Lucid 10.04 server (img-3ikco) in zone gb1-a in groups grp-ekalx with 0.95k of user data
     
@@ -175,6 +180,7 @@ address and a public IPv6 address.  If you don't have IPv6 then you'll
 need to map a [Cloud IP](/docs/reference/cloud-ips/) to one of your new
 Riak servers to start accessing the cluster:
 
+    #!shell
     $ brightbox cloudips create
     
      id         status    public_ip      destination  reverse_dns                        
@@ -203,6 +209,7 @@ nodes joined up successfully.  Our Ubuntu images automatically install
 your ssh keys to the `ubuntu` account on the first boot, so we can ssh
 straight in:
 
+    #!shell
     $ brightbox servers list -g grp-ekalx
     
      id         status  type  zone   created_on  image_id   cloud_ip_ids  name       
@@ -228,10 +235,12 @@ can read and write documents:
 
 Write it to one server:
 
+    #!shell
     ubuntu@srv-ldpon:~$ curl -d 'Hello World' -H 'Content-Type: text/plain' http://srv-ldpon.gb1.brightbox.com:8098/riak/test/hello
 
 Read it from another:
 
+    #!shell
     ubuntu@srv-ldpon:~$ curl http://srv-3zdoj.gb1.brightbox.com:8098/riak/test/hello
     Hello World
 
@@ -242,5 +251,6 @@ access to some web servers. Assuming your web servers are in a group
 with the identifier `grp-u5qrt` you can give the whole group access to
 the Riak HTTP interface on all the riak nodes like this:
 
+    #!shell
     $ brightbox firewall-rules create --source=grp-u5qrt --protocol=tcp --dport=8098 fwp-ev5q6
 
