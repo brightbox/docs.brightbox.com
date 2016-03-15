@@ -135,20 +135,6 @@ The ruby 1.8 packages don't come with the rubygems libraries, so you need to ins
     #!shell
     $ sudo apt-get install ruby1.8 rubygems
 
-Note that some very old versions of Rails do not work with the latest
-versions of Rubygems - if you're using our rubygems 1.3.7 packages and
-don't want to upgrade, you can pin them like this:
-
-    cat <<EOF > /etc/apt/preferences.d/rubygems
-    Package: rubygems
-    Pin: version 1.3.*
-    Pin-Priority: 600
-    Package: rubygems1.8
-    Pin: version 1.3.*
-    Pin-Priority: 600
-    EOF
-
-
 #### Passenger Support
 
 It's now recommended to use Phusion's own [Ubuntu packages for Passenger](https://www.phusionpassenger.com/install_debian) (we helped develop them, so we know they're alright ;)
