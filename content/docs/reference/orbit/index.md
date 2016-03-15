@@ -76,7 +76,3 @@ If you are a collaborator on multiple accounts, then you can specify the account
 ### Billing
 
 Orbit is charged per gigabyte of storage used per month, and per gigabyte of data transferred out to the Internet. Incoming data and incoming or outgoing data from/to Brightbox Cloud servers is free
-
-### Status
-
-Orbit is currently in beta and usage is not charged.
