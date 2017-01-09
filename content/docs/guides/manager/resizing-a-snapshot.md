@@ -1,5 +1,4 @@
 ---
-layout: default
 title: Resizing a snapshot to fit on a smaller server type
 section: Brightbox Manager
 keywords: resize, downgrade
@@ -31,7 +30,7 @@ Use a recent official Ubuntu image, Utopic should be fine. Map a Cloud IP if you
 
     #!shell
     $ sudo apt-get update
-	$ sudo apt-get install qemu-utils kpartx parted lftp
+    $ sudo apt-get install qemu-utils kpartx parted liblz4-tool
 
 ### Download the snapshot
 
@@ -42,12 +41,12 @@ We need a local copy of the snapshot to work on. Snapshots are stored in the `im
     
     2015-01-21 21:31:35 (75.2 MB/s) - 'img-3anq3' saved
 
-### Convert it to raw format
+### Decompress the snapshot
 
-The downloaded snapshot will be in QCOW2 format, so convert it to a raw file using `qemu-img`:
+The downloaded snapshot will be in LZ4 compressed raw format, so decompress it using the `lz4` utility:
 
     #!shell
-    $ qemu-img convert -O raw img-3anq3 img-3anq3.raw
+    $ lz4 -d img-3anq3 img-3anq3.raw
 
 This will create a file called `img-3anq3.raw` which is sparsely allocated, so it will look to be the full virtual size of the image but will only be the size of the actual image data.
 
@@ -121,47 +120,37 @@ So now that the filesystem is shrunk, and the partition is shrunk, the only thin
     $ qemu-img resize img-3anq3.raw 5122M
     Image resized.
 
-### Convert the image back to QCOW2 format
+### Recompress the image with LZ4
 
-Now we have a resized raw image, so we just need to convert it back to QCOW2 format:
+Now we have a resized raw image, so we just need to compress it again with LZ4:
 
     #!shell
-    $ qemu-img convert -O qcow2 -o compat=0.10 img-3anq3.raw img-3anq3.qcow2
+    $ lz4 img-3anq3.raw img-3anq3.lz4
 
 ### Register the newly resized image
 
-<img src="/images/docs/image-library-access.png" alt="" class="doc-right"/>
+<%= content_image "/images/docs/image-library-access.png", classes: %w{right no-border}%>
 
 Now we've modified the image to the size we want it, we need to register it back with the Image Library so we can build new servers from it.
 
 Firstly, upload the new image to the Image Library incoming area using FTP. To generate a new random FTP password for your access click on the cog icon at the top left of the page in Brightbox Manager. This drops down the account menu; then click <q>Image Library access</q>.
 
-<br class="clear"/>
+<%= clear %>
 
 Then use your favourite FTP client to upload the new image:
 
     #!shell
-    $ lftp acc-xxxxx@ftp.library.gb1.brightbox.com
-        Password:
-    
-    lftp acc-xxxxx@ftp.library.gb1.brightbox.com:~> ls
-    
-    drwxr-sr-x   2 acc-xxxxx library     20480 Sep 24  2013 images
-	drwxr-sr-x   2 acc-xxxxx library     20480 Sep 24  2013 incoming
-    
-    lftp acc-xxxxx@ftp.library.gb1.brightbox.com:/> cd incoming
-    
-    lftp acc-xxxxx@ftp.library.gb1.brightbox.com:/incoming> put img-3anq3.qcow2
-    
-    5368709120 bytes transferred
-
+    $ curl --ftp-ssl -T img-3anq3.lz4 ftp://acc-xxxxx:FTP_PASSWORD@ftp.library.gb1.brightbox.com/incoming/
+      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                     Dload  Upload   Total   Spent    Left  Speed
+    100 5368M    0     0  100 5368M      0  6830k  1:18:44  1:18:44 --:--:-- 6952k
 
 Then tell the Image Library to register it. Brightbox Manager doesn't currently support image registration, so you need to do this part with [the command line interface](/docs/guides/cli/). There is a [fuller guide to image registration](/docs/guides/cli/image-library/) available, but we'll cover the basics steps here.
 
 Give the new image a name, specify the [cpu architecture](/docs/reference/server-images/#architecture) (`x84_64` should be fine for most situations) and the filename of the source file in the `incoming/` directory:
 
     #!shell
-    $ brightbox images register -a x86_64 --name "resized image" --source img-3anq3.qcow
+    $ brightbox images register -a x86_64 --name "resized image" --source img-3anq3.lz4
     
      id         owner      type    created_on  status    size  name
     ------------------------------------------------------------------------------------
